@@ -300,6 +300,11 @@ As default Ubuntu should have UFW installed but if not, then installed it trough
 The ports that are needed for Seafile to work is 80 and 443, but we also want the SSH port to be opened and it's port 22 as standard, if you have change it by following the NohaTech-Security-Ubuntu.md document you just change it from 22 to the port number that you have choosed for it.
 
 # Fail2Ban
+Fail2Ban are searching trough your logfiles and are blocking IP's that are trying to hack your server in differnet ways.
+First we need to install Fail2Ban.
+```
+ sudo apt-get install fail2ban
+```
 
 ### For Seafile
 
