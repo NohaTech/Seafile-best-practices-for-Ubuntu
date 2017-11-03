@@ -92,6 +92,7 @@ And now we need to update Pillow to the latest to have the best experience with 
 
 # Download and setup Seafile
 In this section we are going to download, install and setup Seafile.
+To see what's the latest version of Seafile CE please visit this link: https://www.seafile.com/en/download/
 
 ### Download Seafile
 Now it's time to download Seafile. As you can see in this example I'm using the version 6.2.2 change the filenames to the ones that you have.
