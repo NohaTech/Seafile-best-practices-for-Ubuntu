@@ -3,6 +3,8 @@ I'll guide you to how you can install Seafile on a Ubuntu 16.04 LTS machine, in 
 I'll keep this document up to date as much as I can.
 To tighten up your security on your Ubuntu server please se the NohaTech-Security-Ubuntu.md file.
 
+***All the path's in this guide are starting at /nohatech/ make sure that you change them to the path that your using.***
+
 # Installation
 Now we going to start the installation.
 
@@ -97,6 +99,7 @@ To see what's the latest version of Seafile CE please visit this link: https://w
 ### Download Seafile
 Now it's time to download Seafile. As you can see in this example I'm using the version 6.2.2 change the filenames to the ones that you have.
 ```
+ cd ~
  wget https://download.seadrive.org/seafile-server_6.2.2_x86-64.tar.gz
 ```
 And now we need to unpack it.
@@ -131,7 +134,7 @@ The setup script will ask you the names of the databases, and it's the same as t
 Now you should have new folders in the nohatech/ folder.
 So what we need to do now is to run Seafile for the first time and then you will be prompted to create the Administrator when you do run the ./seahub.sh start command, but it's importent that you are running the ./seafile.sh start before the seahub as both are needed to run Seafile.
 ```
- cd nohatech/seafile-server-latest
+ cd /nohatech/seafile-server-latest
  
  ./seafile.sh start
  ./seahub.sh start
@@ -145,7 +148,7 @@ Make sure that you have opend port 8000 in the UFW firewall if you have it activ
 It's recommended to setup Memcached for Sefile to increase the performance, we have aldready installed all of the necessary component.
 So what we need to do is to add some lines to the seahub_settings.py file.
 ```
- nano nohatech/conf/seahub_settings.py
+ nano /nohatech/conf/seahub_settings.py
 ```
 Then add the following lines to the file.
 ```
@@ -209,9 +212,52 @@ And now we are on the last step, now we need to enable this as a service.
 ```
 
 ### Seafile GC
+Seafile GC are going to clean up the deleted files etc. to free space on your server. But on the CE (free version) of Seafile it can't run as long as Seafile are running.
+So we are going to make a script and add it to crontab to make it autorun and solve this little issue.
+
+First we need to create the file.
+```
+ nano /nohatech/seafile/cleanupScript.sh
+```
+Then add the following to the file.
+```
+ #!/bin/bash
+ # stop the server
+ echo Stopping the Seafile-Server...
+ systemctl stop seafile.service
+
+ echo Giving the server some time to shut down properly....
+ sleep 10
+
+ # run the cleanup
+ echo Seafile cleanup started...
+ sudo -u seafile /nohatech/seafile-server-latest/seaf-gc.sh -r
+
+ echo Giving the server some time....
+ sleep 3
+
+ # start the server again
+ echo Starting the Seafile-Server...
+ systemctl start seafile.service
+
+ echo Seafile cleanup done!
+```
+Make sure that the script has been given execution rights, to do that run this command
+```
+ sudo chmod +x /nohatech/seafile/cleanupScript.sh
+```
+Now we need to add the script to crontab so we can autorun it.
+```
+ sudo nano crontab -e
+```
+Then add the following line at the end on the crontab file.
+```
+ 0 2 * * Sun /nohatech/seafile/cleanupScript.sh
+```
+This means that every Sunday at 02:00 this script will run.
 
 ### Install NGINX
-We need NGINX so we can access Seafile trough 443 port and use SSL.
+We need NGINX so we can access Seafile trough 443 port and use SSL also NGINX are going to work as a revers proxy for us.
 
 ### Configuration for Seafile
 
