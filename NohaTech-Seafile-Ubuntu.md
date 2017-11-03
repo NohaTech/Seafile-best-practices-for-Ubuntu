@@ -70,8 +70,24 @@ Now we are all done, so just do the following.
  quit;
 ```
 
+### The last installation
+Now it's time to do the installation of the rest of the needed things, as you can see it's deverted in to blocks so run one command at the time to make sure that everything are installing correctly.
+```
+ sudo apt-get install python -y
+ 
+ sudo apt-get install python2.7 libpython2.7 python-setuptools python-imaging python-ldap python-urllib3 ffmpeg python-pip python-mysqldb python-memcache memcached libmemcached-dev zlib1g-dev -y
+ 
+ sudo -H pip install pillow moviepy pylibmc django-pylibmc
+```
+And now we need to update Pillow to the latest to have the best experience with thumbnails and viewing our pictures from the webbrowser.
+```
+ sudo -H pip install --upgrade Pillow
+```
 
-### Download Seafile
+# Download and setup Seafile
+In this section we are going to download, install and setup Seafile.
+
+#### Download Seafile
 Now it's time to download Seafile. As you can see in this example I'm using the version 6.2.2 change the filenames to the ones that you have.
 ```
  wget https://download.seadrive.org/seafile-server_6.2.2_x86-64.tar.gz
