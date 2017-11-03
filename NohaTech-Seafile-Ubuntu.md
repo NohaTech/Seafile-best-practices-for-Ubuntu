@@ -13,7 +13,7 @@ We need to make sure that Ubuntu are up to date, use this command below to do th
 ```
 Now reboot your server
 
-### MariaDB
+### Install MariaDB
 We are going to use MariaDB and what we want to do is that we want to run the latest stable version to do that we need to make some changes.
 ```
  sudo apt-get install software-properties-common
@@ -133,7 +133,7 @@ So what we need to do now is to run Seafile for the first time and then you will
 
 ### Add Memcached
 
-### NGINX
+### Install NGINX
 We need NGINX so we can access Seafile trough 443 port and use SSL.
 
 # Fail2Ban (Optional)
