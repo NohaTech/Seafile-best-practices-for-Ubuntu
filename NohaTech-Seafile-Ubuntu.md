@@ -13,7 +13,7 @@ We need to make sure that Ubuntu are up to date, use this command below to do th
 ```
 Now reboot your server
 
-### Install MariaDB
+### MariaDB
 We are going to use MariaDB and what we want to do is that we want to run the latest stable version to do that we need to make some changes.
 ```
  sudo apt-get install software-properties-common
@@ -110,3 +110,32 @@ Now we need to move the seafile-server_6.2.2 folder and the seafile-server_6.2.2
  mv seafile-server_6.2.2_x86-64.tar.gz nohatech/installed
  mv seafile-server_6.2.2 nohatech
 ```
+
+### Install Seafile
+Now it's time to run the setup script for Seafile.
+```
+ cd ~/nohatech/seafile-server_6.2.2
+ 
+ ./setup-seafile-mysql.sh
+```
+During the setup you should choose
+```
+ [2] Use existing ccnet/seafile/seahub databases
+```
+And then read everything in most cases it's just run at default except when it asks you for your username and password for the databases then you should write the ones that you did choose in the MariaDB installation above.
+The setup script will ask you the names of the databases, and it's the same as the one you did choose in the MariaDB installation also, if you don't rememeber what you did choose take a look at the MariaDB installation section above.
+
+Now you should have new folders in the nohatech/ folder.
+So what we need to do now is to run Seafile for the first time and then you will be prompted to create the Administrator.
+```
+
+```
+
+### NGINX
+We need NGINX so we can access Seafile trough 443 port and use SSL.
+
+### Fail2Ban (Optional)
+
+#### For Seafile
+
+#### For NGINX
