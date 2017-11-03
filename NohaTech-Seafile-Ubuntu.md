@@ -280,6 +280,12 @@ We need NGINX so we can access Seafile trough 443 port and use SSL also NGINX ar
 #### seahub_settings.py
 
 # UFW Firewall
+A Firewall is something that everyone wants and needs these days, so I'm going to guide you trough it.
+As default Ubuntu should have UFW installed but if not, then installed it trough this command.
+```
+ sudo apt-get install ufw
+```
+The ports that are needed for Seafile to work is 80 and 443, but we also want the SSH port to be opened and it's port 22 as standard, if you have change it by following the NohaTech-Security-Ubuntu.md document you just change it from 22 to the port number that you have choosed for it.
 
 # Fail2Ban
 
