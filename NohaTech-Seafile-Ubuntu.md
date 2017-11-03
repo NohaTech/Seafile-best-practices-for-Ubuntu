@@ -156,7 +156,56 @@ Then add the following lines to the file.
  }
 ```
 
-### Run Seafile on boot
+### Start Seafile on system boot
+We want Seafile to autostart on boot of our server, so now we going to fixa that.
+So now we need to create some new files.
+Remember to change the path to your own path for Seafile also remember to change the user and group name if your user and group name are not Seafile in both of the files.
+```
+ sudo nano /etc/systemd/system/seafile.service
+```
+and then add the following to the file.
+```
+ [Unit]
+ Description=Seafile
+ After=network.target mysql.service
+
+ [Service]
+ Type=oneshot
+ ExecStart=/nohatech/seafile-server-latest/seafile.sh start
+ ExecStop=/nohatech/seafile-server-latest/seafile.sh stop
+ RemainAfterExit=yes
+ User=seafile
+ Group=seafile
+
+ [Install]
+ WantedBy=multi-user.target
+```
+Now we need to create a second file.
+```
+ sudo nano /etc/systemd/system/seahub.service
+````
+then add this to the file.
+```
+ [Unit]
+ Description=Seafile hub
+ After=network.target seafile.service
+
+ [Service]
+ ExecStart=/nohatech/seafile-server-latest/seahub.sh start
+ ExecStop=/nohatech/seafile-server-latest/seahub.sh stop
+ User=seafile
+ Group=seafile
+ Type=oneshot
+ RemainAfterExit=yes
+
+ [Install]
+ WantedBy=multi-user.target
+```
+And now we are on the last step, now we need to enable this as a service.
+```
+ sudo systemctl enable seafile.service
+ sudo systemctl enable seahub.service
+```
 
 ### Install NGINX
 We need NGINX so we can access Seafile trough 443 port and use SSL.
