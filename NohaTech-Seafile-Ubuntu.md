@@ -60,9 +60,9 @@ Change the "identified by 'seafile';" to a password of your choosing rather then
 ```
  create user 'seafile'@'localhost' identified by 'seafile';
  
-GRANT ALL PRIVILEGES ON `ccnet-db`.* to `seafile`@localhost;
-GRANT ALL PRIVILEGES ON `seafile-db`.* to `seafile`@localhost;
-GRANT ALL PRIVILEGES ON `seahub-db`.* to `seafile`@localhost;
+ GRANT ALL PRIVILEGES ON `ccnet-db`.* to `seafile`@localhost;
+ GRANT ALL PRIVILEGES ON `seafile-db`.* to `seafile`@localhost;
+ GRANT ALL PRIVILEGES ON `seahub-db`.* to `seafile`@localhost;
 ```
 Now we are all done, so just do the following.
 ```
@@ -144,7 +144,7 @@ Then add the following lines to the file.
         'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
         'LOCATION': '127.0.0.1:11211',
     }
-}
+ }
 ```
 
 ### Install NGINX
