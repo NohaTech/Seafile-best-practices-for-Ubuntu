@@ -136,6 +136,7 @@ So what we need to do now is to run Seafile for the first time and then you will
 
 Now the things are up an running for you, good! What we need to do now is to do some modifications and install some add-ons to make it run perfectly.
 But you can try to login on it trough your webbrowser: http://yourlocalip:8000/
+Make sure that you have opend port 8000 in the UFW firewall if you have it activated.
 
 ### Add Memcached
 It's recommended to setup Memcached for Sefile to increase the performance, we have aldready installed all of the necessary component.
@@ -156,7 +157,9 @@ Then add the following lines to the file.
 ### Install NGINX
 We need NGINX so we can access Seafile trough 443 port and use SSL.
 
-# Fail2Ban (Optional)
+# UFW Firewall
+
+# Fail2Ban
 
 ### For Seafile
 
