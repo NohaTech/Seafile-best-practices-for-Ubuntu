@@ -114,7 +114,7 @@ Now we need to move the seafile-server_6.2.2 folder and the seafile-server_6.2.2
 ### Install Seafile
 Now it's time to run the setup script for Seafile.
 ```
- cd ~/nohatech/seafile-server_6.2.2
+ cd nohatech/seafile-server_6.2.2
  
  ./setup-seafile-mysql.sh
 ```
@@ -126,16 +126,22 @@ And then read everything in most cases it's just run at default except when it a
 The setup script will ask you the names of the databases, and it's the same as the one you did choose in the MariaDB installation also, if you don't rememeber what you did choose take a look at the MariaDB installation section above.
 
 Now you should have new folders in the nohatech/ folder.
-So what we need to do now is to run Seafile for the first time and then you will be prompted to create the Administrator.
+So what we need to do now is to run Seafile for the first time and then you will be prompted to create the Administrator when you do run the ./seahub.sh start command, but it's importent that you are running the ./seafile.sh start before the seahub as both are needed to run Seafile.
+```
+ cd nohatech/seafile-server-latest
+ 
+ ./seafile.sh start
+ ./seahub.sh start
 ```
 
-```
+Now the things are up an running for you, good! What we need to do now is to do some modifications and install some add-ons to make it run perfectly.
+But you can try to login on it trough your webbrowser: http://yourlocalip:8000/
 
 ### Add Memcached
 It's recommended to setup Memcached for Sefile to increase the performance, we have aldready installed all of the necessary component.
 So what we need to do is to add some lines to the seahub_settings.py file.
 ```
- nano ~/nohatech/conf/seahub_settings.py
+ nano nohatech/conf/seahub_settings.py
 ```
 Then add the following lines to the file.
 ```
