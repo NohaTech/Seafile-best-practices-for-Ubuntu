@@ -131,11 +131,13 @@ So what we need to do now is to run Seafile for the first time and then you will
 
 ```
 
+### Add Memcached
+
 ### NGINX
 We need NGINX so we can access Seafile trough 443 port and use SSL.
 
-### Fail2Ban (Optional)
+# Fail2Ban (Optional)
 
-#### For Seafile
+### For Seafile
 
-#### For NGINX
+### For NGINX
