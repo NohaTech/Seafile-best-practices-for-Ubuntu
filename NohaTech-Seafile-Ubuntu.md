@@ -156,6 +156,11 @@ Then add the following lines to the file.
  }
 ```
 
+### Run Seafile on boot
+
+### Install NGINX
+We need NGINX so we can access Seafile trough 443 port and use SSL.
+
 ### Configuration for Seafile
 
 #### ccnet.conf
@@ -163,11 +168,6 @@ Then add the following lines to the file.
 #### seafile.conf
 
 #### seahub_settings.py
-
-### Run Seafile on boot
-
-### Install NGINX
-We need NGINX so we can access Seafile trough 443 port and use SSL.
 
 # UFW Firewall
 
