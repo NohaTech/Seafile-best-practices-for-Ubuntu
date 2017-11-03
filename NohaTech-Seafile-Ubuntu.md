@@ -132,6 +132,20 @@ So what we need to do now is to run Seafile for the first time and then you will
 ```
 
 ### Add Memcached
+It's recommended to setup Memcached for Sefile to increase the performance, we have aldready installed all of the necessary component.
+So what we need to do is to add some lines to the seahub_settings.py file.
+```
+ nano ~/nohatech/conf/seahub_settings.py
+```
+Then add the following lines to the file.
+```
+ CACHES = {
+    'default': {
+        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+```
 
 ### Install NGINX
 We need NGINX so we can access Seafile trough 443 port and use SSL.
