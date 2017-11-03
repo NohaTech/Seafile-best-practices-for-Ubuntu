@@ -261,6 +261,16 @@ This means that every Sunday at 02:00 this script will run.
 ### Install NGINX
 We need NGINX so we can access Seafile trough 443 port and use SSL also NGINX are going to work as a revers proxy for us.
 
+#### Latest version
+
+#### Install
+
+#### Configuration
+
+#### Self signed cert
+
+#### Free SSL cert from Let's Encrypt (recommended)
+
 ### Configuration for Seafile
 
 #### ccnet.conf
