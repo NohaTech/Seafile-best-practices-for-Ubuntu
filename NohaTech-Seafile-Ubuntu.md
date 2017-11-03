@@ -207,6 +207,8 @@ And now we are on the last step, now we need to enable this as a service.
  sudo systemctl enable seahub.service
 ```
 
+### Seafile GC
+
 ### Install NGINX
 We need NGINX so we can access Seafile trough 443 port and use SSL.
 
