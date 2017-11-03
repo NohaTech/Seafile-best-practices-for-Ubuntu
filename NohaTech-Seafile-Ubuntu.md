@@ -79,6 +79,10 @@ Now it's time to do the installation of the rest of the needed things, as you ca
  
  sudo -H pip install pillow moviepy pylibmc django-pylibmc
 ```
+You will be prompted to update pip, so we are going to do that - if you don't get prompted about it you can still run this commands.
+```
+ sudo -H pip install --upgrade pip
+```
 And now we need to update Pillow to the latest to have the best experience with thumbnails and viewing our pictures from the webbrowser.
 ```
  sudo -H pip install --upgrade Pillow
