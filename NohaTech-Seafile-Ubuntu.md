@@ -91,6 +91,11 @@ And now we need to update Pillow to the latest to have the best experience with 
 ```
  sudo -H pip install --upgrade Pillow
 ```
+And we can also update this two pip package.
+```
+ sudo -H pip install --upgrade python-memcached==1.57
+ sudo -H pip install --upgrade pytz==2016.7
+```
 
 # Download and setup Seafile
 In this section we are going to download, install and setup Seafile.
