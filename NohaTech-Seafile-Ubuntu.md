@@ -154,6 +154,14 @@ Then add the following lines to the file.
  }
 ```
 
+### Configuration for Seafile
+
+#### ccnet.conf
+
+#### seafile.conf
+
+#### seahub_settings.py
+
 ### Install NGINX
 We need NGINX so we can access Seafile trough 443 port and use SSL.
 
