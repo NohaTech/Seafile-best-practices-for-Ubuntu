@@ -91,7 +91,7 @@ And now we need to update Pillow to the latest to have the best experience with 
 # Download and setup Seafile
 In this section we are going to download, install and setup Seafile.
 
-#### Download Seafile
+### Download Seafile
 Now it's time to download Seafile. As you can see in this example I'm using the version 6.2.2 change the filenames to the ones that you have.
 ```
  wget https://download.seadrive.org/seafile-server_6.2.2_x86-64.tar.gz
