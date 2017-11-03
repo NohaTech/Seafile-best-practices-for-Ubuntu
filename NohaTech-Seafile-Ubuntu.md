@@ -95,11 +95,13 @@ And now we need to update Pillow to the latest to have the best experience with 
 # Download and setup Seafile
 In this section we are going to download, install and setup Seafile.
 To see what's the latest version of Seafile CE please visit this link: https://www.seafile.com/en/download/
+We are going to use the /opt folder to install Seafile in, and we are going to use a folder named "nohatech".
+You can change the "nohatech" folder name to what ever you want.
 
 ### Download Seafile
 Now it's time to download Seafile. As you can see in this example I'm using the version 6.2.2 change the filenames to the ones that you have.
 ```
- cd ~
+ cd /opt
  wget https://download.seadrive.org/seafile-server_6.2.2_x86-64.tar.gz
 ```
 And now we need to unpack it.
@@ -120,7 +122,7 @@ Now we need to move the seafile-server_6.2.2 folder and the seafile-server_6.2.2
 ### Install Seafile
 Now it's time to run the setup script for Seafile.
 ```
- cd nohatech/seafile-server_6.2.2
+ cd /opt/nohatech/seafile-server_6.2.2
  
  ./setup-seafile-mysql.sh
 ```
@@ -134,7 +136,7 @@ The setup script will ask you the names of the databases, and it's the same as t
 Now you should have new folders in the nohatech/ folder.
 So what we need to do now is to run Seafile for the first time and then you will be prompted to create the Administrator when you do run the ./seahub.sh start command, but it's importent that you are running the ./seafile.sh start before the seahub as both are needed to run Seafile.
 ```
- cd /nohatech/seafile-server-latest
+ cd /opt/nohatech/seafile-server-latest
  
  ./seafile.sh start
  ./seahub.sh start
@@ -148,7 +150,7 @@ Make sure that you have opend port 8000 in the UFW firewall if you have it activ
 It's recommended to setup Memcached for Sefile to increase the performance, we have aldready installed all of the necessary component.
 So what we need to do is to add some lines to the seahub_settings.py file.
 ```
- nano /nohatech/conf/seahub_settings.py
+ nano /opt/nohatech/conf/seahub_settings.py
 ```
 Then add the following lines to the file.
 ```
@@ -175,8 +177,8 @@ and then add the following to the file.
 
  [Service]
  Type=oneshot
- ExecStart=/nohatech/seafile-server-latest/seafile.sh start
- ExecStop=/nohatech/seafile-server-latest/seafile.sh stop
+ ExecStart=/opt/nohatech/seafile-server-latest/seafile.sh start
+ ExecStop=/opt/nohatech/seafile-server-latest/seafile.sh stop
  RemainAfterExit=yes
  User=seafile
  Group=seafile
@@ -195,8 +197,8 @@ then add this to the file.
  After=network.target seafile.service
 
  [Service]
- ExecStart=/nohatech/seafile-server-latest/seahub.sh start
- ExecStop=/nohatech/seafile-server-latest/seahub.sh stop
+ ExecStart=/opt/nohatech/seafile-server-latest/seahub.sh start
+ ExecStop=/opt/nohatech/seafile-server-latest/seahub.sh stop
  User=seafile
  Group=seafile
  Type=oneshot
@@ -217,7 +219,7 @@ So we are going to make a script and add it to crontab to make it autorun and so
 
 First we need to create the file.
 ```
- nano /nohatech/seafile/cleanupScript.sh
+ nano /opt/nohatech/seafile/cleanupScript.sh
 ```
 Then add the following to the file.
 ```
@@ -231,7 +233,7 @@ Then add the following to the file.
 
  # run the cleanup
  echo Seafile cleanup started...
- sudo -u seafile /nohatech/seafile-server-latest/seaf-gc.sh -r
+ sudo -u seafile /opt/nohatech/seafile-server-latest/seaf-gc.sh -r
 
  echo Giving the server some time....
  sleep 3
@@ -244,7 +246,7 @@ Then add the following to the file.
 ```
 Make sure that the script has been given execution rights, to do that run this command
 ```
- sudo chmod +x /nohatech/seafile/cleanupScript.sh
+ sudo chmod +x /opt/nohatech/seafile/cleanupScript.sh
 ```
 Now we need to add the script to crontab so we can autorun it.
 ```
@@ -252,7 +254,7 @@ Now we need to add the script to crontab so we can autorun it.
 ```
 Then add the following line at the end on the crontab file.
 ```
- 0 2 * * Sun /nohatech/seafile/cleanupScript.sh
+ 0 2 * * Sun /opt/nohatech/seafile/cleanupScript.sh
 ```
 This means that every Sunday at 02:00 this script will run.
 
