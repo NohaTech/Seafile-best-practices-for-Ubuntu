@@ -24,7 +24,7 @@ And then we need to add some lines to /etc/apt/sources.list
 ```
 Then add this two lines in the bottom of the sources.list
 ```
- # http://downloads.mariadb.org/mariadb/repositories/
+# http://downloads.mariadb.org/mariadb/repositories/
 deb [arch=amd64,i386] http://ftp.ddg.lth.se/mariadb/repo/10.2/ubuntu xenial main
 deb-src http://ftp.ddg.lth.se/mariadb/repo/10.2/ubuntu xenial main
 ```
