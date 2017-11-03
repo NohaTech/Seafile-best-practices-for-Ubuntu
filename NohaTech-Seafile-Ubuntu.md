@@ -6,6 +6,8 @@ To tighten up your security on your Ubuntu server please se the NohaTech-Securit
 # Installation
 Now we going to start the installation.
 
+### Create user
+
 ### Update Ubuntu
 We need to make sure that Ubuntu are up to date, use this command below to do that.
 ```
