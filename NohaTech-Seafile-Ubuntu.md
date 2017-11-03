@@ -265,6 +265,13 @@ This means that every Sunday at 02:00 this script will run.
 
 ### Install NGINX
 We need NGINX so we can access Seafile trough 443 port and use SSL also NGINX are going to work as a revers proxy for us.
+Before we start we need to stop Seafile.
+```
+ cd /opt/nohatech/seafile-server-latest/
+ ./seafile.sh stop
+ ./seahub.sh stop
+```
+No we are ready to go!
 
 #### Latest version
 
