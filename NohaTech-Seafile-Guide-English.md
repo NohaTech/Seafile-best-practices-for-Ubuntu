@@ -8,7 +8,7 @@ To tighten up your security on your Ubuntu server please se the NohaTech-Ubuntu-
 Now we going to start the installation.
 
 ### Create user
-Best is to have a "clean" Ubuntu installation to install Seafile on, but if you don't have a clean one it's recommended that Seafile are running with it's own user - ***you should not run Seafile with root or sudo command.***
+Best is to have a "clean" Ubuntu installation to install Seafile on, but if you don't have a clean one it's recommended that Seafile are running with it's own user - ***you should not run Seafile with root user or sudo command.***
 
 ### Update Ubuntu
 We need to make sure that Ubuntu are up to date, use this command below to do that.
