@@ -3,12 +3,13 @@ I'll guide you to how you can install Seafile on a Ubuntu 16.04 LTS machine, in 
 I'll keep this document up to date as much as I can.
 To tighten up your security on your Ubuntu server please se the NohaTech-Security-Ubuntu.md file.
 
-***All the path's in this guide are starting at /nohatech/ make sure that you change them to the path that your using.***
+***All the path's in this guide are starting at /opt/nohatech/ make sure that you change them to the path that your using.***
 
 # Installation
 Now we going to start the installation.
 
 ### Create user
+Best is to have a "clean" Ubuntu installation to install Seafile on, but if you don't have a clean one it's recommended that Seafile are running with it's own user - you should not run Seafile with root or sudo command.
 
 ### Update Ubuntu
 We need to make sure that Ubuntu are up to date, use this command below to do that.
@@ -140,6 +141,7 @@ The setup script will ask you the names of the databases, and it's the same as t
 
 Now you should have new folders in the nohatech/ folder.
 So what we need to do now is to run Seafile for the first time and then you will be prompted to create the Administrator when you do run the ./seahub.sh start command, but it's importent that you are running the ./seafile.sh start before the seahub as both are needed to run Seafile.
+And also remember that you should never start Seafile with the sudo command or change any of the files in your Seafile folder with the sudo command.
 ```
  cd /opt/nohatech/seafile-server-latest
  
@@ -166,6 +168,8 @@ Then add the following lines to the file.
     }
  }
 ```
+#### Memcached trough unix_socket
+This is recommended but it's not completly tested yet so for now we will just use the http socket option.
 
 ### Start Seafile on system boot
 We want Seafile to autostart on boot of our server, so now we going to fixa that.
@@ -326,6 +330,18 @@ First we need to install Fail2Ban.
 ```
  sudo apt-get install fail2ban
 ```
+### Latest version
+As everything in this document we are using the latest stable version of the software and Fail2Ban is no differnet, but as version 10 have some different rules etc. we will still be at version 9 as that's the most stable one.
+So now, let us download and install the newest version.
+```
+ wget http://se.archive.ubuntu.com/ubuntu/pool/universe/f/fail2ban/fail2ban_0.9.7-2_all.deb
+```
+then we need to install it.
+```
+ sudo dpkg -i fail2ban_0.9.7-2_all.deb
+```
+
+Now we have the latest version installed and we can continue with the configuration of Fail2Ban.
 
 ### For Seafile
 
