@@ -1,6 +1,6 @@
 # Introduction
 I'll guide you trough how you can install Seafile on a Ubuntu 16.04 LTS machine, in this document I'll only adapt best practices.
-To tighten up your security on your Ubuntu server please se the NohaTech-Ubuntu-secure-server.md file.
+To tighten up your security on your Ubuntu server please se the NohaTech-Ubuntu-Secure-Server.md file.
 
 ***All the path's in this guide are starting at /opt/nohatech/ make sure that you change them to the path that your using.***
 
@@ -299,7 +299,7 @@ As default Ubuntu should have UFW installed but if not, then installed it trough
 ```
  sudo apt-get install ufw
 ```
-The ports that are needed for Seafile to work is 80 and 443, but we also want the SSH port to be opened and it's port 22 as standard, if you have change it by following the NohaTech-Ubuntu-secure-server.md document you just change it from 22 to the port number that you have choosed for it.
+The ports that are needed for Seafile to work is 80 and 443, but we also want the SSH port to be opened and it's port 22 as standard, if you have change it by following the NohaTech-Ubuntu-Secure-Server.md document you just change it from 22 to the port number that you have choosed for it.
 So let us open the ports.
 ```
  sudo ufw allow 80/tcp
