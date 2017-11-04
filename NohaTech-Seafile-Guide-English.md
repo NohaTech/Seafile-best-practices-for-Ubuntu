@@ -1,7 +1,5 @@
 # Introduction
-I'll guide you trough how you can install Seafile on a Ubuntu 16.04 LTS machine, in this document I'll only write the best practices.
-I'll keep this document up to date as much as I can, but if you can help me out with stuff that I have been missing or maybe some misspelling pleace do, do a PR for it and I'll change it directly.
-
+I'll guide you trough how you can install Seafile on a Ubuntu 16.04 LTS machine, in this document I'll only adapt best practices.
 To tighten up your security on your Ubuntu server please se the NohaTech-Security-Ubuntu.md file.
 
 ***All the path's in this guide are starting at /opt/nohatech/ make sure that you change them to the path that your using.***
