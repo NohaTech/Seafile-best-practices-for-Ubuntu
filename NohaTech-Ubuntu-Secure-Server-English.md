@@ -196,8 +196,42 @@ then we need to install it.
 Now we have the latest version installed and we can continue with the configuration of Fail2Ban.
 
 ### Configuration
+As we want our Fail2Ban file not to get deleted if we update Fail2Ban we need to create our own.
+```
+ sudo nano /etc/fail2ban/jail.local
+```
+This is the file that you will use to administrate Fail2Ban.
+Here is a example file that are good to use, in this config we are protecting SSH against Bruteforce and DDOS attacks.
+Everything that are written in Default will be adapted to the rest of the settings in the file so you don't need to write everything over and over again.
+```
+ [DEFAULT]
 
+ ignoreip = 127.0.0.1/8 # This IP's cant get banned, you can write multi IP's here just use blankspace between them.
+ bantime = 172800 # How long a attackers IP will get banned this is 48h.
+ findtime = 600 
+ maxretry = 0 # How many times a IP are allowed to do the attack before they get banned.
+ destemail = YOURMAIL # Make sure that you have ssmtp setup so fail2ban can send you a mail, Read NohaTech-Ubuntu-Ssmtp-English.md
+ sendername = Fail2Ban # Make sure that you have ssmtp setup so fail2ban can send you a mail, Read NohaTech-Ubuntu-Ssmtp-English.md
+ action = %(action_mwl)s # What should happen this is the setting for that the attacker will get banned and also that you will get a mail ########################## with complete information about it.
+ 
+ [sshd]
+
+ enabled  = true # That the filter is enabled if you want to turn it off then change it to disabled.
+ port     = 2324 # What port the filter should be adapted on.
+ filter   = sshd # The filter htat we are using.
+ logpath  = /var/log/auth.log # Path to the logfile that Fail2Ban will scan.
+ maxretry = 3 # I have change this to 3 times as default is 0 times, it happens that you will write the wrong password and it sucks to get       ################banned.
+
+ [sshd-ddos]
+
+ enabled  = true
+ port     = 2324
+ filter   = sshd-ddos
+ logpath  = /var/log/auth.log
+
+```
 ### End Notes about Fail2Ban
+Fail2Ban have so much different filters, you can also add your own filters, to se the settings for Fail2Ban on NGINX or Seafile please read this file NohaTech-Seafile-Guide-English.md I have written about that in there and I'll not write it again in this file.
 # UFW
 A Firewall is something that everyone wants and needs these days, so I'm going to guide you trough it. As default Ubuntu should have UFW installed but if not, then installed it trough this command.
 ```
