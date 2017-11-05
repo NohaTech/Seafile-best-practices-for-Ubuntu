@@ -266,9 +266,9 @@ Make sure that the script has been given execution rights, to do that run this c
 ```
  sudo chmod +x /opt/nohatech/seafile/cleanupScript.sh
 ```
-Now we need to add the script to crontab so we can autorun it.
+Now we need to add the script to crontab so we can autorun it, you will be asked what editor you want to use choose number 2 (Nano) it's the one that we are using in this guide.
 ```
- sudo nano crontab -e
+ sudo crontab -e
 ```
 Then add the following line at the end on the crontab file.
 ```
