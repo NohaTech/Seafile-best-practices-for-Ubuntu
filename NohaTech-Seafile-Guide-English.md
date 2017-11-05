@@ -306,7 +306,7 @@ Now we are ready to go!
 
 #### seahub_settings.py
 
-# Seafdav (webdav)
+### Seafdav (webdav)
 
 # UFW Firewall
 A Firewall is something that everyone wants and needs these days, so I'm going to guide you trough it.
