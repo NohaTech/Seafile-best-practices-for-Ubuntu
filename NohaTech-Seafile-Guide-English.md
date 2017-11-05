@@ -370,6 +370,26 @@ then we need to install it.
 Now we have the latest version installed and we can continue with the configuration of Fail2Ban.
 
 ### Add filters
+What we need to do first here is to create the filters that we need, some of them are already created as default in Fail2Ban but some we need to create by our self.
+
+Let us go to the filter.d folder before we begin.
+```
+ cd /etc/fail2ban/filter.d/
+```
+
+First we are going to add a line in a filter.
+```
+ sudo nano nginx-http-auth.conf
+```
+And then we need to add this line, add it under the line that almost look the same.
+```
+ ^ \[error\] \d+#\d+: \*\d+ no user/password was provided for basic authentication, client: <HOST>, server: \S+, request: "\S+ \S+ HTTP/\d+\.\d+", host: "\S+"\s*$
+```
+Then we need to copy a filter from Apache2 to NGINX.
+```
+ sudo cp apache-badbots.conf nginx-badbots.conf
+```
+
 
 ### Configuration
 
