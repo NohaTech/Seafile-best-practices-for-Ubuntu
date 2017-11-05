@@ -81,7 +81,7 @@ Now we are all done, so just do the following.
  quit;
 ```
 
-### The last installation
+### The last installation step
 Now it's time to do the installation of the rest of the needed things, as you can see it's deverted in to blocks so run one command at the time to make sure that everything are installing correctly.
 ```
  sudo apt-get install python -y
@@ -296,6 +296,8 @@ Now we are ready to go!
 
 #### Free SSL cert from Let's Encrypt (recommended)
 
+#### Optimize NGINX
+
 ### Configuration for Seafile
 
 #### ccnet.conf
@@ -303,6 +305,8 @@ Now we are ready to go!
 #### seafile.conf
 
 #### seahub_settings.py
+
+# Seafdav (webdav)
 
 # UFW Firewall
 A Firewall is something that everyone wants and needs these days, so I'm going to guide you trough it.
