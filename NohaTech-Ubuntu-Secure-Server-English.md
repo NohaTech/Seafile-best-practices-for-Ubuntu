@@ -120,7 +120,7 @@ We need to change and add some lines to the following document.
 ```
 Now we need to add and change this, make sure that you are deleteing the # sign before the rows that already are in sysctl.conf.
 ```
- # IP Spoofing protection
+# IP Spoofing protection
 net.ipv4.conf.all.rp_filter = 1
 net.ipv4.conf.default.rp_filter = 1
 
