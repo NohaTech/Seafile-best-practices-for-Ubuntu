@@ -1,6 +1,13 @@
 # Introduction
 Well we need to make sure that our server are secure, and here I'll give you some basic things to do to secure your server.
 
+We will use a texteditor called nano in this guide, so here is some commands that you need to know.
+```
+ ctrl+k = deletes a hole row in the document
+ 
+ ctrl+x = your asked if you want to save the document or not, answer y or n then press enter and then after that you will get back to the     terminal.
+```
+
 # SSH
 We all uses SSH I guess and many boots and script kiddies are trying to attack it. But we can secure it in just a few steps.
 
