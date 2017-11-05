@@ -217,7 +217,7 @@ Everything that are written in Default will be adapted to the rest of the settin
  [sshd]
 
  enabled  = true # That the filter is enabled if you want to turn it off then change it to disabled.
- port     = 2324 # What port the filter should be adapted on.
+ port     = 2224 # What port the filter should be adapted on.
  filter   = sshd # The filter htat we are using.
  logpath  = /var/log/auth.log # Path to the logfile that Fail2Ban will scan.
  maxretry = 3 # I have change this to 3 times as default is 0 times, it happens that you will write the wrong password and it sucks to get       ################banned.
@@ -225,7 +225,7 @@ Everything that are written in Default will be adapted to the rest of the settin
  [sshd-ddos]
 
  enabled  = true
- port     = 2324
+ port     = 2224
  filter   = sshd-ddos
  logpath  = /var/log/auth.log
 
