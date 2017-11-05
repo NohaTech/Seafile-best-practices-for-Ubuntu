@@ -12,11 +12,44 @@ We will use a texteditor called nano in this guide, so here is some commands tha
 ```
 
 ## Installation and setup
-First we need to instll it.
+First we need to install it.
 ```
  sudo apt-get install ssmtp
 ```
 Then we need to make some configurations.
 ```
+ sudo nano /etc/ssmtp/ssmtp.conf
+```
+Then add / change it to this.
+```
+ # Config file for sSMTP sendmail
+ #
+ # The person who gets all mail for userids < 1000
+ # Make this empty to disable rewriting.
+ root=YOURMAIL #The mail that you want the server to send all the mails to.
 
+ # The place where the mail goes. The actual machine name is required no
+ # MX records are consulted. Commonly mailhosts are named mail.domain.com
+ mailhub=smtp.gmail.com:587
+
+ AuthUser=YOURGMAILADRESS #For example (nohatech@gmail.com)
+ AuthPass=YOURGMAILPASSWORD
+ UseTLS=YES
+ UseSTARTTLS=YES
+
+ # Where will the mail seem to come from?
+ rewriteDomain=gmail.com
+
+ # The full hostname
+ hostname=YOURHOSTNAME #Example test.nohatech.se
+
+ # Are users allowed to set their own From: address?
+ # YES - Allow the user to specify their own From: address
+ # NO - Use the system generated From: address
+ FromLineOverride=YES
+
+```
+Now we just need to reboot the server then everything is done!
+```
+ sudo reboot
 ```
