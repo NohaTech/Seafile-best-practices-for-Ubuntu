@@ -177,5 +177,26 @@ Now to make this changes to take effect we need to reboot the server.
  sudo reboot
 ```
 # Fail2Ban
+Fail2Ban are searching trough your logfiles and are blocking IP's that are trying to hack your server in differnet ways.
+First we need to install Fail2Ban.
+```
+ sudo apt-get install fail2ban
+```
+### Latest version
+As everything in this document we are using the latest stable version of the software and Fail2Ban is no differnet, but as version 10 have some different rules etc. we will still be at version 9 as that's the most stable one.
+So now, let us download and install the newest version.
+```
+ wget http://se.archive.ubuntu.com/ubuntu/pool/universe/f/fail2ban/fail2ban_0.9.7-2_all.deb
+```
+then we need to install it.
+```
+ sudo dpkg -i fail2ban_0.9.7-2_all.deb
+```
+
+Now we have the latest version installed and we can continue with the configuration of Fail2Ban.
+
+### Configuration
+
+### End Notes about Fail2Ban
 # UFW
 # Logwatch
