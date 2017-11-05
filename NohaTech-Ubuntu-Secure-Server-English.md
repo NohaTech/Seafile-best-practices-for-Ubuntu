@@ -1,5 +1,7 @@
 # Introduction
 Well we need to make sure that our server are secure, and here I'll give you some basic things to do to secure your server.
+As we are going to go trough many different options you don't need to reboot the server after every thing that we have changed, I have only written it there as if someone just making only that change.
+So if you are going to do everything that this document says just reboot the server after you have done everything.
 
 We will use a texteditor called nano in this guide, so here is some commands that you need to know.
 ```
@@ -45,6 +47,13 @@ Now we just need to restart the SSH.
 ```
  sudo service ssh restart
 ```
+
+## Activate 2FA for SSH
+Now some people will say: Using cert for SSH is more secure etc.
+And that's true, but! This is secure enough, becuase I love that I can access SSH to my server from every computer that I want to use and that's something that I can't do if I'm using a cert for SSH.
+So if you are following my SSH secure guide and also are following my Fail2Ban guide then you will be secure, that I can promes you.
+
+
 # Prevent IP Spoofing
 Open the following document and then delete every row in it and replace it with the following rows.
 ```
