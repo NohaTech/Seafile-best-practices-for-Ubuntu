@@ -379,7 +379,7 @@ Let us go to the filter.d folder before we begin.
 
 First we are going to add a line in a filter.
 ```
- sudo nano nginx-http-auth.conf
+ sudo nano /etc/fail2ban/filter.d/nginx-http-auth.conf
 ```
 And then we need to add this line, add it under the line that almost look the same.
 ```
@@ -389,7 +389,81 @@ Then we need to copy a filter from Apache2 to NGINX.
 ```
  sudo cp apache-badbots.conf nginx-badbots.conf
 ```
+Then we are going to create our first filter.
+```
+ sudo nano /etc/fail2ban/filter.d/nginx-forbidden.conf
+```
+Then add this to the file
+```
+ [Definition]
+ failregex = ^ \[error\] \d+#\d+: .* forbidden .*, client: <HOST>, .*$
 
+ ignoreregex =
+```
+Create
+```
+ sudo nano /etc/fail2ban/filter.d/nginx-nohome.conf
+```
+Add
+```
+ [Definition]
+
+ failregex = ^<HOST> -.*GET .*/~.*
+
+ ignoreregex =
+```
+Create
+```
+ sudo nano /etc/fail2ban/filter.d/nginx-noproxy.conf
+```
+Add
+```
+ [Definition]
+
+ failregex = ^<HOST> -.*GET http.*
+
+ ignoreregex =
+```
+Create
+```
+ sudo nano /etc/fail2ban/filter.d/nginx-noscript.conf
+```
+Add
+```
+ [Definition]
+
+ failregex = ^<HOST> -.*GET.*(\.php|\.asp|\.exe|\.pl|\.cgi|\.scgi)
+
+ ignoreregex =
+```
+Create
+```
+ sudo nano /etc/fail2ban/filter.d/seafile-auth.conf
+```
+Add
+```
+ # Fail2Ban filter for seafile
+ #
+
+ [INCLUDES]
+
+ # Read common prefixes. If any customizations available -- read them from
+ # common.local
+ before = common.conf
+
+ [Definition]
+
+ _daemon = seaf-server
+
+ failregex = Login attempt limit reached.*, ip: <HOST>
+
+ ignoreregex = 
+
+ # DEV Notes:
+ #
+ # pattern :     2015-10-20 15:20:32,402 [WARNING] seahub.auth.views:155 login Login attempt limit reached, username: <user>, ip: 1.2.3.4,  attemps: 3
+ #        2015-10-20 17:04:32,235 [WARNING] seahub.auth.views:163 login Login attempt limit reached, ip: 1.2.3.4, attempts: 3
+```
 
 ### Configuration
 
