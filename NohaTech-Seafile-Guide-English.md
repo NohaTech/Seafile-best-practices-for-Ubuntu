@@ -473,7 +473,98 @@ Add
 
 ### Configuration
 I'll just past the configuration here that works with the filters that we have done and the best settings for the filter, if you want to se more information regarding the configuration file you can read NohaTech-Ubuntu-Secure-Server-English.md.
+
+Now we are going to create the configuration file.
 ```
+ sudo nano /etc/fail2ban/jail.local
+```
+Then add this to the file.
+```
+[DEFAULT]
+
+# Also add your gateways IP numbere here.
+ignoreip = 127.0.0.1/8
+bantime = 172800
+findtime = 600
+maxretry = 0
+# Change this to your mail.
+destemail = YOUREMAIL
+sendername = Fail2Ban
+action = %(action_mwl)s
+
+[sshd]
+
+enabled  = true
+port     = 2324,22
+filter   = sshd
+logpath  = /var/log/auth.log
+maxretry = 3
+
+[sshd-ddos]
+
+enabled  = true
+port     = 2324,22
+filter   = sshd-ddos
+logpath  = /var/log/auth.log
+
+[seafile]
+
+enabled  = true
+port     = https,http
+filter   = seafile-auth
+logpath  = /home/seafile/nohatech/logs/*seahub.log
+bantime  = 3600
+maxretry = 2
+
+[nginx-http-auth]
+
+enabled  = true
+port     = https,http
+filter   = nginx-http-auth
+logpath  = /var/log/nginx/*error.log
+
+[nginx-badbots]
+
+enabled  = true
+enabled  = true
+port     = https,http
+filter   = nginx-badbots
+logpath  = /var/log/nginx/*access.log
+
+[nginx-nohome]
+
+enabled  = true
+port     = https,http
+filter   = nginx-nohome
+logpath  = /var/log/nginx/*access.log
+
+[nginx-noproxy]
+
+enabled  = true
+port     = https,http
+filter   = nginx-noproxy
+logpath  = /var/log/nginx/*access.log
+
+[nginx-noscript]
+
+enabled  = true
+port     = https,http
+filter   = nginx-noscript
+logpath  = /var/log/nginx/*access.log
+
+[nginx-req-limit]
+
+enabled  = true
+port     = https,http
+filter   = nginx-limit-req
+logpath  = /var/log/nginx/*error.log
+
+[nginx-forbidden]
+
+enabled  = true
+port     = https,http
+filter   = nginx-forbidden
+logpath  = /var/log/nginx/*error.log
 
 ```
 
