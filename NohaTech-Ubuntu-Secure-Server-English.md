@@ -125,6 +125,7 @@ Now when we are finsih we just need to restart sysctl.
 ```
 # Secure shared memory
 ***If your running Ubuntu on a VM don't use this, it'll break your VM***
+
 This will prevent an attack on the shared memory that softwares are using.
 We need to add some lines to the following document.
 ```
@@ -138,3 +139,4 @@ Now to make this changes to take effect we need to reboot the server.
 ```
  sudo reboot
 ```
+# Fail2Ban
