@@ -222,5 +222,7 @@ To enable the UFW firewall write this command.
 ```
  sudo ufw enable
 ```
-And if you want to disbale it then replace enable with disable.
+And if you want to disable it then replace enable with disable.
+
+You can also do much more with the UFW firewall, you can ban IP's etc. but that's something that I'm not going to write about now, if you just doing it like I have been written it above you should be fine.
 # Logwatch
