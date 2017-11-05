@@ -286,9 +286,28 @@ Before we start we need to stop Seafile.
 ```
 Now we are ready to go!
 
-#### Latest version
-
-#### Install
+#### Install latest stable version
+As always we are going to install the latest stabel version, and to do that we need to add some rows to the /etc/apt/sources.list.
+```
+ sudo nano /etc/apt/sources.list
+```
+Then add this to the file.
+```
+ deb http://nginx.org/packages/ubuntu/ xenial nginx
+ deb-src http://nginx.org/packages/ubuntu/ xenial nginx
+```
+Then we are going to install it.
+```
+ sudo apt-get update
+ sudo apt-get install nginx
+```
+If a W: GPG error: http://nginx.org/packages/ubuntu xenial Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY $key is encountered during the NGINX repository update, execute the following:
+```
+ ## Replace $key with the corresponding $key from your GPG error.
+ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
+ sudo apt-get update
+ sudo apt-get install nginx
+```
 
 #### Configuration
 
@@ -330,7 +349,7 @@ And before we going to enable the UFW firewall we need to make sure that every p
 ```
  sudo ufw status numbered
 ```
-We are going to se that port 80,443,22/tcp are blocked both for IPv4 and IPv6 and that's normal.
+We are going to se that port 80,443,22/tcp are open both for IPv4 and IPv6 and that's normal.
 Now we can enable the UFW firewall.
 ```
  sudo ufw enable
@@ -359,3 +378,5 @@ Now we have the latest version installed and we can continue with the configurat
 ### Configuration
 
 ### Add filters
+
+# Setup security in Seafile Web.
