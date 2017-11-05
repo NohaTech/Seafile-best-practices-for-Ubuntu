@@ -356,6 +356,6 @@ then we need to install it.
 
 Now we have the latest version installed and we can continue with the configuration of Fail2Ban.
 
-### For Seafile
+### Configuration
 
-### For NGINX
+### Add filters
