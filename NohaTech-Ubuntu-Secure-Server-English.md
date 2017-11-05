@@ -199,4 +199,28 @@ Now we have the latest version installed and we can continue with the configurat
 
 ### End Notes about Fail2Ban
 # UFW
+A Firewall is something that everyone wants and needs these days, so I'm going to guide you trough it. As default Ubuntu should have UFW installed but if not, then installed it trough this command.
+```
+ sudo apt-get install ufw
+```
+Now we need to open every port that we want to use, it should be atleast the port for SSH and also every other port your using for incoming traffic, you can open the ports like this.
+```
+ sudo ufw allow 22/tcp
+```
+In this example we are opening port 22 over TCP, but you can also change tcp for udp and then limit the port to only udp. And if you want to open it both for tcp and udp just write the port number and delete the "/tcp".
+
+Also it's possible to show every port that you have opend then write this command.
+```
+ sudo ufw status numbered
+```
+It's recommended to close all of the incoming ports beside that ones that your using and open all of the ports for outgoing traffic as we can't get hacked troug the outgoing traffic. To do that write this commands.
+```
+ sudo ufw default deny incoming
+ sudo ufw default allow outgoing
+```
+To enable the UFW firewall write this command.
+```
+ sudo ufw enable
+```
+And if you want to disbale it then replace enable with disable.
 # Logwatch
