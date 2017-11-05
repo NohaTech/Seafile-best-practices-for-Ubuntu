@@ -26,19 +26,11 @@ Now reboot your server
 
 ### Install MariaDB
 We are going to use MariaDB and what we want to do is that we want to run the latest stable version to do that we need to change some files and do some installation.
+Run the following commands.
 ```
- sudo apt-get install software-properties-common
- sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
-```
-And then we need to add some lines to /etc/apt/sources.list
-```
- sudo nano /etc/apt/sources.list
-```
-Then add this two lines in the bottom of the sources.list
-```
-# http://downloads.mariadb.org/mariadb/repositories/
-deb [arch=amd64,i386] http://ftp.ddg.lth.se/mariadb/repo/10.2/ubuntu xenial main
-deb-src http://ftp.ddg.lth.se/mariadb/repo/10.2/ubuntu xenial main
+sudo apt-get install software-properties-common
+sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+sudo add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://ftp.ddg.lth.se/mariadb/repo/10.2/ubuntu xenial main'
 ```
 As you can se when I write this document the latest stable version of MariaDB is 10.2, to make sure that it's still the latest version please visit http://downloads.mariadb.org/mariadb/repositories/ 
 
@@ -294,7 +286,7 @@ As always we are going to install the latest stabel version, and to do that we n
 Then add this to the file.
 ```
  deb http://nginx.org/packages/ubuntu/ xenial nginx
- deb-src http://nginx.org/packages/ubuntu/ xenial nginx
+ # deb-src http://nginx.org/packages/ubuntu/ xenial nginx
 ```
 Then we are going to install it.
 ```
