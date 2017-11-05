@@ -352,7 +352,13 @@ Now we are finished and you have a firewall installed and activated.
 
 # Fail2Ban
 Fail2Ban are searching trough your logfiles and are blocking IP's that are trying to hack your server in differnet ways.
-First we need to install Fail2Ban.
+Regarding the Seafile filter for Fail2Ban it's a bug, to make the filter work you need to add the following line to the seahub_settings.py file, if you have been following this guide from the begining you have already done that.
+```
+ TIME_ZONE = 'Europe/Stockholm'
+```
+And change it to the timezone that your in.
+
+But to get Fail2Ban to work at all we need to install it first.
 ```
  sudo apt-get install fail2ban
 ```
