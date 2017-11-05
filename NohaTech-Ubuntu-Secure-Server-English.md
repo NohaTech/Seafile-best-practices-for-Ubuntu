@@ -9,6 +9,17 @@ We will use a texteditor called nano in this guide, so here is some commands tha
  
  ctrl+x = your asked if you want to save the document or not, answer y or n then press enter and then after that you will get back to the     terminal.
 ```
+# Basic recommendation
+I'll give you some advace here, don't use the same password at your server as your using on other logins, also make sure it's a strong password that your using.
+The length on the password should be between 24 and 32 signs, this should be mixed with numbers, signs, uppercase and lowercase letters.
+To change your password type the following command.
+```
+ passwd
+```
+Or
+```
+ sudo passwd
+```
 
 # SSH
 We all uses SSH I guess and many boots and script kiddies are trying to attack it. But we can secure it in just a few steps.
