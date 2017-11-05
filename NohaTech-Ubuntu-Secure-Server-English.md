@@ -3,6 +3,7 @@ Well we need to make sure that our server are secure, and here I'll give you som
 
 # SSH
 We all uses SSH I guess and many boots and script kiddies are trying to attack it. But we can secure it in just a few steps.
+
 ***For Fail2ban for SSH see the Fail2Ban section in this document, I have it there***
 
 First we need to open up the config file for SSH.
@@ -37,7 +38,6 @@ Now we just need to restart the SSH.
 ```
  sudo service ssh restart
 ```
-
 # Prevent IP Spoofing
 Open the following document and then delete every row in it and replace it with the following rows.
 ```
@@ -52,7 +52,6 @@ After this we need to reboot the server.
 ```
  sudo reboot
 ```
-
 # Protect su by limiting access
 Run the following commands.
 ```
@@ -60,7 +59,6 @@ sudo groupadd admin
 sudo usermod -a -G admin <YOUR ADMIN USERNAME>
 sudo dpkg-statoverride --update --add root admin 4750 /bin/su
 ```
-
 # Harden network with sysctl settings
 Now we want to harden the network so let us do that.
 We need to change and add some lines to the following document.
