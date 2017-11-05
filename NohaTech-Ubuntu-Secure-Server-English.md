@@ -247,6 +247,10 @@ Also it's possible to show every port that you have opend then write this comman
 ```
  sudo ufw status numbered
 ```
+If you want to delete a rule that you have done then use this command, but replace "1" with the numbere that you want to delete.
+```
+ sudo ufw delete 1
+```
 It's recommended to close all of the incoming ports beside that ones that your using and open all of the ports for outgoing traffic as we can't get hacked troug the outgoing traffic. To do that write this commands.
 ```
  sudo ufw default deny incoming
