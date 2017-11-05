@@ -1,6 +1,6 @@
 # Introduction
 I'll guide you trough how you can install Seafile on a Ubuntu 16.04 LTS machine, in this document I'll only adapt best practices.
-To tighten up your security on your Ubuntu server please se the NohaTech-Ubuntu-Secure-Server.md file.
+To tighten up your security on your Ubuntu server please see the NohaTech-Ubuntu-Secure-Server.md file.
 
 We will use a texteditor called nano in this guide, so here is some commands that you need to know.
 ```
