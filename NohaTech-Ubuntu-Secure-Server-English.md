@@ -52,7 +52,44 @@ Now we just need to restart the SSH.
 Now some people will say: Using cert for SSH is more secure etc.
 And that's true, but! This is secure enough, becuase I love that I can access SSH to my server from every computer that I want to use and that's something that I can't do if I'm using a cert for SSH.
 So if you are following my SSH secure guide and also are following my Fail2Ban guide then you will be secure, that I can promes you.
-
+### Installation and configuration
+First we need to install some things, and during the installation you will get security codes, save this codes!
+Also scan the  QR-code with your 2FA application in your cellphone so you can generate codes later.
+```
+ sudo apt-get install libpam-google-authenticator
+```
+Now you will get a bunch of quastions during the installation.
+Just answer Y on everyone except this one, this one you should answer N on.
+```
+ By default, tokens are good for 30 seconds and in order to compensate for
+ possible time-skew between the client and the server, we allow an extra
+ token before and after the current time. If you experience problems with poor
+ time synchronization, you can increase the window from its default
+ size of 1:30min to about 4min. Do you want to do so (y/n) n
+```
+### Configure SSH to use 2FA
+Now we need to configure the SSH to use 2FA.
+```
+ sudo nano /etc/pam.d/sshd
+```
+Change the following line so it looks like this, or if you are missing the lines in the document then add them.
+```
+ @include common-password
+ auth required pam_google_authenticator.so
+```
+Now we need to activate SSH to support this kind of authentication.
+```
+ sudo nano /etc/ssh/sshd_config
+```
+Find the line ChallengeResponseAuthentication in this document and change it to Yes.
+```
+ ChallengeResponseAuthentication yes
+```
+Now we need to restart the SSH service, then we are done.
+```
+ sudo service ssh restart
+```
+Now the next time your connecting to the server with SSH it will ask after your username and password and then it will ask after the 2FA code (token) that you are generating at your cellphone.
 
 # Prevent IP Spoofing
 Open the following document and then delete every row in it and replace it with the following rows.
