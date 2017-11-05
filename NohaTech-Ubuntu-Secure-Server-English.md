@@ -215,12 +215,16 @@ Everything that are written in Default will be adapted to the rest of the settin
  action = %(action_mwl)s # What should happen this is the setting for that the attacker will get banned and also that you will get a mail ########################## with complete information about it.
  
  [sshd]
-
- enabled  = true # That the filter is enabled if you want to turn it off then change it to disabled.
- port     = 2224 # What port the filter should be adapted on.
- filter   = sshd # The filter htat we are using.
- logpath  = /var/log/auth.log # Path to the logfile that Fail2Ban will scan.
- maxretry = 3 # I have change this to 3 times as default is 0 times, it happens that you will write the wrong password and it sucks to get       ################banned.
+ # That the filter is enabled if you want to turn it off then change it to disabled.
+ enabled  = true 
+ # What port the filter should be adapted on.
+ port     = 2224
+ # The filter htat we are using.
+ filter   = sshd
+ # Path to the logfile that Fail2Ban will scan.
+ logpath  = /var/log/auth.log
+ # I have change this to 3 times as default is 0 times, it happens that you will write the wrong password and it sucks to get banned.
+ maxretry = 3
 
  [sshd-ddos]
 
