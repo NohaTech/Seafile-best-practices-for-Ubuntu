@@ -214,6 +214,7 @@ As we want our Fail2Ban file not to get deleted if we update Fail2Ban we need to
 This is the file that you will use to administrate Fail2Ban.
 Here is a example file that are good to use, in this config we are protecting SSH against Bruteforce and DDOS attacks.
 Everything that are written in Default will be adapted to the rest of the settings in the file so you don't need to write everything over and over again.
+If you want Fail2Ban to send you mails then read NohaTech-Ubuntu-Ssmtp-English.md.
 ```
  [DEFAULT]
 
