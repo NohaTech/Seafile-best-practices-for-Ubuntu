@@ -140,3 +140,5 @@ Now to make this changes to take effect we need to reboot the server.
  sudo reboot
 ```
 # Fail2Ban
+# UFW
+# Logwatch
