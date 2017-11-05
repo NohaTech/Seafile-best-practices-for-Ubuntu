@@ -478,3 +478,24 @@ I'll just past the configuration here that works with the filters that we have d
 ```
 
 # Setup security in Seafile Web.
+Now we are almoste finished with our setup of the server and we will have a secure Seafile server.
+The last thing is to change a little regarding the security.
+Login to your Admin account to Seafile troug your browser.
+Then go to:
+```
+ 1. Click on profile picture in the upper right corner.
+ 2. Click on System Admin in the dropdown list.
+ 3. Click on Settings in the menu to the left.
+ 4. Scroll down to the following and find the following.
+ 5. Change the "keep sign in" to 1.
+ 6. Change "LOGIN_ATTEMPT_LIMIT" to 2.
+ 7. Make sure that the box are checked in "FREEZE_USER_ON_LOGIN_FAILED".
+```
+Now we are going to change some things regarding the password rules, we are still on the same page.
+```
+ 1. Check the box for "strong password"
+ 2. Change "password minimum length" to atleast 8.
+ 3. "password strength level" should be at 3 but not smaller then 2.
+```
+This is optional, but you should activate the 2FA for the users that wnat to use it.
+To do that just check the box "enable two factor authentication"
