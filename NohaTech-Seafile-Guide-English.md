@@ -472,5 +472,9 @@ Add
 ```
 
 ### Configuration
+I'll just past the configuration here that works with the filters that we have done and the best settings for the filter, if you want to se more information regarding the configuration file you can read NohaTech-Ubuntu-Secure-Server-English.md.
+```
+
+```
 
 # Setup security in Seafile Web.
