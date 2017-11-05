@@ -2,6 +2,13 @@
 I'll guide you trough how you can install Seafile on a Ubuntu 16.04 LTS machine, in this document I'll only adapt best practices.
 To tighten up your security on your Ubuntu server please se the NohaTech-Ubuntu-Secure-Server.md file.
 
+We will use a texteditor called nano in this guide, so here is some commands that you need to know.
+```
+ ctrl+k = deletes a hole row in the document
+ 
+ ctrl+x = your asked if you want to save the document or not, answer y or n then press enter and then after that you will get back to the     terminal.
+```
+
 ***All the path's in this guide are starting at /opt/nohatech/ make sure that you change them to the path that your using.***
 
 # Installation
@@ -165,6 +172,10 @@ Then add the following lines in the bottom of the file.
         'LOCATION': '127.0.0.1:11211',
     }
  }
+```
+No as we are changing to use Memcached we need to reboot the server.
+```
+ sudo reboot
 ```
 #### Memcached trough unix_socket
 This is recommended but it's not completly tested yet so for now we will just use the http socket option, but I'll update this section as soon as possible, performence should increase with about 30% according to some benchmarks.
