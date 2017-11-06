@@ -1,5 +1,6 @@
 # Introduction
 I'll guide you trough how you can install Seafile on a Ubuntu 16.04 LTS machine, in this document I'll only adapt best practices.
+This guide is for the CE version of Seafile, the free version. But you can use it for the PRO version also but then it's some additional steps that I have not included in this guide.
 To tighten up your security on your Ubuntu server please see the NohaTech-Ubuntu-Secure-Server.md file.
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Secure-Server-English.md
 
@@ -285,6 +286,8 @@ Ignore list also supports wildecards so you can modify this list in many differe
 
 ### Install NGINX
 We need NGINX so we can access Seafile trough 443 port and use SSL also NGINX are going to work as a revers proxy for us.
+Since version 6.2* of Seafile FastCGI are not recommended and the support for it will end soon, so we are going to use what's recommended and whats going to be supported in the future, WSGI.
+
 Before we start we need to stop Seafile.
 ```
  cd /opt/nohatech/seafile-server-latest/
@@ -405,6 +408,11 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTe
 For more information see https://manual.seafile.com/config/seahub_settings_py.html
 
 ### Seafdav (webdav)
+Webdav is let say it so old, it's not Seafiles fault as WebDav is not created by Seafile.
+What I do recommend you to use intsted is the SeaDrive client. You can configurate SeaDrive to work as a networkshare and mount it in your OS and work on the files directly from the server.
+But if you still want SeafDav (WebDav) activated you can follow this steps.
+
+***I'll do this part when I have time to do it, I'll prioritize other parts of this guide first.***
 
 # UFW Firewall
 A Firewall is something that everyone wants and needs these days, so I'm going to guide you trough it.
