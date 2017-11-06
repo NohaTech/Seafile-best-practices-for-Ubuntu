@@ -344,8 +344,7 @@ Then we need to add the following row.
  # The address to your Seafile server, use https if your using SSL (recommended and we are using it in this guide).
  SERVICE_URL = https://example.se
 ```
-
-https://manual.seafile.com/config/ccnet-conf.html
+For more information see https://manual.seafile.com/config/ccnet-conf.html
 
 #### seafile.conf
 ```
@@ -372,9 +371,37 @@ The we need to add the following row, remember to not delete any rows in the con
  expire_days = 14
 ```
 
-https://manual.seafile.com/config/seafile-conf.html
+For more information see https://manual.seafile.com/config/seafile-conf.html
 
 #### seahub_settings.py
+```
+ nano seahub_settings.py
+```
+Then we need to add the following rows.
+```
+ # Set this to your website/company's name. This is contained in email notificat$
+ SITE_NAME = 'NohaTech'
+ # Browser tab's title
+ SITE_TITLE = 'NohaTech'
+ # TimeZone, this is needed to get Fail2Ban to work correctly. Change 'Europe/Stockholm' to the time zone your in.
+ TIME_ZONE = 'Europe/Stockholm'
+```
+Now if we want to send e-mails from Seafile, and it's recommended as links etc. can be sent trough mail we need to put this lines in seahub_settings.py this example are for gmail.
+But to make it work you need to setup ssmtp first, to do that follow my other guide NohaTech-Ubuntu-Ssmtp-English.md.
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Ssmtp-English.md
+```
+ # Email server/settings
+ EMAIL_USE_TLS = True
+ EMAIL_HOST = 'smtp.gmail.com'
+ EMAIL_HOST_USER = 'nohatech@gmail.com'
+ EMAIL_HOST_PASSWORD = 'YOURPASSWORD'
+ EMAIL_PORT = 587
+ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+ SERVER_EMAIL = EMAIL_HOST_USER
+
+```
+
+For more information see https://manual.seafile.com/config/seahub_settings_py.html
 
 ### Seafdav (webdav)
 
