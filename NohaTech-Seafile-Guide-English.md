@@ -952,3 +952,8 @@ Now we are going to change some things regarding the password rules, we are stil
 ```
 This is optional, but you should activate the 2FA for the users that wnat to use it.
 To do that just check the box "enable two factor authentication"
+
+# Maintain Seafile
+As with everthing you need to Maintain it, and also you might get some issues or something.
+I have done a other document for that, NohaTech-Seafile-maintain.md
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Seafile-maintain.md
