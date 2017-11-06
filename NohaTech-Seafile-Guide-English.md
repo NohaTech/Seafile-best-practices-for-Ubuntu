@@ -597,7 +597,7 @@ The following files are located at
 ```
  cd /opt/nohatech/conf/
 ```
-*** Anything you change in Seafile WEBGUI (System Admin -> Settings) will overrun the settings you have done in the configuration files ***
+**** Anything you change in Seafile WEBGUI (System Admin -> Settings) will overrun the settings you have done in the configuration files ****
 
 #### ccnet.conf
 ```
