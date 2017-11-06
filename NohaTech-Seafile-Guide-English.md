@@ -405,7 +405,107 @@ Now we just need to restart NGINX and then we will have a working NGINX revers p
  sudo service nginx restart
 ```
 #### Self signed cert
+I'm recommending you to use Let's Encrypts SSL but for some reason you might want to use Self signed.
+So here's how you do that.
 
+First we need to create privkey.pem and cacert.pem.
+```
+ sudo openssl genrsa -out /etc/ssl/private/privkey.pem 2048
+ sudo openssl req -new -x509 -key /etc/ssl/private/privkey.pem -out /etc/ssl/private/cacert.pem -days 1095
+```
+If you get any issues when your trying to create the cert's do it this way insted. Replace xxx with your user name. (optional)
+```
+ cd ~
+ sudo openssl genrsa -out /home/xxx/privkey.pem 2048
+ sudo openssl req -new -x509 -key /home/xxx/privkey.pem -out /home/xxx/cacert.pem -days 1095
+ sudo mv privkey.pem /etc/ssl/private/
+ sudo mv cacert.pem /etc/ssl/private/
+```
+Then we need to create the dhparam.pem file, it's a little tricky we need to create it in our home folder then move it to the /etc/ssl/private/ folder.
+```
+ cd ~
+ sudo openssl dhparam 2048 > dhparam.pem
+ sudo mv dhparm.pem /etc/ssl/private/dhparam.pem
+```
+Now we are done with that, so now we need to start to change the config file to work, I'll add some changes if you want to know what just compare it to the configuration file above, here is a working example of the file, as in the file above you need to replace seafile.example.com with your own domain also the path setting to the location.
+I have also added the security settings to this configuration file, if your not are going to use this configuration file, take a look above to see how to adapte the security settings.
+```
+    server {
+        listen       80;
+        server_name  seafile.example.com;
+        rewrite ^ https://$http_host$request_uri? permanent;    # force redirect http to https
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-XSS-Protection "1; mode=block" always;
+        add_header X-Frame-Options "DENY" always;
+        add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+        server_tokens off;
+    }
+    server {
+        listen 443;
+        ssl on;
+        ssl_certificate /etc/ssl/private/cacert.pem;        # path to your cacert.pem
+        ssl_certificate_key /etc/ssl/private/privkey.pem;    # path to your privkey.pem
+        server_name seafile.example.com;
+        ssl_session_timeout 5m;
+        ssl_session_cache shared:SSL:5m;
+
+        # Diffie-Hellman parameter for DHE ciphersuites, recommended 2048 bits
+        ssl_dhparam /etc/ssl/private/dhparam.pem;
+
+        # secure settings (A+ at SSL Labs ssltest at time of writing)
+        # see https://wiki.mozilla.org/Security/Server_Side_TLS#Nginx
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256$
+        ssl_prefer_server_ciphers on;
+
+        proxy_set_header X-Forwarded-For $remote_addr;
+
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-XSS-Protection "1; mode=block" always;
+        add_header X-Frame-Options "DENY" always;
+        add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+        server_tokens off;
+
+        location / {
+            proxy_pass         http://127.0.0.1:8000;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+            proxy_set_header   X-Forwarded-Proto https;
+            proxy_request_buffering off;
+
+
+            access_log      /var/log/nginx/seahub.access.log;
+            error_log       /var/log/nginx/seahub.error.log;
+
+            proxy_read_timeout  1200s;
+
+            client_max_body_size 0;
+        }
+#    }
+        location /seafhttp {
+            rewrite ^/seafhttp(.*)$ $1 break;
+            proxy_pass http://127.0.0.1:8082;
+            client_max_body_size 0;
+            proxy_request_buffering off;
+            proxy_connect_timeout  36000s;
+            proxy_read_timeout  36000s;
+            proxy_send_timeout  36000s;
+            send_timeout  36000s;
+        }
+        location /media {
+            root /opt/nohatech/seafile-server-latest/seahub;
+        }
+    }
+
+```
+Now we are almoste done, we just need to restart NGINX.
+```
+ sudo service nginx restart
+```
 #### Free SSL cert from Let's Encrypt (recommended)
 
 #### Optimize NGINX
