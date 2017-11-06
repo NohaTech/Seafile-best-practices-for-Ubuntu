@@ -511,6 +511,58 @@ Now we are almoste done, we just need to restart NGINX.
  sudo service nginx restart
 ```
 #### Free SSL cert from Let's Encrypt (recommended)
+This is the recommended way to do it, here we will get a free SSL cert that expires after 3 months but we will make a cronjob so we will renew it before it expires.
+If you uses this it's going to make your site more secure and also it will show as "trusted" in every webbrowser and every webbrowser can access your site without any issues or warnings.
+
+Above I have been written how to setup NGINX with Self signed cert you can read there how to do the configuration file it's the same but we just need to add and change some things. I'll only write the things you should change or add here the rest you can read above - follow the guide above to the letter and then just change and add the things that I'm writing below.
+
+Then we need to install certbot so we can get the cert's.
+```
+ sudo apt-get install software-properties-common
+ sudo add-apt-repository ppa:certbot/certbot
+ sudo apt-get update
+ sudo apt-get install python-certbot-nginx
+```
+Now we need to prepar some things.
+First off we need to create a folder.
+```
+ sudo mkdir /mnt/certbot-webroot
+```
+Then you should add this to the HTTPS 443 mainserver block.
+```
+ location '/.well-known/acme-challenge' {
+    default_type "text/plain";
+    root /mnt/certbot-webroot;
+}
+```
+Now we are all set and can create the certification, change example.se to your domain name, you should not have http or https before it but you can use subdomain.example.se if you want that or example.se.
+```
+ sudo certbot certonly --webroot -w /mnt/certbot-webroot -d example.se
+```
+When you did create the cert troug the command above you did get the correct path to your new cert's prompted for you.
+Change the following rows so the path is the correct one for you, It should bee something like the path that I have wroten below.
+```
+ ssl_certificate /etc/letsencrypt/live/example.se/fullchain.pem;  # path to your cacert.pem
+ ssl_certificate_key /etc/letsencrypt/live/example.se/privkey.pem;    # path to your privkey.pem
+```
+Now we are actually done, not so hard right? Well we did do the most of the work before.
+So now we just need to restart NGINX.
+```
+ sudo service nginx restart
+```
+So now we just need to add this to crontab so the cert will get renewed before it expires.
+First we need to look where certbot is located at your server.
+```
+ whereis certbot
+```
+Then we need to create the crontab.
+```
+ sudo crontab -e
+```
+At the bottom of crontab add this, change the /path/to/certbot so it's matches your path.
+```
+ 47 */12 * * * sleep 16; /path/to/certbot renew --quiet --post-hook "/usr/sbin/service nginx reload"
+```
 
 #### Optimize NGINX
 So now we want to optimize NGINX for best performence.
