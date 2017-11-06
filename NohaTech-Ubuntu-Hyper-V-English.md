@@ -7,7 +7,8 @@ If you want to read more about why https://blogs.technet.microsoft.com/ausoemtea
 
 ### Dynamic or fixed
 You should always choose fixed, it will give you the best performance.
-Don't you worry, if you want to extend the VHDX later you can do so without any problemes.
+Don't you worry, if you want to expand the VHDX later you can do so, read NohaTech-Ubuntu-expand-VHDX-English.md.
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-expand-VHDX-English.md
 
 Also if you want to replace the harddrive that the VHDX are placed on with a bigger or faster one or whatever you can also do that just shutdown the Hyper-V VM and then move the VHDX or VHD to the new harddrive, then in the VM's settings choose the new location of the VHDX or VHD.
 
