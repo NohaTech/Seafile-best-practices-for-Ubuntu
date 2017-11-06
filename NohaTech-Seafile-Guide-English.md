@@ -280,8 +280,7 @@ If you want to ignore a file you can type it like this.
  # ignore the exact file.
  example.ini
 ```
-Ignore list also supports wildecards so you can modify this list in many different ways, but if you want to learn more how to modify the list with wildecards, read the link belove.
-https://www.seafile.com/en/help/ignore/
+Ignore list also supports wildecards so you can modify this list in many different ways, but if you want to learn more how to modify the list with wildecards, read this link https://www.seafile.com/en/help/ignore/
 
 ### Install NGINX
 We need NGINX so we can access Seafile trough 443 port and use SSL also NGINX are going to work as a revers proxy for us.
