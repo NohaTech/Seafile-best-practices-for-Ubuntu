@@ -29,6 +29,7 @@ Then we need to install the add-ons that are needed.
 ## Backup
 You can use Windows Server Backup to backup your VM's and it works greate I have done it for a long time and it works greate with a external or internal harddrive.
 I can personly recommend you to run it atleast one time every 24h, it's easy to setup with a schedual in Windows Server Backup.
+
 The first time your going to do the backup it will take some time, but after that it only backups what you have changed.
 And it will only backup the used space of the VHDX so if you have created a VHDX for 2TB but you have only used 1TB the backup size will only be 1TB.
 I personly are running the backup's every night with start at 2AM (02:00) as I know that it's not many people that are using my Seafile server then.
