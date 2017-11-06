@@ -1,6 +1,7 @@
 # Introduction
 I'll guide you trough how you can install Seafile on a Ubuntu 16.04 LTS machine, in this document I'll only adapt best practices.
 To tighten up your security on your Ubuntu server please see the NohaTech-Ubuntu-Secure-Server.md file.
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Secure-Server-English.md
 
 We will use a texteditor called nano in this guide, so here is some commands that you need to know.
 ```
@@ -388,6 +389,7 @@ Then we need to add the following rows.
 ```
 Now if we want to send e-mails from Seafile, and it's recommended as links etc. can be sent trough mail we need to put this lines in seahub_settings.py this example are for gmail.
 But to make it work you need to setup ssmtp first, to do that follow my other guide NohaTech-Ubuntu-Ssmtp-English.md.
+
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Ssmtp-English.md
 ```
  # Email server/settings
@@ -557,6 +559,7 @@ Add
 
 ### Configuration
 I'll just past the configuration here that works with the filters that we have done and the best settings for the filter, if you want to se more information regarding the configuration file you can read NohaTech-Ubuntu-Secure-Server-English.md.
+
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Secure-Server-English.md
 
 If you want to activate so you can send mails from Fail2Ban you need to follow this guide first NohaTech-Ubuntu-Ssmtp-English.md.
