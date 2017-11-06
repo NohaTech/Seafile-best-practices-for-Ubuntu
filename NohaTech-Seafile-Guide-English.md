@@ -323,7 +323,79 @@ If a W: GPG error: http://nginx.org/packages/ubuntu xenial Release: The followin
 ```
 
 #### Configuration
+First we need to delete the old / default configurations.
+Just so your aware of it, NGINX are sensetiv how you are writing the configuration file with spaces etc.
+```
+ sudo rm -rf /etc/nginx/sites-enabled/default
+ sudo rm -rf rm /etc/nginx/sites-enabled/default
+```
+Then we need to create the file that we are going to use.
+```
+ sudo nano /etc/nginx/sites-available/seafile.conf
+```
+Now we are going to start the configuration.
+```
+server {
+    listen 80;
+    server_name seafile.example.com;
 
+    proxy_set_header X-Forwarded-For $remote_addr;
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header X-Frame-Options "DENY" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    server_tokens off;
+
+    location / {
+         proxy_pass         http://127.0.0.1:8000;
+         proxy_set_header   Host $host;
+         proxy_set_header   X-Real-IP $remote_addr;
+         proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+         proxy_set_header   X-Forwarded-Host $server_name;
+         proxy_read_timeout  1200s;
+         proxy_request_buffering off;
+
+         # used for view/edit office file via Office Online Server
+         client_max_body_size 0;
+
+         access_log      /var/log/nginx/seahub.access.log;
+         error_log       /var/log/nginx/seahub.error.log;
+    }
+    location /seafhttp {
+        rewrite ^/seafhttp(.*)$ $1 break;
+        proxy_pass http://127.0.0.1:8082;
+        client_max_body_size 0;
+
+        proxy_connect_timeout  36000s;
+        proxy_read_timeout  36000s;
+        proxy_send_timeout  36000s;
+        proxy_request_buffering off;
+
+        send_timeout  36000s;
+    }
+    location /media {
+        root /opt/nohatech/seafile-server-latest/seahub;
+    }
+}
+```
+As we want high security for our site we need to add this lines to every server block in the configuration file, for now we only have one. I have already added these lines in the example config above, but I still want you to know that this lines are not there as default.
+```
+ add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+ add_header X-Content-Type-Options "nosniff" always;
+ add_header X-XSS-Protection "1; mode=block" always;
+ add_header X-Frame-Options "DENY" always;
+ add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+ server_tokens off;
+```
+Also we don't want NGINX to use a buffer in tmp files so we need to add the following line to the location blocks. I have already added this lines in the example config above, but I still want you to know that this lines are not there as default.
+```
+ proxy_request_buffering off;
+```
+Now we just need to restart NGINX and then we will have a working NGINX revers proxy to Seafile. It's recommended that you are also following the Self signed cert guide or even better following the Free SSL cert from Let's Encrypt as it's recommended.
+```
+ sudo service nginx restart
+```
 #### Self signed cert
 
 #### Free SSL cert from Let's Encrypt (recommended)
