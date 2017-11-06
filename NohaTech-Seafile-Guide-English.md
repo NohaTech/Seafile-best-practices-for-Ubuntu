@@ -392,6 +392,10 @@ Also we don't want NGINX to use a buffer in tmp files so we need to add the foll
 ```
  proxy_request_buffering off;
 ```
+Now we are going to activate our configuration file.
+```
+ sudo ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/seafile.conf
+```
 Now we just need to restart NGINX and then we will have a working NGINX revers proxy to Seafile. It's recommended that you are also following the Self signed cert guide or even better following the Free SSL cert from Let's Encrypt as it's recommended.
 ```
  sudo service nginx restart
