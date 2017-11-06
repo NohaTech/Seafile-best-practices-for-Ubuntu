@@ -388,9 +388,13 @@ As we want high security for our site we need to add this lines to every server 
  add_header Referrer-Policy "strict-origin-when-cross-origin" always;
  server_tokens off;
 ```
-Also we don't want NGINX to use a buffer in tmp files so we need to add the following line to the location blocks. I have already added this lines in the example config above, but I still want you to know that this lines are not there as default.
+Also we don't want NGINX to use a buffer in tmp files so we need to add the following line to the location blocks. I have already added this line in the example config above, but I still want you to know that this lines are not there as default.
 ```
  proxy_request_buffering off;
+```
+Also we don't want to set any limitation on the upload size in NGINX as that's something we should do in the seafile.conf file so it's important that you add this line in every "location" block. I have already added this line in the example config above, but I still want you to know that this lines are not there as default.
+```
+ client_max_body_size 0;
 ```
 Now we are going to activate our configuration file.
 ```
