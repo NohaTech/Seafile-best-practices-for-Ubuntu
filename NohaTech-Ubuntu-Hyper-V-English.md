@@ -5,6 +5,12 @@ Here is some recommendation that you should adapte to your Ubuntu VM if your run
 Well, today you should choose VHDX over VHD, VHDX is much better and we should use it.
 If you want to read more about why https://blogs.technet.microsoft.com/ausoemteam/2015/04/24/deciding-on-when-to-use-vhdx-or-vhd-files-with-hyper-v/
 
+### Dynamic or fixed
+You should always choose fixed, it will give you the best performance.
+Don't you worry, if you want to extend the VHDX later you can do so without any problemes.
+
+Also if you want to replace the harddrive that the VHDX are placed on with a bigger or faster one or whatever you can also do that just shutdown the Hyper-V VM and then move the VHDX or VHD to the new harddrive, then in the VM's settings choose the new location of the VHDX or VHD.
+
 ## RAM
 You should always multiply the RAM with 128. For example 128*9= 1152MB this is a recommendation from Microsoft. And if your not doing it, it can cause issues.
 
