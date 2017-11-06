@@ -290,6 +290,8 @@ Ignore list also supports wildecards so you can modify this list in many differe
 ### Install NGINX
 We need NGINX so we can access Seafile trough 443 port and use SSL also NGINX are going to work as a revers proxy for us.
 Since version 6.2* of Seafile FastCGI are not recommended and the support for it will end soon, so we are going to use what's recommended and whats going to be supported in the future, WSGI.
+Also you need to open port 80 and 443 in your firewall (UFW) if you have it activated, and if your using a router you also need to portforward this ports to the Seafile machine if you want to access Seafile outside your LAN.
+After you have done this your going to access Seafile trough the following address: http://YOURIP/ or https://YOURIP/ depends if your using HTTP (port 80) or HTTPS (SSL over port 443)
 
 Before we start we need to stop Seafile.
 ```
