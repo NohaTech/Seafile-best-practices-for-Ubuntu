@@ -15,6 +15,12 @@ Also if you want to replace the harddrive that the VHDX are placed on with a big
 ## RAM
 You should always multiply the RAM with 128. For example 128*9= 1152MB this is a recommendation from Microsoft. And if your not doing it, it can cause issues.
 
+#### Should I use dynamic RAM?
+Short answer No.
+Sometimes dynamic RAM is good but then you need to have a eye on how much RAM the machine really uses and need.
+So my recommendation is that you should just set a amount of RAM that the VM can use.
+This will also prevent so the VM don't uses to much RAM so maybe something else on your server will get to little RAM.
+
 ## Install add-ons.
 As we are running a VM we need to install some add-ons so it can communicate with Hyper-V so you can for a example do a live backup with Windows Server Backup.
 
