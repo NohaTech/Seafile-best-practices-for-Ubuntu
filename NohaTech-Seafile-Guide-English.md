@@ -4,6 +4,9 @@ This guide is for the CE version of Seafile, the free version. But you can use i
 To tighten up your security on your Ubuntu server please see the NohaTech-Ubuntu-Secure-Server.md file.
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Secure-Server-English.md
 
+If you are going to run Seafile on a Hyper-V VM, please read NohaTech-Ubuntu-Hyper-V-English.md to optimize it and also adopte it to work with Ubuntu.
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Hyper-V-English.md
+
 We will use a texteditor called nano in this guide, so here is some commands that you need to know.
 ```
  ctrl+k = deletes a hole row in the document
