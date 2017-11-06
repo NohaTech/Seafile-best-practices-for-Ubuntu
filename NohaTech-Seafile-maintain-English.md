@@ -33,3 +33,10 @@ To run the check.
 If you need to do some repairs or some other issues, take a look at the Seafile Manual how to solve them.
 Remember to shutdown your Seafile server before you start repairs or something else. It's only the check function that you can run at the same time that the server are up and running.
 https://manual.seafile.com/maintain/seafile_fsck.html
+
+## Logfiles
+Sometimes you want to take a look at the logfiles to see that everything looks OK.
+The Seafile logfiles are located here.
+```
+ cd /opt/nohatech/logs/
+```
