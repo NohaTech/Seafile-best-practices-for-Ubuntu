@@ -324,10 +324,55 @@ If a W: GPG error: http://nginx.org/packages/ubuntu xenial Release: The followin
 #### Optimize NGINX
 
 ### Configuration for Seafile
+Now we need to make some changes in the config files for Seafile, and remember not to open the files with the sudo command or root user open the files with the user that your using to run Seafile with.
+I'll only write what I'm using in my config files, but I'll refer you to a link in every config so you can if you want visit that page to see what more settings you can do. And you should replace NohaTech with your own name.
+The following files are located at
+```
+ cd /opt/nohatech/conf/
+```
 
 #### ccnet.conf
+```
+ nano ccnet.conf
+```
+Then we need to add the following row.
+```
+ # Your servername
+ USER_NAME = NohaTech
+ # Your servername
+ NAME = NohaTech
+ # The address to your Seafile server, use https if your using SSL (recommended and we are using it in this guide).
+ SERVICE_URL = https://example.se
+```
+
+https://manual.seafile.com/config/ccnet-conf.html
 
 #### seafile.conf
+```
+ nano seafile.conf
+```
+The we need to add the following row, remember to not delete any rows in the config file just put this rows under the already existing rows in the right [SECTION]
+```
+ [fileserver]
+ # How long time a session can bee open before it times out.
+ web_token_expire_time=7200
+ [fileserver]
+ # Max upload size, it's in MB
+ max_upload_size=10000
+ [zip]
+ # Changes the encoding on the zip download files so it works with Windows.
+ windows_encoding = iso-8859-1
+ [history]
+ # How many days that users can keep there history
+ keep_days = 7
+ [library_trash]
+ # How often trashed libraries are scanned for removal, default 1 day.
+ scan_days = 1
+ # How many days to keep trashed libraries, default 30 days.
+ expire_days = 14
+```
+
+https://manual.seafile.com/config/seafile-conf.html
 
 #### seahub_settings.py
 
