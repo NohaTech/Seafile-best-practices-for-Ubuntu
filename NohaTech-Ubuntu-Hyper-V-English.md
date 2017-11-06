@@ -6,7 +6,7 @@ Well, today you should choose VHDX over VHD, VHDX is much better and we should u
 If you want to read more about why https://blogs.technet.microsoft.com/ausoemteam/2015/04/24/deciding-on-when-to-use-vhdx-or-vhd-files-with-hyper-v/
 
 ## RAM
-First off, you should always multiply the RAM with 128. For example 128*9= 1152MB this is a recommendation from Microsoft.
+You should always multiply the RAM with 128. For example 128*9= 1152MB this is a recommendation from Microsoft. And if your not doing it, it can cause issues.
 
 ## Install add-ons.
 As we are running a VM we need to install some add-ons so it can communicate with Hyper-V so you can for a example do a live backup with Windows Server Backup.
