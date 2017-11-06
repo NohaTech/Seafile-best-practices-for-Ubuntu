@@ -333,7 +333,7 @@ Then we need to create the file that we are going to use.
 ```
  sudo nano /etc/nginx/sites-available/seafile.conf
 ```
-Now we are going to start the configuration.
+Now we are going to start the configuration, this example file are working you just need to replace the "seafile.example.com" with your own domain. But still, read the hole thing.
 ```
 server {
     listen 80;
@@ -400,7 +400,7 @@ Now we are going to activate our configuration file.
 ```
  sudo ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/seafile.conf
 ```
-Now we just need to restart NGINX and then we will have a working NGINX revers proxy to Seafile. It's recommended that you are also following the Self signed cert guide or even better following the Free SSL cert from Let's Encrypt as it's recommended.
+Now we just need to restart NGINX and then we will have a working NGINX revers proxy over HTTP (port 80) to Seafile. It's recommended that you are also following the Self signed cert guide or even better following the Free SSL cert from Let's Encrypt as it's recommended.
 ```
  sudo service nginx restart
 ```
