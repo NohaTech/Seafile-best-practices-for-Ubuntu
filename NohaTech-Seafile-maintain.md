@@ -20,3 +20,15 @@ So everything is OK, let us start Seafile again.
  ./seafile.sh start
  ./seahub.sh start
 ```
+## Check librarys after corruptions.
+It happens, sometimes a librariy get's corrupted or a file.
+So what should we do about it? Well, Seafile have a good tool called seaf-fsck.sh.
+You can run it at the same time as your Seafile server are running, no need to shut the server down.
+This can take a long time to run depending on how much data your storing.
+To run the check.
+```
+ cd /opt/nohatech/seafile-server-latest/
+ ./seaf-fsck.sh
+```
+If you need to do some repairs or some other issues, take a look at the Seafile Manual how to solve them.
+https://manual.seafile.com/maintain/seafile_fsck.html
