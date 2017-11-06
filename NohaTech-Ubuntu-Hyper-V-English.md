@@ -5,7 +5,7 @@ Here is some recommendation that you should adapte to your Ubuntu VM if your run
 Well, today you should choose VHDX over VHD, VHDX is much better and we should use it.
 If you want to read more about why https://blogs.technet.microsoft.com/ausoemteam/2015/04/24/deciding-on-when-to-use-vhdx-or-vhd-files-with-hyper-v/
 
-### Dynamic or fixed
+#### Dynamic or fixed
 You should always choose fixed, it will give you the best performance.
 Don't you worry, if you want to expand the VHDX later you can do so, read NohaTech-Ubuntu-expand-VHDX-English.md.
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-expand-VHDX-English.md
