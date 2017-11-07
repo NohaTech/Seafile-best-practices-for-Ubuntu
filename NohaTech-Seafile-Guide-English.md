@@ -847,8 +847,8 @@ Then add this to the file.
 
 # Also add your gateways IP numbere here.
 ignoreip = 127.0.0.1/8
-bantime = 172800
-findtime = 600
+bantime = 259200
+findtime = 3600
 maxretry = 0
 # Change this to your mail.
 destemail = YOUREMAIL
