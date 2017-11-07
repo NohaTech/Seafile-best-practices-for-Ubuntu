@@ -348,7 +348,7 @@ server {
     add_header X-Content-Type-Options "nosniff" always;
     add_header X-XSS-Protection "1; mode=block" always;
     add_header X-Frame-Options "DENY" always;
-    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Referrer-Policy "strict-origin" always;
     server_tokens off;
 
     location / {
@@ -389,7 +389,7 @@ As we want high security for our site we need to add this lines to every server 
  add_header X-Content-Type-Options "nosniff" always;
  add_header X-XSS-Protection "1; mode=block" always;
  add_header X-Frame-Options "DENY" always;
- add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+ add_header Referrer-Policy "strict-origin" always;
  server_tokens off;
 ```
 Also we don't want NGINX to use a buffer in tmp files so we need to add the following line to the location blocks. I have already added this line in the example config above, but I still want you to know that this lines are not there as default.
@@ -442,7 +442,7 @@ I have also added the security settings to this configuration file, if your not 
         add_header X-Content-Type-Options "nosniff" always;
         add_header X-XSS-Protection "1; mode=block" always;
         add_header X-Frame-Options "DENY" always;
-        add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+        add_header Referrer-Policy "strict-origin" always;
         server_tokens off;
     }
     server {
@@ -469,7 +469,7 @@ I have also added the security settings to this configuration file, if your not 
         add_header X-Content-Type-Options "nosniff" always;
         add_header X-XSS-Protection "1; mode=block" always;
         add_header X-Frame-Options "DENY" always;
-        add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+        add_header Referrer-Policy "strict-origin" always;
         server_tokens off;
 
         location / {
