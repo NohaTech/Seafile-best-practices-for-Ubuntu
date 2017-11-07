@@ -12,6 +12,14 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTe
 
 Also if you want to replace the harddrive that the VHDX are placed on with a bigger or faster one or whatever you can also do that just shutdown the Hyper-V VM and then move the VHDX or VHD to the new harddrive, then in the VM's settings choose the new location of the VHDX or VHD.
 
+#### Trim
+It seem that Ubuntu still think this disk is a passtrough and not a VM disk, and because of that it will try to run TRIM every Sunday.
+It's not a issue more then that you will get a error message in the logfile, so we should disable it.
+```
+ sudo nano /etc/cron.weekly/fstrim
+```
+Then put a # sign at the begining of every row.
+
 ## RAM
 You should always multiply the RAM with 128. For example 128*9= 1152MB this is a recommendation from Microsoft. And if your not doing it, it can cause issues.
 
