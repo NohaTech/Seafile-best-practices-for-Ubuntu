@@ -85,20 +85,20 @@ Now it's time to do the installation of the rest of the needed things, as you ca
  
  sudo apt-get install python2.7 libpython2.7 python-setuptools python-imaging python-ldap python-urllib3 ffmpeg python-pip python-mysqldb python-memcache memcached libmemcached-dev zlib1g-dev -y
  
- sudo -H pip install pillow moviepy pylibmc django-pylibmc
+ sudo -H pip install pillow moviepy pylibmc django-pylibmc -y
 ```
 You will be prompted to upgrade pip during the installations above, so we are going to do that - if you don't get prompted about it you can still run this command to be sure that you have the latest version.
 ```
- sudo -H pip install --upgrade pip
+ sudo -H pip install --upgrade pip -y
 ```
 And now we need to upgrade Pillow to the latest version so we can get the best experience with thumbnails and viewing our pictures from the webbrowser.
 ```
- sudo -H pip install --upgrade Pillow
+ sudo -H pip install --upgrade Pillow -y
 ```
 And we can also upgrade this two pip package.
 ```
- sudo -H pip install --upgrade python-memcached==1.57
- sudo -H pip install --upgrade pytz==2016.7
+ sudo -H pip install --upgrade python-memcached==1.57 -y
+ sudo -H pip install --upgrade pytz==2016.7 -y
 ```
 
 # Download and setup Seafile
@@ -316,14 +316,14 @@ Then add this to the file.
 Then we are going to install it.
 ```
  sudo apt-get update
- sudo apt-get install nginx
+ sudo apt-get install nginx -y
 ```
 If a W: GPG error: http://nginx.org/packages/ubuntu xenial Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY $key is encountered during the NGINX repository update, execute the following:
 ```
  ## Replace $key with the corresponding $key from your GPG error.
  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
  sudo apt-get update
- sudo apt-get install nginx
+ sudo apt-get install nginx -y
 ```
 
 #### Configuration
@@ -408,6 +408,7 @@ Now we are going to activate our configuration file.
 ```
 Now we just need to restart NGINX and then we will have a working NGINX revers proxy over HTTP (port 80) to Seafile. It's recommended that you are also following the Self signed cert guide or even better following the Free SSL cert from Let's Encrypt as it's recommended.
 ```
+ sudo service nginx reload
  sudo service nginx restart
 ```
 #### Self signed cert
@@ -513,6 +514,7 @@ And remember to change the *.example.se in the Content-Security-Policy to your o
 ```
 Now we are almoste done, we just need to restart NGINX.
 ```
+ sudo service nginx reload
  sudo service nginx restart
 ```
 #### Free SSL cert from Let's Encrypt (recommended)
@@ -523,10 +525,10 @@ Above I have been written how to setup NGINX with Self signed cert you can read 
 
 Then we need to install certbot so we can get the cert's.
 ```
- sudo apt-get install software-properties-common
+ sudo apt-get install software-properties-common -y
  sudo add-apt-repository ppa:certbot/certbot
  sudo apt-get update
- sudo apt-get install python-certbot-nginx
+ sudo apt-get install python-certbot-nginx -y
 ```
 Now we need to prepar some things.
 First off we need to create a folder.
@@ -553,6 +555,7 @@ Change the following rows so the path is the correct one for you, It should bee 
 Now we are actually done, not so hard right? Well we did do the most of the work before.
 So now we just need to restart NGINX.
 ```
+ sudo service nginx reload
  sudo service nginx restart
 ```
 So now we just need to add this to crontab so the cert will get renewed before it expires.
@@ -592,6 +595,7 @@ Then we need to change this two rows, and add your number in the end of the line
 ```
 Now we need to restart NGINX so this changes can take effect.
 ```
+ sudo service nginx reload
  sudo service nginx restart
 ```
 
@@ -687,7 +691,7 @@ But if you still want SeafDav (WebDav) activated you can follow this steps.
 A Firewall is something that everyone wants and needs these days, so I'm going to guide you trough it.
 As default Ubuntu should have UFW installed but if not, then installed it trough this command.
 ```
- sudo apt-get install ufw
+ sudo apt-get install ufw -y
 ```
 The ports that are needed for Seafile to work is 80 and 443, but we also want the SSH port to be opened and it's port 22 as standard, if you have change it by following the NohaTech-Ubuntu-Secure-Server.md document you just change it from 22 to the port number that you have choosed for it.
 So let us open the ports.
@@ -708,7 +712,7 @@ And before we going to enable the UFW firewall we need to make sure that every p
 We are going to se that port 80,443,22/tcp are open both for IPv4 and IPv6 and that's normal.
 Now we can enable the UFW firewall.
 ```
- sudo ufw enable
+ sudo ufw enable -y
 ```
 Now we are finished and you have a firewall installed and activated.
 
@@ -722,7 +726,7 @@ And change it to the timezone that your in.
 
 But to get Fail2Ban to work at all we need to install it first.
 ```
- sudo apt-get install fail2ban
+ sudo apt-get install fail2ban -y
 ```
 ### Latest version
 As everything in this document we are using the latest stable version of the software and Fail2Ban is no differnet, but as version 10 have some different rules etc. we will still be at version 9 as that's the most stable one.
