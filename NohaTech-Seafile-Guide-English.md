@@ -286,6 +286,8 @@ If you want to ignore a file you can type it like this.
 ```
  # ignore the exact file.
  example.ini
+ # This will ignore every file that's ending with .ini
+ *.ini
 ```
 Ignore list also supports wildecards so you can modify this list in many different ways, but if you want to learn more how to modify the list with wildecards, read this link https://www.seafile.com/en/help/ignore/
 
