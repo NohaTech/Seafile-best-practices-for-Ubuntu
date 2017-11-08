@@ -349,6 +349,7 @@ server {
     add_header X-XSS-Protection "1; mode=block" always;
     add_header X-Frame-Options "DENY" always;
     add_header Referrer-Policy "strict-origin" always;
+    add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.example.se/ 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.example.se; object-src 'none'; frame-ancestors https://*.example.se/; base-uri https://*.example.se/ 'self'" always;
     server_tokens off;
 
     location / {
@@ -390,6 +391,7 @@ As we want high security for our site we need to add this lines to every server 
  add_header X-XSS-Protection "1; mode=block" always;
  add_header X-Frame-Options "DENY" always;
  add_header Referrer-Policy "strict-origin" always;
+ add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.example.se/ 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.example.se; object-src 'none'; frame-ancestors https://*.example.se/; base-uri https://*.example.se/ 'self'" always;
  server_tokens off;
 ```
 Also we don't want NGINX to use a buffer in tmp files so we need to add the following line to the location blocks. I have already added this line in the example config above, but I still want you to know that this lines are not there as default.
@@ -433,6 +435,7 @@ Then we need to create the dhparam.pem file, it's a little tricky we need to cre
 ```
 Now we are done with that, so now we need to start to change the config file to work, I'll add some changes if you want to know what just compare it to the configuration file above, here is a working example of the file, as in the file above you need to replace seafile.example.com with your own domain also the path setting to the location.
 I have also added the security settings to this configuration file, if your not are going to use this configuration file, take a look above to see how to adapte the security settings.
+And remember to change the *.example.se in the Content-Security-Policy to your own and the rest of the example domains.
 ```
     server {
         listen       80;
@@ -443,6 +446,7 @@ I have also added the security settings to this configuration file, if your not 
         add_header X-XSS-Protection "1; mode=block" always;
         add_header X-Frame-Options "DENY" always;
         add_header Referrer-Policy "strict-origin" always;
+        add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.example.se/ 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.example.se; object-src 'none'; frame-ancestors https://*.example.se/; base-uri https://*.example.se/ 'self'" always;
         server_tokens off;
     }
     server {
@@ -470,6 +474,7 @@ I have also added the security settings to this configuration file, if your not 
         add_header X-XSS-Protection "1; mode=block" always;
         add_header X-Frame-Options "DENY" always;
         add_header Referrer-Policy "strict-origin" always;
+        add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.example.se/ 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.example.se; object-src 'none'; frame-ancestors https://*.example.se/; base-uri https://*.example.se/ 'self'" always;
         server_tokens off;
 
         location / {
