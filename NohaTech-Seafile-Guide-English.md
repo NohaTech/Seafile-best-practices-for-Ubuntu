@@ -157,7 +157,69 @@ Make sure that you have opend port 8000 in the UFW firewall if you have it activ
 
 ### Add Memcached
 It's recommended to setup Memcached for Sefile to increase the performance, we have already installed all of the necessary components.
-So what we need to do is to add some lines to the seahub_settings.py file.
+So what we need to do is to add some lines to the seahub_settings.py file and also do some configuration in memcached configuration file.
+In this guide we are using the unix_socket as it's recommended and also it's increasing the speed with 30%.
+First we need to make sure that Seafile are not running.
+```
+ cd /opt/nohatech/seafile-server-latest/
+ ./seafile.sh stop
+ ./seahub.sh stop
+```
+Then we need to change a little in the memcached configuration file.
+```
+ sudo nano /etc/memcached.conf
+```
+The configuration file should look like this, so do the change that you need to.
+```
+ # part of the Debian GNU/Linux distribution.
+
+ # Run memcached as a daemon. This command is implied, and is not needed for the
+ # daemon to run. See the README.Debian that comes with this package for more
+ # information.
+ -d
+
+ # Log memcached's output to /var/log/memcached
+ logfile /var/log/memcached.log
+
+ # Be verbose
+ #-v
+ 
+ # Be even more verbose (print client commands as well)
+ #-vv
+ 
+ # Start with a cap of 64 megs of memory. It's reasonable, and the daemon default
+ # Note that the daemon will grow to this size, but does not start out holding this much
+ # memory
+ -m 64
+
+ # Default connection port is 11211
+ #-p 11211
+
+ # Run the daemon as root. The start-memcached will default to running as root if no
+ # -u command is present in this config file
+ #-u memcache (original jobenvil)
+ -u root
+
+ # Specify which IP address to listen on. The default is to listen on all IP addresses
+ # This parameter is one of the only security measures that memcached has, so make sure
+ # it's listening on a firewalled interface.
+ #-l 127.0.0.1i (original)
+ -s /var/run/memcached.sock
+ -a 0766
+
+ # Limit the number of simultaneous incoming connections. The daemon default is 1024
+ # -c 1024
+
+ # Lock down all paged memory. Consult with the README and homepage before you do this
+ # -k
+
+ # Return error when memory is exhausted (rather than removing items)
+ -M
+
+ # Maximize core file limit
+ # -r
+```
+Now we need to change the seahub_settings.py file.
 ```
  nano /opt/nohatech/conf/seahub_settings.py
 ```
@@ -166,16 +228,15 @@ Then add the following lines in the bottom of the file.
  CACHES = {
     'default': {
         'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-        'LOCATION': '127.0.0.1:11211',
+        'LOCATION': '/var/run/memcached.sock',
     }
  }
 ```
 No as we are changing to use Memcached we need to reboot the server.
 ```
+ sudo service memcached force-reload
  sudo reboot
 ```
-#### Memcached trough unix_socket
-This is recommended but it's not completly tested yet so for now we will just use the http socket option, but I'll update this section as soon as possible, performence should increase with about 30% according to some benchmarks.
 
 ### Start Seafile on system boot
 We want Seafile to autostart on boot of our server, so now we going to fixa that.
@@ -351,7 +412,6 @@ server {
     add_header X-XSS-Protection "1; mode=block" always;
     add_header X-Frame-Options "DENY" always;
     add_header Referrer-Policy "strict-origin" always;
-    add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.example.se/ 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.example.se; object-src 'none'; frame-ancestors https://*.example.se/; base-uri https://*.example.se/ 'self'" always;
     server_tokens off;
 
     location / {
@@ -393,7 +453,6 @@ As we want high security for our site we need to add this lines to every server 
  add_header X-XSS-Protection "1; mode=block" always;
  add_header X-Frame-Options "DENY" always;
  add_header Referrer-Policy "strict-origin" always;
- add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.example.se/ 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.example.se; object-src 'none'; frame-ancestors https://*.example.se/; base-uri https://*.example.se/ 'self'" always;
  server_tokens off;
 ```
 Also we don't want NGINX to use a buffer in tmp files so we need to add the following line to the location blocks. I have already added this line in the example config above, but I still want you to know that this lines are not there as default.
@@ -449,7 +508,6 @@ And remember to change the *.example.se in the Content-Security-Policy to your o
         add_header X-XSS-Protection "1; mode=block" always;
         add_header X-Frame-Options "DENY" always;
         add_header Referrer-Policy "strict-origin" always;
-        add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.example.se/ 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.example.se; object-src 'none'; frame-ancestors https://*.example.se/; base-uri https://*.example.se/ 'self'" always;
         server_tokens off;
     }
     server {
@@ -477,7 +535,6 @@ And remember to change the *.example.se in the Content-Security-Policy to your o
         add_header X-XSS-Protection "1; mode=block" always;
         add_header X-Frame-Options "DENY" always;
         add_header Referrer-Policy "strict-origin" always;
-        add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.example.se/ 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.example.se; object-src 'none'; frame-ancestors https://*.example.se/; base-uri https://*.example.se/ 'self'" always;
         server_tokens off;
 
         location / {
