@@ -219,6 +219,8 @@ The configuration file should look like this, so do the change that you need to.
  # Maximize core file limit
  # -r
 ```
+It's hard to tell for me how much memory you should use for Memcached, you can change it in the "-m 64" line and replace 64 with the amount of memory you want it's written in MB. I personly uses 1024 and that works for me.
+
 Now we need to change the seahub_settings.py file.
 ```
  nano /opt/nohatech/conf/seahub_settings.py
@@ -232,7 +234,7 @@ Then add the following lines in the bottom of the file.
     }
  }
 ```
-No as we are changing to use Memcached we need to reboot the server.
+Now as we are changing to use Memcached we need to reboot the server.
 ```
  sudo service memcached force-reload
  sudo reboot
