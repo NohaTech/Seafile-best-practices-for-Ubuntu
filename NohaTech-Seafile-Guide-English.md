@@ -159,11 +159,12 @@ Make sure that you have opend port 8000 in the UFW firewall if you have it activ
 It's recommended to setup Memcached for Sefile to increase the performance, we have already installed all of the necessary components.
 So what we need to do is to add some lines to the seahub_settings.py file and also do some configuration in memcached configuration file.
 In this guide we are using the unix_socket as it's recommended and also it's increasing the speed with 30%.
-First we need to make sure that Seafile are not running.
+First we need to make sure that Seafile are not running, and also we need to stop Memcached.
 ```
  cd /opt/nohatech/seafile-server-latest/
  ./seafile.sh stop
  ./seahub.sh stop
+ sudo service memcached stop
 ```
 Then we need to change a little in the memcached configuration file.
 ```
