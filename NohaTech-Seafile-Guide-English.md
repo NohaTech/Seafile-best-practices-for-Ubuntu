@@ -406,7 +406,7 @@ Then we need to create the file that we are going to use.
 ```
  sudo nano /etc/nginx/sites-available/seafile.conf
 ```
-Now we are going to start the configuration, this example file are working you just need to replace the "seafile.example.com" with your own domain. But still, read the hole thing.
+Now we are going to start the configuration, this example file are working you just need to replace the "seafile.example.com" with your own domain also in the add_header Content-Security-Policy you need to replace *.nohatech.se with your own domain. But still, read the hole thing.
 ```
 server {
     listen 80;
@@ -505,7 +505,7 @@ Then we need to create the dhparam.pem file, it's a little tricky we need to cre
 ```
 Now we are done with that, so now we need to start to change the config file to work, I'll add some changes if you want to know what just compare it to the configuration file above, here is a working example of the file, as in the file above you need to replace seafile.example.com with your own domain also the path setting to the location.
 I have also added the security settings to this configuration file, if your not are going to use this configuration file, take a look above to see how to adapte the security settings.
-And remember to change the *.example.se in the Content-Security-Policy to your own and the rest of the example domains.
+And remember to change the *.nohatech.se in the Content-Security-Policy to your own and the rest of the example domains.
 ```
     server {
         listen       80;
