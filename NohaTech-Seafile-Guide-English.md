@@ -27,7 +27,7 @@ We need to make sure that Ubuntu are up to date, use this command below to do th
 ```
  sudo apt-get update && sudo apt-get upgrade -y
 ```
-Now reboot your server
+It's important that if you did upgrade the Kernel or other systemimportant things that you reboot your server so the upgrade can take effect, if you did not upgrade anything then you don't need to reboot.
 
 ### Install MariaDB
 We are going to use MariaDB and what we want to do is that we want to run the latest stable version to do that we need to change some files and do some installation.
@@ -152,7 +152,7 @@ And also remember that you should never start Seafile with the sudo command or c
  ./seahub.sh start
 ```
 Now things are up an running for you, good! What we need to do now is to do some modifications and install some add-ons to make it run perfectly.
-But you can try to login on it trough your webbrowser: http://yourlocalip:8000/
+Before we continue you should makesure that you can access the server to make sure that Seafile works: http://yourlocalip:8000/
 Make sure that you have opend port 8000 in the UFW firewall if you have it activated, but UFW should be disable as default.
 
 ### Add Memcached
@@ -235,10 +235,12 @@ Then add the following lines in the bottom of the file.
     }
  }
 ```
-Now as we are changing to use Memcached we need to reboot the server.
+Now as we have changed to use Memcached we need to force-reload memcache and start Seafile again.
 ```
  sudo service memcached force-reload
- sudo reboot
+ cd /opt/nohatech/seafile-server-latest/
+ ./seafile.sh start
+ ./seahub.sh start
 ```
 
 ### Start Seafile on system boot
@@ -295,6 +297,7 @@ And now we are on the last step, now we need to enable this as a service.
 ### Seafile GC
 Seafile GC are going to clean up the deleted files etc. to free space on your server. But on the CE (free version) of Seafile it can't run as long as Seafile are running.
 So we are going to make a script and add it to crontab to make it autorun and solve this little issue for us.
+Note that Seafile GC only cleans the files that have excpired from your History and Trash rules in the seafile.conf file, you can read more about it below in that section of the guide.
 
 First we need to create the file.
 ```
