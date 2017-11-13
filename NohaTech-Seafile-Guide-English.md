@@ -640,6 +640,8 @@ At the bottom of crontab add this, change the /path/to/certbot so it's matches y
 ```
  47 */12 * * * sleep 16; /path/to/certbot renew --quiet --post-hook "/usr/sbin/service nginx reload"
 ```
+Now we are finished with the setup, so let's test your SSL rating, you should have A+ in score.
+You can test it here: https://www.ssllabs.com/ssltest
 
 #### Optimize NGINX
 So now we want to optimize NGINX for best performence.
@@ -667,6 +669,9 @@ Now we need to restart NGINX so this changes can take effect.
  sudo service nginx reload
  sudo service nginx restart
 ```
+
+So now we are completly finsihed with the NGINX setup, so let's test our security. If you have done everything right you should have a B score that's normal as it's some limitations in Seafile that are limiting us for using secure cookies and using the full protection of Content-Security-Policy. But this is nothing to worry about, it's totaly secure anyway - I'll not explane it futher but just google it if you want. And I'll add a line or two when I have found out a work-a-round, so keep a watching eye on this guide for updates.
+Anyway you can test the security of your site here: https://observatory.mozilla.org/
 
 ### Configuration for Seafile
 Now we need to make some changes in the config files for Seafile, and remember not to open the files with the sudo command or root user open the files with the user that your using to run Seafile with.
