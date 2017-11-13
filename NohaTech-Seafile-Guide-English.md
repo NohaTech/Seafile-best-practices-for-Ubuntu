@@ -418,6 +418,7 @@ server {
     add_header X-XSS-Protection "1; mode=block" always;
     add_header X-Frame-Options "DENY" always;
     add_header Referrer-Policy "strict-origin" always;
+    add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.nohatech.se/ blob: 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.nohatech.se; object-src 'none'; frame-ancestors https://*.nohatech.se/; base-uri https://*.nohatech.se/ 'self';
     server_tokens off;
 
     location / {
@@ -459,6 +460,7 @@ As we want high security for our site we need to add this lines to every server 
  add_header X-XSS-Protection "1; mode=block" always;
  add_header X-Frame-Options "DENY" always;
  add_header Referrer-Policy "strict-origin" always;
+ add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.nohatech.se/ blob: 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.nohatech.se; object-src 'none'; frame-ancestors https://*.nohatech.se/; base-uri https://*.nohatech.se/ 'self';
  server_tokens off;
 ```
 Also we don't want NGINX to use a buffer in tmp files so we need to add the following line to the location blocks. I have already added this line in the example config above, but I still want you to know that this lines are not there as default.
@@ -514,6 +516,7 @@ And remember to change the *.example.se in the Content-Security-Policy to your o
         add_header X-XSS-Protection "1; mode=block" always;
         add_header X-Frame-Options "DENY" always;
         add_header Referrer-Policy "strict-origin" always;
+        add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.nohatech.se/ blob: 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.nohatech.se; object-src 'none'; frame-ancestors https://*.nohatech.se/; base-uri https://*.nohatech.se/ 'self';
         server_tokens off;
     }
     server {
@@ -541,6 +544,7 @@ And remember to change the *.example.se in the Content-Security-Policy to your o
         add_header X-XSS-Protection "1; mode=block" always;
         add_header X-Frame-Options "DENY" always;
         add_header Referrer-Policy "strict-origin" always;
+        add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.nohatech.se/ blob: 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.nohatech.se; object-src 'none'; frame-ancestors https://*.nohatech.se/; base-uri https://*.nohatech.se/ 'self';
         server_tokens off;
 
         location / {
