@@ -7,7 +7,7 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTe
 If you are going to run Seafile on a Hyper-V VM, please read NohaTech-Ubuntu-Hyper-V-English.md to optimize it and also adopte it to work with Ubuntu.
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Hyper-V-English.md
 
-We will use a texteditor called nano in this guide, so here is some commands that you need to know.
+We will use a text editor called nano in this guide, so here is some commands that you need to know.
 ```
  ctrl+k = deletes a hole row in the document
  
@@ -27,7 +27,7 @@ We need to make sure that Ubuntu are up to date, use this command below to do th
 ```
  sudo apt-get update && sudo apt-get upgrade -y
 ```
-It's important that if you did upgrade the Kernel or other systemimportant things that you reboot your server so the upgrade can take effect, if you did not upgrade anything then you don't need to reboot.
+It's important that if you did upgrade the Kernel or other system important things that you reboot your server, so the upgrade can take effect, if you did not upgrade anything then you don't need to reboot.
 
 ### Install MariaDB
 We are going to use MariaDB and what we want to do is that we want to run the latest stable version to do that we need to change some files and do some installation.
@@ -49,7 +49,7 @@ And now to finish the MariaDB setup we need to run some security, this is someth
  sudo mysql_secure_installation
 ```
 (If you using auth_socket in MariaDB you just press enter when it's asking for the password, if your not using it then type your root password for MariaDB.)
-This setup are relly easy to do, now you will be asked if you want to change your administration password for MairaDB here you can choose whatevery you want. But for the other quastions you should answer Y on everyone of them.
+This setup are really easy to do, now you will be asked if you want to change your administration password for MairaDB here you can choose whatever you want. But for the other questions you should answer Y on everyone of them.
 
 #### Create the databases
 Now we need to add some databases to MariaDB, we are going to do that manually because of the new unix_socket auth that MariaDB have been start using, because of that the "setup-seafile-mysql.sh" will not work depending of what version of MariaDB your running - so better safe then sorry.
