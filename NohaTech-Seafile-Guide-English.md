@@ -793,8 +793,8 @@ Now we can enable the UFW firewall.
 Now we are finished and you have a firewall installed and activated.
 
 # Fail2Ban
-Fail2Ban are searching trough your logfiles and are blocking IP's that are trying to hack your server in differnet ways.
-Regarding the Seafile filter for Fail2Ban it's a bug, to make the filter work you need to add the following line to the seahub_settings.py file, if you have been following this guide from the begining you have already done that.
+Fail2Ban are searching trough your logfiles and are blocking IP's that are trying to hack your server in different ways.
+Regarding the Seafile filter for Fail2Ban it's a bug, to make the filter work you need to add the following line to the seahub_settings.py file, if you have been following this guide from the beginning you have already done that.
 ```
  TIME_ZONE = 'Europe/Stockholm'
 ```
@@ -805,7 +805,7 @@ But to get Fail2Ban to work at all we need to install it first.
  sudo apt-get install fail2ban -y
 ```
 ### Latest version
-As everything in this document we are using the latest stable version of the software and Fail2Ban is no differnet, but as version 10 have some different rules etc. we will still be at version 9 as that's the most stable one.
+As everything in this document we are using the latest stable version of the software and Fail2Ban is no different, but as version 10 have some different rules etc. we will still be at version 9 as that's the most stable one.
 So now, let us download and install the newest version.
 ```
  wget http://se.archive.ubuntu.com/ubuntu/pool/universe/f/fail2ban/fail2ban_0.9.7-2_all.deb
@@ -1017,9 +1017,9 @@ logpath  = /var/log/nginx/*error.log
 ```
 
 # Setup security in Seafile Web.
-Now we are almoste finished with our setup of the server and we will have a secure Seafile server.
+Now we are almost finished with our setup of the server and we will have a secure Seafile server.
 The last thing is to change a little regarding the security.
-Login to your Admin account to Seafile troug your browser.
+Login to your Admin account to Seafile trough your browser.
 Then go to:
 ```
  1. Click on profile picture in the upper right corner.
@@ -1033,14 +1033,14 @@ Then go to:
 Now we are going to change some things regarding the password rules, we are still on the same page.
 ```
  1. Check the box for "strong password"
- 2. Change "password minimum length" to atleast 8.
+ 2. Change "password minimum length" to at least 8.
  3. "password strength level" should be at 3 but not smaller then 2.
 ```
-This is optional, but you should activate the 2FA for the users that wnat to use it.
+This is optional, but you should activate the 2FA for the users that want to use it.
 To do that just check the box "enable two factor authentication"
 
 # Maintain Seafile
-As with everthing you need to Maintain it, and also you might get some issues or something.
+As with everything you need to Maintain it, and also you might get some issues or something.
 I have done a other document for that, NohaTech-Seafile-maintain-English.md
 
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Seafile-maintain-English.md
