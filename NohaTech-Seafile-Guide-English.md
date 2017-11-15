@@ -1,5 +1,5 @@
 # Introduction
-***I don't recommend anyone to update or install Seafile 6.2.3 due to a issue with Memcached, I'll investigate it as fast as I can but I think it's a bug in Seafile, for more infomration see https://forum.seafile.com/t/seafile-server-6-2-3-is-ready-oauth-support-and-other-improvements/4567/11***
+***I don't recommend anyone to upgrade (to) or install Seafile 6.2.3 due to a issue with Memcached install 6.2.2 instead, I'll investigate it as fast as I can but I think it's a bug in Seafile, for more infomration see https://forum.seafile.com/t/seafile-server-6-2-3-is-ready-oauth-support-and-other-improvements/4567/11***
 
 I'll guide you trough how you can install Seafile on a Ubuntu 16.04 LTS machine, in this document I'll only adapt best practices.
 This guide is for the CE version of Seafile, the free version. But you can use it for the PRO version also but then it's some additional steps that I have not included in this guide.
