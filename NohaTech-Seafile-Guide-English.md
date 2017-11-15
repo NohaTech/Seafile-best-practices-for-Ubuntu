@@ -1,5 +1,5 @@
 # Introduction
-***I don't recommend anyone to upgrade (to) or install Seafile 6.2.3 due to a issue with Memcached install 6.2.2 instead, I'll investigate it as fast as I can but I think it's a bug in Seafile, for more infomration see https://forum.seafile.com/t/seafile-server-6-2-3-is-ready-oauth-support-and-other-improvements/4567/11***
+***IF you are updating or installing to Seafile 6.2.3 make sure that you change to Memcached HTTP before your updating, it seem that Seafile 6.2.3 are having issues with Memcached socket, but as 6.2.3 are not a important update I'm recommending you to stay on 6.2.2 for now, for more information https://forum.seafile.com/t/seafile-server-6-2-3-is-ready-oauth-support-and-other-improvements/4567/11***
 
 I'll guide you trough how you can install Seafile on a Ubuntu 16.04 LTS machine, in this document I'll only adapt best practices.
 This guide is for the CE version of Seafile, the free version. But you can use it for the PRO version also but then it's some additional steps that I have not included in this guide.
@@ -157,7 +157,7 @@ Now things are up an running for you, good! What we need to do now is to do some
 Before we continue you should makesure that you can access the server to make sure that Seafile works: http://yourlocalip:8000/
 Make sure that you have opend port 8000 in the UFW firewall if you have it activated, but UFW should be disable as default.
 
-### Add Memcached (It's currently a issue with Memcahced and version 6.2.3 of the server!)
+### Add Memcached (If your running version 6.2.3 Seafile have issues with socket so you need to change to HTTP, if your on 6.2.2 you can run socket without any issues.)
 It's recommended to setup Memcached for Sefile to increase the performance, we have already installed all of the necessary components.
 So what we need to do is to add some lines to the seahub_settings.py file and also do some configuration in memcached configuration file.
 In this guide we are using the unix_socket as it's recommended and also it's increasing the speed with 30%.
