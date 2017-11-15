@@ -14,7 +14,7 @@ We will use a text editor called nano in this guide, so here is some commands th
  ctrl+x = your asked if you want to save the document or not, answer y or n then press enter and then after that you will get back to the     terminal.
 ```
 
-***All the path's in this guide are starting at /opt/nohatech/ make sure that you change them to the path that your using.***
+***All the path's in this guide are starting at /opt/nohatech/ make sure that you change them to the path that your using, this is the same for any installation or configuration you need to change it to your own domain or the currenct versionnumber in the filename that your going to install!***
 
 # Installation
 Now we going to start the installation.
@@ -155,7 +155,7 @@ Now things are up an running for you, good! What we need to do now is to do some
 Before we continue you should makesure that you can access the server to make sure that Seafile works: http://yourlocalip:8000/
 Make sure that you have opend port 8000 in the UFW firewall if you have it activated, but UFW should be disable as default.
 
-### Add Memcached
+### Add Memcached (It's currently a issue with Memcahced and version 6.2.3 of the server!)
 It's recommended to setup Memcached for Sefile to increase the performance, we have already installed all of the necessary components.
 So what we need to do is to add some lines to the seahub_settings.py file and also do some configuration in memcached configuration file.
 In this guide we are using the unix_socket as it's recommended and also it's increasing the speed with 30%.
