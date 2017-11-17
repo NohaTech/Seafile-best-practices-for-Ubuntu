@@ -422,7 +422,7 @@ Then we need to create the file that we are going to use.
 ```
  sudo nano /etc/nginx/sites-available/seafile.conf
 ```
-Now we are going to start the configuration, this example file are working you just need to replace the "seafile.example.com" with your own domain also in the add_header Content-Security-Policy you need to replace *.nohatech.se with your own domain. But still, read the hole thing.
+Now we are going to start the configuration, this example file are working you just need to replace the "seafile.example.com" with your own domain also in the add_header Content-Security-Policy you need to replace *.nohatech.se with your own domain and change the folder location under "location /media" in the configuration to the right one for you. But still, read the hole thing.
 ```
 server {
     listen 80;
@@ -497,6 +497,7 @@ Now we just need to restart NGINX and then we will have a working NGINX revers p
  sudo service nginx restart
 ```
 #### Self signed cert
+***Self sign cert don't work with the Windows client, you need a good cert for that client to work, please se further down in the Let's Encrypt section how you can get a free cert***
 I'm recommending you to use Let's Encrypts SSL but for some reason you might want to use Self signed.
 So here's how you do that.
 
@@ -521,7 +522,7 @@ Then we need to create the dhparam.pem file, it's a little tricky we need to cre
 ```
 Now we are done with that, so now we need to start to change the config file to work, I'll add some changes if you want to know what just compare it to the configuration file above, here is a working example of the file, as in the file above you need to replace seafile.example.com with your own domain also the path setting to the location.
 I have also added the security settings to this configuration file, if your not are going to use this configuration file, take a look above to see how to adapte the security settings.
-And remember to change the *.nohatech.se in the Content-Security-Policy to your own and the rest of the example domains.
+And remember to change the *.nohatech.se in the Content-Security-Policy to your own and the rest of the example domains and also change so the location path if right under "location /media".
 ```
     server {
         listen       80;
