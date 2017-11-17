@@ -1,6 +1,4 @@
 # Introduction
-***IF you are upgrading to Seafile server version 6.2.3 make sure that you have disabled memcached before as it's an issue with memecached and version 6.2.3 https://forum.seafile.com/t/seafile-server-6-2-3-is-ready-oauth-support-and-other-improvements/4567/11***
-
 I'll guide you trough how you can install Seafile on a Ubuntu 16.04 LTS machine, in this document I'll only adapt best practices.
 This guide is for the CE version of Seafile, the free version. But you can use it for the PRO version also but then it's some additional steps that I have not included in this guide.
 To tighten up your security on your Ubuntu server please see the NohaTech-Ubuntu-Secure-Server.md file.
@@ -110,21 +108,21 @@ We are going to use the /opt folder to install Seafile in, and we are going to u
 You can change the "nohatech" folder name to what ever you want I just using it as a example.
 
 ### Download Seafile
-Now it's time to download Seafile. As you can see in this example I'm using the version 6.2.2 change the filenames to the version you are installing.
+Now it's time to download Seafile. As you can see in this example I'm using the version 6.2.3 change the filenames to the version you are installing.
 ```
  cd /opt
- wget https://download.seadrive.org/seafile-server_6.2.2_x86-64.tar.gz
+ wget https://download.seadrive.org/seafile-server_6.2.3_x86-64.tar.gz
 ```
 And now we need to unpack it.
 ```
- tar -xvzf seafile-server_6.2.2_x86-64.tar.gz
+ tar -xvzf seafile-server_6.2.3_x86-64.tar.gz
 ```
 And now we need to create some folders, change the "nohatech" folders name to a name that you prefer.
 ```
  mkdir nohatech
  mkdir nohatech/installed
 ```
-Now we need to move the seafile-server_6.2.2 folder and the seafile-server_6.2.2_x86-64.tar.gz file.
+Now we need to move the seafile-server_6.2.3 folder and the seafile-server_6.2.3_x86-64.tar.gz file.
 ```
  mv seafile-server_6.2.2_x86-64.tar.gz nohatech/installed
  mv seafile-server_6.2.2 nohatech
@@ -133,7 +131,7 @@ Now we need to move the seafile-server_6.2.2 folder and the seafile-server_6.2.2
 ### Install Seafile
 Now it's time to run the setup script for Seafile.
 ```
- cd /opt/nohatech/seafile-server_6.2.2
+ cd /opt/nohatech/seafile-server_6.2.3
  
  ./setup-seafile-mysql.sh
 ```
@@ -157,7 +155,23 @@ Now things are up an running for you, good! What we need to do now is to do some
 Before we continue you should makesure that you can access the server to make sure that Seafile works: http://yourlocalip:8000/
 Make sure that you have opend port 8000 in the UFW firewall if you have it activated, but UFW should be disable as default.
 
-### Add Memcached (Memecached don't work with Seafile server version 6.2.3, so skip this section if your installing 6.2.3)
+### Add Memcached
+***If your running 6.2.3 you need to do a fix before using memcached***
+Before your doing the changes you need to stop Seafile.
+```
+ cd /opt/nohatech/seafile-server-latest/
+ ./seafile.sh stop
+ ./seahub.sh stop
+```
+```
+ nano /opt/nohatech/seafile-server-latest/runtime/seahub.conf
+```
+And then you need to add this line.
+```
+ threads = 5
+```
+***End of the bugfix***
+
 It's recommended to setup Memcached for Sefile to increase the performance, we have already installed all of the necessary components.
 So what we need to do is to add some lines to the seahub_settings.py file and also do some configuration in memcached configuration file.
 In this guide we are using the unix_socket as it's recommended and also it's increasing the speed with 30%.
