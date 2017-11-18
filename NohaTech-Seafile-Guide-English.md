@@ -621,7 +621,7 @@ First off we need to create a folder.
 ```
  sudo mkdir /mnt/certbot-webroot
 ```
-Then you should add this to the config and add it before the line "location /seafhttp" in the config.
+Then you should add this to the config and insert it before the line "location /seafhttp" in the config.
 ```
  location '/.well-known/acme-challenge' {
     default_type "text/plain";
