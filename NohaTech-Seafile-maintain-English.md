@@ -34,6 +34,12 @@ If you need to do some repairs or some other issues, take a look at the Seafile 
 Remember to shutdown your Seafile server before you start repairs or something else. It's only the check function that you can run at the same time that the server are up and running.
 https://manual.seafile.com/maintain/seafile_fsck.html
 
+And as it can take a long time to run the seaf-fsck.sh check you can choose to write the output to a .log file instead. If you are using this command you can close the SSH window and the server will still run the seaf-fsck.sh and log it to the file.
+But remember to change the "nohatech" in the path to your own, in this example we are logging to a file in the "logs" that belongs to Seafile.
+```
+ /opt/nohatech/seafile-server-latest/seaf-fsck.sh >> /opt/nohatech/logs/seaf-fsck.log &
+```
+
 ## Logfiles
 Sometimes you want to take a look at the logfiles to see that everything looks OK.
 The Seafile logfiles are located here.
