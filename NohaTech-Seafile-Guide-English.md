@@ -1050,6 +1050,14 @@ port     = https,http
 filter   = nginx-forbidden
 logpath  = /var/log/nginx/*error.log
 
+[nginx-botsearch]
+
+enabled = true
+port     = http,https
+filter = nginx-botsearch
+logpath  = /var/log/nginx/*error.log
+
+
 ```
 
 # Setup security in Seafile Web.
