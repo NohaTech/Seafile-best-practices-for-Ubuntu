@@ -561,7 +561,7 @@ And remember to change the *.nohatech.se in the Content-Security-Policy to your 
         add_header X-XSS-Protection "1; mode=block" always;
         add_header X-Frame-Options "DENY" always;
         add_header Referrer-Policy "strict-origin" always;
-        aadd_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.nohatech.se/ blob: 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.nohatech.se; object-src 'none'; frame-ancestors https://*.nohatech.se/; base-uri https://*.nohatech.se/ 'self'; media-src 'self';" always;
+        add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.nohatech.se/ blob: 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.nohatech.se; object-src 'none'; frame-ancestors https://*.nohatech.se/; base-uri https://*.nohatech.se/ 'self'; media-src 'self';" always;
         server_tokens off;
 
         location / {
