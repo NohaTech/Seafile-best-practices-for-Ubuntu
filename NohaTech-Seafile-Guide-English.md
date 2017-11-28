@@ -332,7 +332,7 @@ Then add the following to the file.
 
  # run the cleanup
  echo Seafile cleanup started...
- sudo -u seafile /opt/nohatech/seafile-server-latest/seaf-gc.sh -r
+ sudo -u seafile /opt/nohatech/seafile-server-latest/seaf-gc.sh
 
  echo Giving the server some time....
  sleep 10
