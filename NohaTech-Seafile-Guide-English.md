@@ -310,7 +310,7 @@ And now we are on the last step, now we need to enable this as a service.
  sudo systemctl enable seahub.service
 ```
 
-### Seafile GC
+### Seafile GC Cleanup (Recommended, Optional)
 Seafile GC are going to clean up the deleted files etc. to free space on your server. But on the CE (free version) of Seafile it can't run as long as Seafile are running.
 So we are going to make a script and add it to crontab to make it autorun and solve this little issue for us.
 Note that Seafile GC only cleans the files that have excpired from your History and Trash rules in the seafile.conf file, you can read more about it below in that section of the guide.
@@ -357,6 +357,37 @@ Then add the following line at the end on the crontab file.
  0 2 * * Sun /opt/nohatech/seafile/cleanupScript.sh
 ```
 This means that every Sunday at 02:00 this script will run.
+
+### Seaf-FSCK Error checker (Recommended, Optional)
+It's good to have some kind of knowledge regarding the health of your data.
+So what I have done is that I have added a little script in crontab monthly folder, that means that once a month it will run.
+And if you have installed and setup ssmtp then you will get a e-mail from the server with the results, and also you will have a logfile named seaf-fsck.log under the logs folder that are located at your Seafile folder in my case it's located /opt/nohatech/logs.
+You can read in my other guide how to setup ssmtp. ( https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Ssmtp-English.md )
+
+Remember to change every path to the right one for you.
+
+First we need to go to the right folder.
+```
+ cd /etc/cron.monthly
+```
+Then we need to create the script file.
+```
+ sudo nano seaf-fsck-checker.sh 
+```
+Then we need to add this following lines to it.
+```
+ #!/bin/bash
+ # stop the server
+ echo Starting the seaf-fsck script...
+ sudo -u seafile /opt/nohatech/seafile-server-latest/seaf-fsck.sh >> /opt/nohatech/logs/seaf-fsck.log
+ sleep 5
+ echo Everything is done!
+```
+Make sure that the script has been given execution rights, to do that run this command.
+```
+ sudo chmod +x /etc/cron.monthly/seaf-fsck-checker.sh
+```
+Now we are done and we will get a report to our mail and also to the seaf-fsck.log file once a month.
 
 ### Ignore list for Seafile
 You can if you want ignore files and folders for sync.
