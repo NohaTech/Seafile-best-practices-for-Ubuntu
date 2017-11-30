@@ -35,7 +35,7 @@ Then change the following lines.
  Protocol 2 (here you should add 2 in the end of the row and delete whatever are written there as default)
  PermitRootLogin no (here you should add no in the end of the row and delete whatever are written there as default)
 ```
-And also you should add the following to the config file.
+And also you should add the following to the config file, you can add it at the bottom of the file.
 ```
  DebianBanner no
 ```
@@ -135,9 +135,6 @@ Now we need to add and change this, make sure that you are deleteing the # sign 
 net.ipv4.conf.all.rp_filter = 1
 net.ipv4.conf.default.rp_filter = 1
 
-# Ignore ICMP broadcast requests
-net.ipv4.icmp_echo_ignore_broadcasts = 1
-
 # Disable source packet routing
 net.ipv4.conf.all.accept_source_route = 0
 net.ipv6.conf.all.accept_source_route = 0 
@@ -149,10 +146,10 @@ net.ipv4.conf.all.send_redirects = 0
 net.ipv4.conf.default.send_redirects = 0
 
 # Block SYN attacks
-net.ipv4.tcp_syncookies = 1
-net.ipv4.tcp_max_syn_backlog = 2048
-net.ipv4.tcp_synack_retries = 2
-net.ipv4.tcp_syn_retries = 5
+net.ipv4.tcp_syncookies=1
+net.ipv4.tcp_max_syn_backlog=2048
+net.ipv4.tcp_synack_retries=2
+net.ipv4.tcp_syn_retries=5
 
 # Log Martians
 net.ipv4.conf.all.log_martians = 1
@@ -166,6 +163,9 @@ net.ipv6.conf.default.accept_redirects = 0
 
 # Ignore Directed pings
 net.ipv4.icmp_echo_ignore_all = 1
+
+# Ignore ICMP broadcast requests
+net.ipv4.icmp_echo_ignore_broadcasts = 1
 ```
 Now when we are finsih we just need to restart sysctl.
 ```
@@ -191,7 +191,7 @@ Now to make this changes to take effect we need to reboot the server.
 Fail2Ban are searching trough your logfiles and are blocking IP's that are trying to hack your server in differnet ways.
 First we need to install Fail2Ban.
 ```
- sudo apt-get install fail2ban
+ sudo apt-get install fail2ban -y
 ```
 ### Latest version
 As everything in this document we are using the latest stable version of the software and Fail2Ban is no differnet, but as version 10 have some different rules etc. we will still be at version 9 as that's the most stable one.
@@ -252,7 +252,7 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTe
 # UFW
 A Firewall is something that everyone wants and needs these days, so I'm going to guide you trough it. As default Ubuntu should have UFW installed but if not, then installed it trough this command.
 ```
- sudo apt-get install ufw
+ sudo apt-get install ufw -y
 ```
 Now we need to open every port that we want to use, it should be atleast the port for SSH and also every other port your using for incoming traffic, you can open the ports like this.
 ```
