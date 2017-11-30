@@ -33,9 +33,9 @@ It's important that if you did upgrade the Kernel or other system important thin
 We are going to use MariaDB and what we want to do is that we want to run the latest stable version to do that we need to change some files and do some installation.
 Run the following commands.
 ```
-sudo apt-get install software-properties-common
-sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
-sudo add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://ftp.ddg.lth.se/mariadb/repo/10.2/ubuntu xenial main'
+ sudo apt-get install software-properties-common
+ sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+ sudo add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://ftp.ddg.lth.se/mariadb/repo/10.2/ubuntu xenial main'
 ```
 As you can se when I write this document the latest stable version of MariaDB is 10.2, to make sure that it's still the latest version please visit http://downloads.mariadb.org/mariadb/repositories/ 
 
@@ -188,53 +188,53 @@ Then we need to change a little in the memcached configuration file.
 ```
 The configuration file should look like this, so do the change that you need to.
 ```
- # part of the Debian GNU/Linux distribution.
+# part of the Debian GNU/Linux distribution.
 
- # Run memcached as a daemon. This command is implied, and is not needed for the
- # daemon to run. See the README.Debian that comes with this package for more
- # information.
- -d
+# Run memcached as a daemon. This command is implied, and is not needed for the
+# daemon to run. See the README.Debian that comes with this package for more
+# information.
+-d
 
- # Log memcached's output to /var/log/memcached
- logfile /var/log/memcached.log
+# Log memcached's output to /var/log/memcached
+logfile /var/log/memcached.log
 
- # Be verbose
- #-v
+# Be verbose
+#-v
  
- # Be even more verbose (print client commands as well)
- #-vv
+# Be even more verbose (print client commands as well)
+#-vv
  
- # Start with a cap of 64 megs of memory. It's reasonable, and the daemon default
- # Note that the daemon will grow to this size, but does not start out holding this much
- # memory
- -m 64
+# Start with a cap of 64 megs of memory. It's reasonable, and the daemon default
+# Note that the daemon will grow to this size, but does not start out holding this much
+# memory
+-m 64
 
- # Default connection port is 11211
- #-p 11211
+# Default connection port is 11211
+# -p 11211
 
- # Run the daemon as root. The start-memcached will default to running as root if no
- # -u command is present in this config file
- #-u memcache (original jobenvil)
- -u root
+# Run the daemon as root. The start-memcached will default to running as root if no
+# -u command is present in this config file
+# -u memcache
+-u root
 
- # Specify which IP address to listen on. The default is to listen on all IP addresses
- # This parameter is one of the only security measures that memcached has, so make sure
- # it's listening on a firewalled interface.
- #-l 127.0.0.1i (original)
- -s /var/run/memcached.sock
- -a 0766
+# Specify which IP address to listen on. The default is to listen on all IP addresses
+# This parameter is one of the only security measures that memcached has, so make sure
+# it's listening on a firewalled interface.
+# -l 127.0.0.1i (original)
+-s /var/run/memcached.sock
+-a 0766
 
- # Limit the number of simultaneous incoming connections. The daemon default is 1024
- # -c 1024
+# Limit the number of simultaneous incoming connections. The daemon default is 1024
+# -c 1024
 
- # Lock down all paged memory. Consult with the README and homepage before you do this
- # -k
+# Lock down all paged memory. Consult with the README and homepage before you do this
+# -k
 
- # Return error when memory is exhausted (rather than removing items)
- -M
+# Return error when memory is exhausted (rather than removing items)
+-M
 
- # Maximize core file limit
- # -r
+# Maximize core file limit
+# -r
 ```
 It's hard to tell for me how much memory you should use for Memcached, you can change it in the "-m 64" line and replace 64 with the amount of memory you want it's written in MB. I personly uses 1024 and that works for me.
 
@@ -244,12 +244,12 @@ Now we need to change the seahub_settings.py file.
 ```
 Then add the following lines in the bottom of the file.
 ```
- CACHES = {
-    'default': {
-        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-        'LOCATION': '/var/run/memcached.sock',
-    }
- }
+CACHES = {
+   'default': {
+       'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+       'LOCATION': '/var/run/memcached.sock',
+   }
+}
 ```
 Now as we have changed to use Memcached we need to force-reload memcache and start Seafile again.
 ```
@@ -268,20 +268,20 @@ Remember to change the path to your own path for Seafile also remember to change
 ```
 And then add the following to the file.
 ```
- [Unit]
- Description=Seafile
- After=network.target mysql.service
+[Unit]
+Description=Seafile
+After=network.target mysql.service
 
- [Service]
- Type=oneshot
- ExecStart=/opt/nohatech/seafile-server-latest/seafile.sh start
- ExecStop=/opt/nohatech/seafile-server-latest/seafile.sh stop
- RemainAfterExit=yes
- User=seafile
- Group=seafile
+[Service]
+Type=oneshot
+ExecStart=/opt/nohatech/seafile-server-latest/seafile.sh start
+ExecStop=/opt/nohatech/seafile-server-latest/seafile.sh stop
+RemainAfterExit=yes
+User=seafile
+Group=seafile
 
- [Install]
- WantedBy=multi-user.target
+[Install]
+WantedBy=multi-user.target
 ```
 Now we need to create a second file.
 ```
@@ -289,20 +289,20 @@ Now we need to create a second file.
 ````
 Then add this to the file.
 ```
- [Unit]
- Description=Seafile hub
- After=network.target seafile.service
+[Unit]
+Description=Seafile hub
+After=network.target seafile.service
 
- [Service]
- ExecStart=/opt/nohatech/seafile-server-latest/seahub.sh start
- ExecStop=/opt/nohatech/seafile-server-latest/seahub.sh stop
- User=seafile
- Group=seafile
- Type=oneshot
- RemainAfterExit=yes
+[Service]
+ExecStart=/opt/nohatech/seafile-server-latest/seahub.sh start
+ExecStop=/opt/nohatech/seafile-server-latest/seahub.sh stop
+User=seafile
+Group=seafile
+Type=oneshot
+RemainAfterExit=yes
 
- [Install]
- WantedBy=multi-user.target
+[Install]
+WantedBy=multi-user.target
 ```
 And now we are on the last step, now we need to enable this as a service.
 ```
