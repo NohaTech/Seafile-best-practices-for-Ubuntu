@@ -793,6 +793,7 @@ For more information see https://manual.seafile.com/config/seafile-conf.html
 ```
 Then we need to add the following rows.
 ```
+FILE_SERVER_ROOT = 'https://example.se/seafhttp'
 # Set this to your website/company's name. This is contained in email notificat$
 SITE_NAME = 'NohaTech'
 # Browser tab's title
