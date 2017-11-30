@@ -23,19 +23,19 @@ Now we going to start the installation.
 Best is to have a "clean" Ubuntu installation to install Seafile on, and during Ubuntu installation you should choose seafile as username, but if you don't have a clean one it's recommended that Seafile are running with it's own user - ***you should not run Seafile with root user or sudo command.***
 To create a new user you should use the following commands.
 ```
- sudo adduser seafile
- sudo usermod -aG sudo seafile
+sudo adduser seafile
+sudo usermod -aG sudo seafile
 ```
 Now we just need to switch to the seafile user.
 ```
- sudo -u seafile
+sudo -u seafile
 ```
 Now everything is fine, remember to login with the seafile user next time you reboot / login to your server or if you SSH in to it.
 
 ### Update Ubuntu
 We need to make sure that Ubuntu are up to date, use this command below to do that.
 ```
- sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get update && sudo apt-get upgrade -y
 ```
 It's important that if you did upgrade the Kernel or other system important things that you reboot your server, so the upgrade can take effect, if you did not upgrade anything then you don't need to reboot.
 
@@ -43,20 +43,20 @@ It's important that if you did upgrade the Kernel or other system important thin
 We are going to use MariaDB and what we want to do is that we want to run the latest stable version to do that we need to change some files and do some installation.
 Run the following commands.
 ```
- sudo apt-get install software-properties-common
- sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
- sudo add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://ftp.ddg.lth.se/mariadb/repo/10.2/ubuntu xenial main'
+sudo apt-get install software-properties-common
+sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+sudo add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://ftp.ddg.lth.se/mariadb/repo/10.2/ubuntu xenial main'
 ```
 As you can se when I write this document the latest stable version of MariaDB is 10.2, to make sure that it's still the latest version please visit http://downloads.mariadb.org/mariadb/repositories/ 
 
 Now it's time to install MariaDB.
 ```
- sudo apt-get update
- sudo apt-get install mariadb-server -y
+sudo apt-get update
+sudo apt-get install mariadb-server -y
 ```
 And now to finish the MariaDB setup we need to run some security, this is something that many people are missing and it's really important to do this beacuse otherwise it's easy to get hacked.
 ```
- sudo mysql_secure_installation
+sudo mysql_secure_installation
 ```
 (If you using auth_socket in MariaDB you just press enter when it's asking for the password, if your not using it then type your root password for MariaDB.)
 This setup are really easy to do, now you will be asked if you want to change your administration password for MairaDB here you can choose whatever you want. But for the other questions you should answer Y on everyone of them.
@@ -64,51 +64,51 @@ This setup are really easy to do, now you will be asked if you want to change yo
 #### Create the databases
 Now we need to add some databases to MariaDB, we are going to do that manually because of the new unix_socket auth that MariaDB have been start using, because of that the "setup-seafile-mysql.sh" will not work depending of what version of MariaDB your running - so better safe then sorry.
 ```
- sudo mysql -u root -p
+sudo mysql -u root -p
 ```
 (If you using auth_socket in MariaDB you just press enter when it's asking for the password, if your not using it then type your root password for MariaDB.)
 Now we are in MariaDB and we need to create the databases for Seafile.
 ```
- create database `ccnet-db` character set = 'utf8';
- create database `seafile-db` character set = 'utf8';
- create database `seahub-db` character set = 'utf8';
+create database `ccnet-db` character set = 'utf8';
+create database `seafile-db` character set = 'utf8';
+create database `seahub-db` character set = 'utf8';
 ```
 Now we need to create the Seafile user for MariaDB and give it access to the databases that we have been creating.
 Change the "identified by 'seafile';" to a password of your choosing rather then seafile use a strong and long password, you should write your password inside the '' signs and make sure not to delete them or the ; sign.
 ```
- create user 'seafile'@'localhost' identified by 'seafile';
+create user 'seafile'@'localhost' identified by 'seafile';
  
- GRANT ALL PRIVILEGES ON `ccnet-db`.* to `seafile`@localhost;
- GRANT ALL PRIVILEGES ON `seafile-db`.* to `seafile`@localhost;
- GRANT ALL PRIVILEGES ON `seahub-db`.* to `seafile`@localhost;
+GRANT ALL PRIVILEGES ON `ccnet-db`.* to `seafile`@localhost;
+GRANT ALL PRIVILEGES ON `seafile-db`.* to `seafile`@localhost;
+GRANT ALL PRIVILEGES ON `seahub-db`.* to `seafile`@localhost;
 ```
 Now we are all done, so just do the following.
 ```
- flush privileges;
- quit;
+flush privileges;
+quit;
 ```
 
 ### The last installation step
 Now it's time to do the installation of the rest of the needed things, as you can see it's deverted in to blocks so run one command at the time to make sure that everything are installing correctly.
 ```
- sudo apt-get install python -y
+sudo apt-get install python -y
  
- sudo apt-get install python2.7 libpython2.7 python-setuptools python-imaging python-ldap python-urllib3 ffmpeg python-pip python-mysqldb python-memcache memcached libmemcached-dev zlib1g-dev nginx -y
+sudo apt-get install python2.7 libpython2.7 python-setuptools python-imaging python-ldap python-urllib3 ffmpeg python-pip python-mysqldb python-memcache memcached libmemcached-dev zlib1g-dev nginx -y
  
- sudo -H pip install pillow moviepy pylibmc django-pylibmc
+sudo -H pip install pillow moviepy pylibmc django-pylibmc
 ```
 You will be prompted to upgrade pip during the installations above, so we are going to do that - if you don't get prompted about it you can still run this command to be sure that you have the latest version.
 ```
- sudo -H pip install --upgrade pip
+sudo -H pip install --upgrade pip
 ```
 And now we need to upgrade Pillow to the latest version so we can get the best experience with thumbnails and viewing our pictures from the webbrowser.
 ```
- sudo -H pip install --upgrade Pillow
+sudo -H pip install --upgrade Pillow
 ```
 And we can also upgrade this two pip package.
 ```
- sudo -H pip install --upgrade python-memcached==1.57
- sudo -H pip install --upgrade pytz==2016.7
+sudo -H pip install --upgrade python-memcached==1.57
+sudo -H pip install --upgrade pytz==2016.7
 ```
 
 # Download and setup Seafile
@@ -122,30 +122,30 @@ Now it's time to download Seafile. As you can see in this example I'm using the 
 First we need to create the install folder and change the permissions on that folder so we can use it.
 Remember to change the username and group name to the one that your using. (seafile:seafile)
 ```
- sudo mkdir /opt/nohatech
- sudo chown seafile:seafile /opt/nohatech
- mkdir /opt/nohatech/installed
+sudo mkdir /opt/nohatech
+sudo chown seafile:seafile /opt/nohatech
+mkdir /opt/nohatech/installed
 ```
 Now we need to download Seafile.
 ```
- cd /opt/nohatech/installed
- wget https://download.seadrive.org/seafile-server_6.2.3_x86-64.tar.gz
+cd /opt/nohatech/installed
+wget https://download.seadrive.org/seafile-server_6.2.3_x86-64.tar.gz
 ```
 And now we need to unpack it.
 ```
- tar -xvzf seafile-server_6.2.3_x86-64.tar.gz
+tar -xvzf seafile-server_6.2.3_x86-64.tar.gz
 ```
 Now we need to move the seafile-server-6.2.3 folder and the seafile-server_6.2.3_x86-64.tar.gz file.
 ```
- mv seafile-server-6.2.3 /opt/nohatech
+mv seafile-server-6.2.3 /opt/nohatech
 ```
 
 ### Install Seafile
 Now it's time to run the setup script for Seafile.
 ```
- cd /opt/nohatech/seafile-server-6.2.3
+cd /opt/nohatech/seafile-server-6.2.3
  
- ./setup-seafile-mysql.sh
+./setup-seafile-mysql.sh
 ```
 During the setup you should choose
 ```
@@ -158,10 +158,10 @@ Now you should have new folders in the nohatech/ folder.
 So what we need to do now is to run Seafile for the first time and then you will be prompted to create the Administrator when you do run the ./seahub.sh start command, but it's importent that you are running the ./seafile.sh start command before the seahub as both are needed to run Seafile.
 And also remember that you should never start Seafile with the sudo command or change any of the files in your Seafile folder with the sudo command.
 ```
- cd /opt/nohatech/seafile-server-latest
+cd /opt/nohatech/seafile-server-latest
  
- ./seafile.sh start
- ./seahub.sh start
+./seafile.sh start
+./seahub.sh start
 ```
 Now things are up an running for you, good! What we need to do now is to do some modifications and install some add-ons to make it run perfectly.
 Before we continue you should makesure that you can access the server to make sure that Seafile works: http://yourlocalip:8000/
@@ -171,16 +171,16 @@ Make sure that you have opend port 8000 in the UFW firewall if you have it activ
 ***If your running 6.2.3 you need to do a fix before using memcached***
 Before your doing the changes you need to stop Seafile.
 ```
- cd /opt/nohatech/seafile-server-latest/
- ./seafile.sh stop
- ./seahub.sh stop
+cd /opt/nohatech/seafile-server-latest/
+./seafile.sh stop
+./seahub.sh stop
 ```
 ```
- nano /opt/nohatech/seafile-server-latest/runtime/seahub.conf
+nano /opt/nohatech/seafile-server-latest/runtime/seahub.conf
 ```
 And then you need to add this line.
 ```
- threads = 5
+threads = 5
 ```
 ***End of the bugfix***
 
@@ -189,14 +189,14 @@ So what we need to do is to add some lines to the seahub_settings.py file and al
 In this guide we are using the unix_socket as it's recommended and also it's increasing the speed with 30%.
 First we need to make sure that Seafile are not running, and also we need to stop Memcached.
 ```
- cd /opt/nohatech/seafile-server-latest/
- ./seafile.sh stop
- ./seahub.sh stop
- sudo service memcached stop
+cd /opt/nohatech/seafile-server-latest/
+./seafile.sh stop
+./seahub.sh stop
+sudo service memcached stop
 ```
 Then we need to change a little in the memcached configuration file.
 ```
- sudo nano /etc/memcached.conf
+sudo nano /etc/memcached.conf
 ```
 The configuration file should look like this, so do the change that you need to.
 ```
@@ -252,10 +252,11 @@ It's hard to tell for me how much memory you should use for Memcached, you can c
 
 Now we need to change the seahub_settings.py file.
 ```
- nano /opt/nohatech/conf/seahub_settings.py
+nano /opt/nohatech/conf/seahub_settings.py
 ```
 Then add the following lines in the bottom of the file.
 ```
+# Memcached Settings
 CACHES = {
    'default': {
        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
@@ -265,10 +266,10 @@ CACHES = {
 ```
 Now as we have changed to use Memcached we need to force-reload memcache and start Seafile again.
 ```
- sudo service memcached force-reload
- cd /opt/nohatech/seafile-server-latest/
- ./seafile.sh start
- ./seahub.sh start
+sudo service memcached force-reload
+cd /opt/nohatech/seafile-server-latest/
+./seafile.sh start
+./seahub.sh start
 ```
 
 ### Start Seafile on system boot
@@ -276,7 +277,7 @@ We want Seafile to autostart on boot of our server, so now we going to fixa that
 So now we need to create some new files.
 Remember to change the path to your own path for Seafile also remember to change the user and group name if your user and group name are not Seafile as in this example.
 ```
- sudo nano /etc/systemd/system/seafile.service
+sudo nano /etc/systemd/system/seafile.service
 ```
 And then add the following to the file.
 ```
@@ -297,7 +298,7 @@ WantedBy=multi-user.target
 ```
 Now we need to create a second file.
 ```
- sudo nano /etc/systemd/system/seahub.service
+sudo nano /etc/systemd/system/seahub.service
 ````
 Then add this to the file.
 ```
@@ -318,8 +319,8 @@ WantedBy=multi-user.target
 ```
 And now we are on the last step, now we need to enable this as a service.
 ```
- sudo systemctl enable seafile.service
- sudo systemctl enable seahub.service
+sudo systemctl enable seafile.service
+sudo systemctl enable seahub.service
 ```
 
 ### Seafile GC Cleanup (Recommended, Optional)
@@ -329,7 +330,7 @@ Note that Seafile GC only cleans the files that have excpired from your History 
 
 First we need to create the file.
 ```
- nano /opt/nohatech/seafile/cleanupScript.sh
+nano /opt/nohatech/seafile/cleanupScript.sh
 ```
 Then add the following to the file.
 ```
@@ -358,11 +359,11 @@ echo Seafile cleanup done!
 ```
 Make sure that the script has been given execution rights, to do that run this command
 ```
- sudo chmod +x /opt/nohatech/seafile/cleanupScript.sh
+sudo chmod +x /opt/nohatech/seafile/cleanupScript.sh
 ```
 Now we need to add the script to crontab so we can autorun it, you will be asked what editor you want to use choose number 2 (Nano) it's the one that we are using in this guide.
 ```
- sudo crontab -e
+sudo crontab -e
 ```
 Then add the following line at the end on the crontab file.
 ```
@@ -380,11 +381,11 @@ Remember to change every path to the right one for you.
 
 First we need to go to the right folder.
 ```
- cd /etc/cron.monthly
+cd /etc/cron.monthly
 ```
 Then we need to create the script file.
 ```
- sudo nano seaf-fsck-checker.sh 
+sudo nano seaf-fsck-checker.sh 
 ```
 Then we need to add this following lines to it.
 ```
@@ -397,7 +398,7 @@ echo Everything is done!
 ```
 Make sure that the script has been given execution rights, to do that run this command.
 ```
- sudo chmod +x /etc/cron.monthly/seaf-fsck-checker.sh
+sudo chmod +x /etc/cron.monthly/seaf-fsck-checker.sh
 ```
 Now we are done and we will get a report to our mail and also to the seaf-fsck.log file once a month.
 
@@ -425,9 +426,9 @@ After you have done this your going to access Seafile trough the following addre
 
 Before we start we need to stop Seafile.
 ```
- cd /opt/nohatech/seafile-server-latest/
- ./seafile.sh stop
- ./seahub.sh stop
+cd /opt/nohatech/seafile-server-latest/
+./seafile.sh stop
+./seahub.sh stop
 ```
 Now we are ready to go!
 
@@ -701,17 +702,17 @@ You can test it here: https://www.ssllabs.com/ssltest
 So now we want to optimize NGINX for best performence.
 First we are going to look how many working processors we have.
 ```
- grep processor /proc/cpuinfo | wc -l
+grep processor /proc/cpuinfo | wc -l
 ```
 In my case I did get 8.
 And now we need to see how many worker connections we can have simultaneously.
 ```
- ulimit -n
+ulimit -n
 ```
 In my case I did get 1024.
 Now we need to add this new numbers to our NGINX configuration file.
 ```
- sudo nano sudo nano /etc/nginx/nginx.conf
+sudo nano /etc/nginx/nginx.conf
 ```
 Then we need to change this two rows, and add your number in the end of the lines.
 ```
@@ -720,8 +721,8 @@ worker_connections 1024;
 ```
 Now we need to restart NGINX so this changes can take effect.
 ```
- sudo service nginx reload
- sudo service nginx restart
+sudo service nginx reload
+sudo service nginx restart
 ```
 
 So now we are completly finsihed with the NGINX setup, so let's test our security. If you have done everything right you should have a B score that's normal as it's some limitations in Seafile that are limiting us for using secure cookies and using the full protection of Content-Security-Policy. But this is nothing to worry about, it's totaly secure anyway - I'll not explane it futher but just google it if you want. And I'll add a line or two when I have found out a work-a-round, so keep a watching eye on this guide for updates.
@@ -732,13 +733,13 @@ Now we need to make some changes in the config files for Seafile, and remember n
 I'll only write what I'm using in my config files, but I'll refer you to a link in every config so you can if you want visit that page to see what more settings you can do. And you should replace NohaTech with your own name.
 The following files are located at
 ```
- cd /opt/nohatech/conf/
+cd /opt/nohatech/conf/
 ```
 ***Anything you change in Seafile WEBGUI (System Admin -> Settings) will overrun the settings you have done in the configuration files***
 
 #### ccnet.conf
 ```
- nano ccnet.conf
+nano ccnet.conf
 ```
 Then we need to add the following row.
 ```
@@ -753,14 +754,14 @@ For more information see https://manual.seafile.com/config/ccnet-conf.html
 
 #### seafile.conf
 ```
- nano seafile.conf
+nano seafile.conf
 ```
 The we need to add the following row, remember to not delete any rows in the config file just put this rows under the already existing rows in the right [SECTION]
 ```
 [fileserver]
 # How long time a session can bee open before it times out.
 web_token_expire_time=7200
-[fileserver]
+
 # Max upload size, it's in MB
 max_upload_size=10000
 
@@ -783,7 +784,7 @@ For more information see https://manual.seafile.com/config/seafile-conf.html
 
 #### seahub_settings.py
 ```
- nano seahub_settings.py
+nano seahub_settings.py
 ```
 Then we need to add the following rows.
 ```
@@ -825,13 +826,13 @@ But if it's not working as you want it to work it's not hard to disable, just # 
 So let's get started.
 First we need to make sure this is installed.
 ```
- sudo apt-get install ffmpeg -y
- sudo -H pip install moviepy
+sudo apt-get install ffmpeg -y
+sudo -H pip install moviepy
 ```
 Then let's edit the config file.
 ```
- cd opt/nohatech/conf
- nano seahub_settings.py
+cd opt/nohatech/conf
+nano seahub_settings.py
 ```
 Then add this lines.
 ```
@@ -844,28 +845,28 @@ THUMBNAIL_VIDEO_FRAME_TIME = 5
 A Firewall is something that everyone wants and needs these days, so I'm going to guide you trough it.
 As default Ubuntu should have UFW installed but if not, then installed it trough this command.
 ```
- sudo apt-get install ufw -y
+sudo apt-get install ufw -y
 ```
 The ports that are needed for Seafile to work is 80 and 443, but we also want the SSH port to be opened and it's port 22 as standard, if you have change it by following the NohaTech-Ubuntu-Secure-Server.md document you just change it from 22 to the port number that you have choosed for it.
 So let us open the ports.
 ```
- sudo ufw allow 80/tcp
- sudo ufw allow 443/tcp
- sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw allow 22/tcp
 ```
 And we also need to make some default rules, what we going to do is block all incoming ports that we haven't opend, and open every outgoing port as we want to send traffic and we can't get hacked by the traffic that we are sending out.
 ```
- sudo ufw default deny incoming
- sudo ufw default allow outgoing
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
 ```
 And before we going to enable the UFW firewall we need to make sure that every port that we want to have open is open so we don't lock our selfs out.
 ```
- sudo ufw status numbered
+sudo ufw status numbered
 ```
 We are going to se that port 80,443,22/tcp are open both for IPv4 and IPv6 and that's normal.
 Now we can enable the UFW firewall.
 ```
- sudo ufw enable -y
+sudo ufw enable -y
 ```
 Now we are finished and you have a firewall installed and activated.
 
@@ -873,23 +874,23 @@ Now we are finished and you have a firewall installed and activated.
 Fail2Ban are searching trough your logfiles and are blocking IP's that are trying to hack your server in different ways.
 Regarding the Seafile filter for Fail2Ban it's a bug, to make the filter work you need to add the following line to the seahub_settings.py file, if you have been following this guide from the beginning you have already done that.
 ```
- TIME_ZONE = 'Europe/Stockholm'
+TIME_ZONE = 'Europe/Stockholm'
 ```
 And change it to the timezone that your in.
 
 But to get Fail2Ban to work at all we need to install it first.
 ```
- sudo apt-get install fail2ban -y
+sudo apt-get install fail2ban -y
 ```
 ### Latest version
 As everything in this document we are using the latest stable version of the software and Fail2Ban is no different, but as version 10 have some different rules etc. we will still be at version 9 as that's the most stable one.
 So now, let us download and install the newest version.
 ```
- wget http://se.archive.ubuntu.com/ubuntu/pool/universe/f/fail2ban/fail2ban_0.9.7-2_all.deb
+wget http://se.archive.ubuntu.com/ubuntu/pool/universe/f/fail2ban/fail2ban_0.9.7-2_all.deb
 ```
 then we need to install it.
 ```
- sudo dpkg -i fail2ban_0.9.7-2_all.deb
+sudo dpkg -i fail2ban_0.9.7-2_all.deb
 ```
 
 Now we have the latest version installed and we can continue with the configuration of Fail2Ban.
@@ -899,12 +900,12 @@ What we need to do first here is to create the filters that we need, some of the
 
 Let us go to the filter.d folder before we begin.
 ```
- cd /etc/fail2ban/filter.d/
+cd /etc/fail2ban/filter.d/
 ```
 
 First we are going to add a line in a filter.
 ```
- sudo nano /etc/fail2ban/filter.d/nginx-http-auth.conf
+sudo nano /etc/fail2ban/filter.d/nginx-http-auth.conf
 ```
 And then we need to add this line, add it under the line that almost look the same.
 ```
@@ -912,11 +913,11 @@ And then we need to add this line, add it under the line that almost look the sa
 ```
 Then we need to copy a filter from Apache2 to NGINX.
 ```
- sudo cp apache-badbots.conf nginx-badbots.conf
+sudo cp apache-badbots.conf nginx-badbots.conf
 ```
 Then we are going to create our first filter.
 ```
- sudo nano /etc/fail2ban/filter.d/nginx-forbidden.conf
+sudo nano /etc/fail2ban/filter.d/nginx-forbidden.conf
 ```
 Then add this to the file
 ```
@@ -928,7 +929,7 @@ ignoreregex =
 ```
 Create
 ```
- sudo nano /etc/fail2ban/filter.d/nginx-nohome.conf
+sudo nano /etc/fail2ban/filter.d/nginx-nohome.conf
 ```
 Add
 ```
@@ -940,7 +941,7 @@ ignoreregex =
 ```
 Create
 ```
- sudo nano /etc/fail2ban/filter.d/nginx-noproxy.conf
+sudo nano /etc/fail2ban/filter.d/nginx-noproxy.conf
 ```
 Add
 ```
@@ -952,7 +953,7 @@ ignoreregex =
 ```
 Create
 ```
- sudo nano /etc/fail2ban/filter.d/nginx-noscript.conf
+sudo nano /etc/fail2ban/filter.d/nginx-noscript.conf
 ```
 Add
 ```
@@ -964,7 +965,7 @@ ignoreregex =
 ```
 Create
 ```
- sudo nano /etc/fail2ban/filter.d/seafile-auth.conf
+sudo nano /etc/fail2ban/filter.d/seafile-auth.conf
 ```
 Add
 ```
@@ -1002,7 +1003,7 @@ And here is a notice regarding the Seafile filter, it's a little different then 
 
 Now we are going to create the configuration file.
 ```
- sudo nano /etc/fail2ban/jail.local
+sudo nano /etc/fail2ban/jail.local
 ```
 Then add this to the file.
 ```
