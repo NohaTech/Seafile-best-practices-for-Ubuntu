@@ -83,22 +83,22 @@ Now it's time to do the installation of the rest of the needed things, as you ca
 ```
  sudo apt-get install python -y
  
- sudo apt-get install python2.7 libpython2.7 python-setuptools python-imaging python-ldap python-urllib3 ffmpeg python-pip python-mysqldb python-memcache memcached libmemcached-dev zlib1g-dev -y
+ sudo apt-get install python2.7 libpython2.7 python-setuptools python-imaging python-ldap python-urllib3 ffmpeg python-pip python-mysqldb python-memcache memcached libmemcached-dev zlib1g-dev nginx -y
  
- sudo -H pip install pillow moviepy pylibmc django-pylibmc -y
+ sudo -H pip install pillow moviepy pylibmc django-pylibmc
 ```
 You will be prompted to upgrade pip during the installations above, so we are going to do that - if you don't get prompted about it you can still run this command to be sure that you have the latest version.
 ```
- sudo -H pip install --upgrade pip -y
+ sudo -H pip install --upgrade pip
 ```
 And now we need to upgrade Pillow to the latest version so we can get the best experience with thumbnails and viewing our pictures from the webbrowser.
 ```
- sudo -H pip install --upgrade Pillow -y
+ sudo -H pip install --upgrade Pillow
 ```
 And we can also upgrade this two pip package.
 ```
- sudo -H pip install --upgrade python-memcached==1.57 -y
- sudo -H pip install --upgrade pytz==2016.7 -y
+ sudo -H pip install --upgrade python-memcached==1.57
+ sudo -H pip install --upgrade pytz==2016.7
 ```
 
 # Download and setup Seafile
@@ -321,28 +321,28 @@ First we need to create the file.
 ```
 Then add the following to the file.
 ```
- #!/bin/bash
- # stop the server
- echo Stopping the Seafile-Server...
- systemctl stop seafile.service
- systemctl stop seahub.service
+#!/bin/bash
+# stop the server
+echo Stopping the Seafile-Server...
+systemctl stop seafile.service
+systemctl stop seahub.service
  
- echo Giving the server some time to shut down properly....
- sleep 20
+echo Giving the server some time to shut down properly....
+sleep 20
 
- # run the cleanup
- echo Seafile cleanup started...
- sudo -u seafile /opt/nohatech/seafile-server-latest/seaf-gc.sh
+# run the cleanup
+echo Seafile cleanup started...
+sudo -u seafile /opt/nohatech/seafile-server-latest/seaf-gc.sh
 
- echo Giving the server some time....
- sleep 10
+echo Giving the server some time....
+sleep 10
 
- # start the server again
- echo Starting the Seafile-Server...
- systemctl start seafile.service
- systemctl start seahub.service
+# start the server again
+echo Starting the Seafile-Server...
+systemctl start seafile.service
+systemctl start seahub.service
 
- echo Seafile cleanup done!
+echo Seafile cleanup done!
 ```
 Make sure that the script has been given execution rights, to do that run this command
 ```
@@ -354,7 +354,7 @@ Now we need to add the script to crontab so we can autorun it, you will be asked
 ```
 Then add the following line at the end on the crontab file.
 ```
- 0 2 * * Sun /opt/nohatech/seafile/cleanupScript.sh
+0 2 * * Sun /opt/nohatech/seafile/cleanupScript.sh
 ```
 This means that every Sunday at 02:00 this script will run.
 
@@ -376,12 +376,12 @@ Then we need to create the script file.
 ```
 Then we need to add this following lines to it.
 ```
- #!/bin/bash
- # stop the server
- echo Starting the seaf-fsck script...
- sudo -u seafile /opt/nohatech/seafile-server-latest/seaf-fsck.sh >> /opt/nohatech/logs/seaf-fsck.log
- sleep 5
- echo Everything is done!
+#!/bin/bash
+# stop the server
+echo Starting the seaf-fsck script...
+sudo -u seafile /opt/nohatech/seafile-server-latest/seaf-fsck.sh >> /opt/nohatech/logs/seaf-fsck.log
+sleep 5
+echo Everything is done!
 ```
 Make sure that the script has been given execution rights, to do that run this command.
 ```
@@ -394,14 +394,14 @@ You can if you want ignore files and folders for sync.
 What you need to do is that you need to create a file named seafile-ignore.txt in the library where the files and folders are located that you want to ignore and then the rules for that library are sett, so you need to create this file for every library that you have.
 If you want to ignore a folder you can write it like this.
 ```
- example/
+example/
 ```
 If you want to ignore a file you can type it like this.
 ```
- # ignore the exact file.
- example.ini
- # This will ignore every file that's ending with .ini
- *.ini
+# ignore the exact file.
+example.ini
+# This will ignore every file that's ending with .ini
+*.ini
 ```
 Ignore list also supports wildecards so you can modify this list in many different ways, but if you want to learn more how to modify the list with wildecards, read this link https://www.seafile.com/en/help/ignore/
 
@@ -426,20 +426,20 @@ As always we are going to install the latest stabel version, and to do that we n
 ```
 Then add this to the file.
 ```
- deb http://nginx.org/packages/ubuntu/ xenial nginx
- # deb-src http://nginx.org/packages/ubuntu/ xenial nginx
+deb http://nginx.org/packages/ubuntu/ xenial nginx
+# deb-src http://nginx.org/packages/ubuntu/ xenial nginx
 ```
 Then we are going to install it.
 ```
  sudo apt-get update
- sudo apt-get install nginx -y
+ sudo apt-get install nginx
 ```
 If a W: GPG error: http://nginx.org/packages/ubuntu xenial Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY $key is encountered during the NGINX repository update, execute the following:
 ```
  ## Replace $key with the corresponding $key from your GPG error.
  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
  sudo apt-get update
- sudo apt-get install nginx -y
+ sudo apt-get install nginx
 ```
 
 #### Configuration
@@ -654,9 +654,9 @@ First off we need to create a folder.
 ```
 Then you should add this to the config and insert it before the line "location /seafhttp" in the config.
 ```
- location '/.well-known/acme-challenge' {
-    default_type "text/plain";
-    root /mnt/certbot-webroot;
+location '/.well-known/acme-challenge' {
+   default_type "text/plain";
+   root /mnt/certbot-webroot;
 }
 ```
 Now we are all set and can create the certification, change example.se to your domain name, you should not have http or https before it but you can use subdomain.example.se if you want that or example.se.
@@ -709,8 +709,8 @@ Now we need to add this new numbers to our NGINX configuration file.
 ```
 Then we need to change this two rows, and add your number in the end of the lines.
 ```
- worker_processes 8;
- worker_connections 1024;
+worker_processes 8;
+worker_connections 1024;
 ```
 Now we need to restart NGINX so this changes can take effect.
 ```
@@ -736,12 +736,12 @@ The following files are located at
 ```
 Then we need to add the following row.
 ```
- # Your servername
- USER_NAME = NohaTech
- # Your servername
- NAME = NohaTech
- # The address to your Seafile server, use https if your using SSL (recommended and we are using it in this guide).
- SERVICE_URL = https://example.se
+# Your servername
+USER_NAME = NohaTech
+# Your servername
+NAME = NohaTech
+# The address to your Seafile server, use https if your using SSL (recommended and we are using it in this guide).
+SERVICE_URL = https://example.se
 ```
 For more information see https://manual.seafile.com/config/ccnet-conf.html
 
@@ -751,23 +751,26 @@ For more information see https://manual.seafile.com/config/ccnet-conf.html
 ```
 The we need to add the following row, remember to not delete any rows in the config file just put this rows under the already existing rows in the right [SECTION]
 ```
- [fileserver]
- # How long time a session can bee open before it times out.
- web_token_expire_time=7200
- [fileserver]
- # Max upload size, it's in MB
- max_upload_size=10000
- [zip]
- # Changes the encoding on the zip download files so it works with Windows.
- windows_encoding = iso-8859-1
- [history]
- # How many days that users can keep there history
- keep_days = 7
- [library_trash]
- # How often trashed libraries are scanned for removal, default 1 day.
- scan_days = 1
- # How many days to keep trashed libraries, default 30 days.
- expire_days = 14
+[fileserver]
+# How long time a session can bee open before it times out.
+web_token_expire_time=7200
+[fileserver]
+# Max upload size, it's in MB
+max_upload_size=10000
+
+[zip]
+# Changes the encoding on the zip download files so it works with Windows.
+windows_encoding = iso-8859-1
+
+[history]
+# How many days that users can keep there history
+keep_days = 7
+
+[library_trash]
+# How often trashed libraries are scanned for removal, default 1 day.
+scan_days = 1
+# How many days to keep trashed libraries, default 30 days.
+expire_days = 14
 ```
 
 For more information see https://manual.seafile.com/config/seafile-conf.html
@@ -778,25 +781,25 @@ For more information see https://manual.seafile.com/config/seafile-conf.html
 ```
 Then we need to add the following rows.
 ```
- # Set this to your website/company's name. This is contained in email notificat$
- SITE_NAME = 'NohaTech'
- # Browser tab's title
- SITE_TITLE = 'NohaTech'
- # TimeZone, this is needed to get Fail2Ban to work correctly. Change 'Europe/Stockholm' to the time zone your in.
- TIME_ZONE = 'Europe/Stockholm'
+# Set this to your website/company's name. This is contained in email notificat$
+SITE_NAME = 'NohaTech'
+# Browser tab's title
+SITE_TITLE = 'NohaTech'
+# TimeZone, this is needed to get Fail2Ban to work correctly. Change 'Europe/Stockholm' to the time zone your in.
+TIME_ZONE = 'Europe/Stockholm'
 ```
 Now if we want to send e-mails from Seafile, and it's recommended as links etc. can be sent trough mail we need to put this lines in seahub_settings.py this example are for gmail.
 But to make it work you need to setup ssmtp first, to do that follow my other guide NohaTech-Ubuntu-Ssmtp-English.md.
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Ssmtp-English.md
 ```
- # Email server/settings
- EMAIL_USE_TLS = True
- EMAIL_HOST = 'smtp.gmail.com'
- EMAIL_HOST_USER = 'nohatech@gmail.com'
- EMAIL_HOST_PASSWORD = 'YOURPASSWORD'
- EMAIL_PORT = 587
- DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
- SERVER_EMAIL = EMAIL_HOST_USER
+# Email server/settings
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'nohatech@gmail.com'
+EMAIL_HOST_PASSWORD = 'YOURPASSWORD'
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
 
 ```
 
@@ -825,9 +828,9 @@ Then let's edit the config file.
 ```
 Then add this lines.
 ```
- ENABLE_VIDEO_THUMBNAIL = True
- # In the line below you can adjust it where in the video file Seafile should take a photo to your thumbnail it's 5 sec as default.
- THUMBNAIL_VIDEO_FRAME_TIME = 5
+ENABLE_VIDEO_THUMBNAIL = True
+# In the line below you can adjust it where in the video file Seafile should take a photo to your thumbnail it's 5 sec as default.
+THUMBNAIL_VIDEO_FRAME_TIME = 5
 ```
 
 # UFW Firewall
@@ -898,7 +901,7 @@ First we are going to add a line in a filter.
 ```
 And then we need to add this line, add it under the line that almost look the same.
 ```
- ^ \[error\] \d+#\d+: \*\d+ no user/password was provided for basic authentication, client: <HOST>, server: \S+, request: "\S+ \S+ HTTP/\d+\.\d+", host: "\S+"\s*$
+^ \[error\] \d+#\d+: \*\d+ no user/password was provided for basic authentication, client: <HOST>, server: \S+, request: "\S+ \S+ HTTP/\d+\.\d+", host: "\S+"\s*$
 ```
 Then we need to copy a filter from Apache2 to NGINX.
 ```
@@ -910,10 +913,11 @@ Then we are going to create our first filter.
 ```
 Then add this to the file
 ```
- [Definition]
- failregex = ^ \[error\] \d+#\d+: .* forbidden .*, client: <HOST>, .*$
+[Definition]
 
- ignoreregex =
+failregex = ^ \[error\] \d+#\d+: .* forbidden .*, client: <HOST>, .*$
+
+ignoreregex =
 ```
 Create
 ```
@@ -921,11 +925,11 @@ Create
 ```
 Add
 ```
- [Definition]
+[Definition]
 
- failregex = ^<HOST> -.*GET .*/~.*
+failregex = ^<HOST> -.*GET .*/~.*
 
- ignoreregex =
+ignoreregex =
 ```
 Create
 ```
@@ -933,11 +937,11 @@ Create
 ```
 Add
 ```
- [Definition]
+[Definition]
 
- failregex = ^<HOST> -.*GET http.*
+failregex = ^<HOST> -.*GET http.*
 
- ignoreregex =
+ignoreregex =
 ```
 Create
 ```
@@ -945,11 +949,11 @@ Create
 ```
 Add
 ```
- [Definition]
+[Definition]
 
- failregex = ^<HOST> -.*GET.*(\.php|\.asp|\.exe|\.pl|\.cgi|\.scgi)
+failregex = ^<HOST> -.*GET.*(\.php|\.asp|\.exe|\.pl|\.cgi|\.scgi)
 
- ignoreregex =
+ignoreregex =
 ```
 Create
 ```
@@ -957,27 +961,27 @@ Create
 ```
 Add
 ```
- # Fail2Ban filter for seafile
- #
+# Fail2Ban filter for seafile
+#
 
- [INCLUDES]
+[INCLUDES]
 
- # Read common prefixes. If any customizations available -- read them from
- # common.local
- before = common.conf
+# Read common prefixes. If any customizations available -- read them from
+# common.local
+before = common.conf
 
- [Definition]
+[Definition]
 
- _daemon = seaf-server
+_daemon = seaf-server
 
- failregex = Login attempt limit reached.*, ip: <HOST>
+failregex = Login attempt limit reached.*, ip: <HOST>
 
- ignoreregex = 
+ignoreregex = 
 
- # DEV Notes:
- #
- # pattern :     2015-10-20 15:20:32,402 [WARNING] seahub.auth.views:155 login Login attempt limit reached, username: <user>, ip: 1.2.3.4,  attemps: 3
- #        2015-10-20 17:04:32,235 [WARNING] seahub.auth.views:163 login Login attempt limit reached, ip: 1.2.3.4, attempts: 3
+# DEV Notes:
+#
+# pattern :     2015-10-20 15:20:32,402 [WARNING] seahub.auth.views:155 login Login attempt limit reached, username: <user>, ip: 1.2.3.4, attemps: 3
+#        2015-10-20 17:04:32,235 [WARNING] seahub.auth.views:163 login Login attempt limit reached, ip: 1.2.3.4, attempts: 3
 ```
 
 ### Configuration
@@ -1041,7 +1045,6 @@ logpath  = /var/log/nginx/*error.log
 [nginx-badbots]
 
 enabled  = true
-enabled  = true
 port     = https,http
 filter   = nginx-badbots
 logpath  = /var/log/nginx/*access.log
@@ -1083,9 +1086,9 @@ logpath  = /var/log/nginx/*error.log
 
 [nginx-botsearch]
 
-enabled = true
+enabled  = true
 port     = http,https
-filter = nginx-botsearch
+filter   = nginx-botsearch
 logpath  = /var/log/nginx/*error.log
 
 
