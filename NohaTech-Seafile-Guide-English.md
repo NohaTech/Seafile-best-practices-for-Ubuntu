@@ -109,23 +109,24 @@ You can change the "nohatech" folder name to what ever you want I just using it 
 
 ### Download Seafile
 Now it's time to download Seafile. As you can see in this example I'm using the version 6.2.3 change the filenames to the version you are installing.
+First we need to create the install folder and change the permissions on that folder so we can use it.
 ```
- cd /opt
+ sudo mkdir /opt/nohatech
+ sudo chown seafile:seafile /opt/nohatech
+ mkdir /opt/nohatech/installed
+```
+Now we need to download Seafile.
+```
+ cd /opt/nohatech/installed
  wget https://download.seadrive.org/seafile-server_6.2.3_x86-64.tar.gz
 ```
 And now we need to unpack it.
 ```
  tar -xvzf seafile-server_6.2.3_x86-64.tar.gz
 ```
-And now we need to create some folders, change the "nohatech" folders name to a name that you prefer.
-```
- mkdir nohatech
- mkdir nohatech/installed
-```
 Now we need to move the seafile-server_6.2.3 folder and the seafile-server_6.2.3_x86-64.tar.gz file.
 ```
- mv seafile-server_6.2.2_x86-64.tar.gz nohatech/installed
- mv seafile-server_6.2.2 nohatech
+ mv seafile-server_6.2.3 /opt/nohatech
 ```
 
 ### Install Seafile
