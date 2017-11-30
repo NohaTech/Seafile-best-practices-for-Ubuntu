@@ -20,7 +20,13 @@ We will use a text editor called nano in this guide, so here is some commands th
 Now we going to start the installation.
 
 ### Create user
-Best is to have a "clean" Ubuntu installation to install Seafile on, but if you don't have a clean one it's recommended that Seafile are running with it's own user - ***you should not run Seafile with root user or sudo command.***
+Best is to have a "clean" Ubuntu installation to install Seafile on, and during Ubuntu installation you should choose seafile as username, but if you don't have a clean one it's recommended that Seafile are running with it's own user - ***you should not run Seafile with root user or sudo command.***
+To create a new user you should use the following commands.
+```
+ sudo adduser seafile
+ sudo usermod -aG sudo seafile
+```
+Now everything is fine, remember to login with the seafile user next time you reboot / login to your server or if you SSH in to it.
 
 ### Update Ubuntu
 We need to make sure that Ubuntu are up to date, use this command below to do that.
