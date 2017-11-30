@@ -459,7 +459,7 @@ First we need to delete the old / default configurations.
 Just so your aware of it, NGINX are sensetiv how you are writing the configuration file with spaces etc.
 ```
  sudo rm -rf /etc/nginx/sites-enabled/default
- sudo rm -rf rm /etc/nginx/sites-enabled/default
+ sudo rm -rf /etc/nginx/sites-available/default
 ```
 Then we need to create the file that we are going to use.
 ```
@@ -561,7 +561,7 @@ Then we need to create the dhparam.pem file, it's a little tricky we need to cre
 ```
  cd ~
  sudo openssl dhparam 2048 > dhparam.pem
- sudo mv dhparm.pem /etc/ssl/private/dhparam.pem
+ sudo mv dhparam.pem /etc/ssl/private/dhparam.pem
 ```
 Now we are done with that, so now we need to start to change the config file to work, I'll add some changes if you want to know what just compare it to the configuration file above, here is a working example of the file, as in the file above you need to replace seafile.example.com with your own domain also the path setting to the location.
 I have also added the security settings to this configuration file, if your not are going to use this configuration file, take a look above to see how to adapte the security settings.
@@ -1044,7 +1044,7 @@ logpath  = /var/log/auth.log
 enabled  = true
 port     = https,http
 filter   = seafile-auth
-logpath  = /home/seafile/nohatech/logs/*seahub.log
+logpath  = /opt/nohatech/logs/*seahub.log
 bantime  = 3600
 maxretry = 2
 
