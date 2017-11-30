@@ -110,6 +110,7 @@ You can change the "nohatech" folder name to what ever you want I just using it 
 ### Download Seafile
 Now it's time to download Seafile. As you can see in this example I'm using the version 6.2.3 change the filenames to the version you are installing.
 First we need to create the install folder and change the permissions on that folder so we can use it.
+Remember to change the username and group name to the one that your using. (seafile:seafile)
 ```
  sudo mkdir /opt/nohatech
  sudo chown seafile:seafile /opt/nohatech
