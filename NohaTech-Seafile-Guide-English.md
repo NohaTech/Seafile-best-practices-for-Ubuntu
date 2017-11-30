@@ -477,7 +477,6 @@ server {
     add_header X-XSS-Protection "1; mode=block" always;
     add_header X-Frame-Options "DENY" always;
     add_header Referrer-Policy "strict-origin" always;
-    add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.nohatech.se/ blob: 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.nohatech.se; object-src 'none'; frame-ancestors https://*.nohatech.se/; base-uri https://*.nohatech.se/ 'self'; media-src 'self';" always;
     server_tokens off;
 
     location / {
@@ -519,7 +518,6 @@ As we want high security for our site we need to add this lines to every server 
  add_header X-XSS-Protection "1; mode=block" always;
  add_header X-Frame-Options "DENY" always;
  add_header Referrer-Policy "strict-origin" always;
- add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.nohatech.se/ blob: 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.nohatech.se; object-src 'none'; frame-ancestors https://*.nohatech.se/; base-uri https://*.nohatech.se/ 'self'; media-src 'self';" always;
  server_tokens off;
 ```
 Also we don't want NGINX to use a buffer in tmp files so we need to add the following line to the location blocks. I have already added this line in the example config above, but I still want you to know that this lines are not there as default.
@@ -571,12 +569,11 @@ And remember to change the *.nohatech.se in the Content-Security-Policy to your 
         listen       80;
         server_name  seafile.example.com;
         rewrite ^ https://$http_host$request_uri? permanent;    # force redirect http to https
-        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
         add_header X-Content-Type-Options "nosniff" always;
         add_header X-XSS-Protection "1; mode=block" always;
         add_header X-Frame-Options "DENY" always;
         add_header Referrer-Policy "strict-origin" always;
-        add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.nohatech.se/ blob: 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.nohatech.se; object-src 'none'; frame-ancestors https://*.nohatech.se/; base-uri https://*.nohatech.se/ 'self'; media-src 'self';" always;
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
         server_tokens off;
     }
     server {
@@ -594,17 +591,16 @@ And remember to change the *.nohatech.se in the Content-Security-Policy to your 
         # secure settings (A+ at SSL Labs ssltest at time of writing)
         # see https://wiki.mozilla.org/Security/Server_Side_TLS#Nginx
         ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-        ssl_ciphers 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256$
+        ssl_ciphers 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-CAMELLIA256-SHA:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-RSA-SEED-SHA:DHE-RSA-CAMELLIA128-SHA:HIGH:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS';
         ssl_prefer_server_ciphers on;
 
         proxy_set_header X-Forwarded-For $remote_addr;
 
-        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
         add_header X-Content-Type-Options "nosniff" always;
         add_header X-XSS-Protection "1; mode=block" always;
         add_header X-Frame-Options "DENY" always;
         add_header Referrer-Policy "strict-origin" always;
-        add_header Content-Security-Policy "default-src 'none'; script-src http://seafile.com/ https://www.seafile.com/ https://*.nohatech.se/ blob: 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; font-src data: 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'; frame-src https://*.nohatech.se; object-src 'none'; frame-ancestors https://*.nohatech.se/; base-uri https://*.nohatech.se/ 'self'; media-src 'self';" always;
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
         server_tokens off;
 
         location / {
@@ -616,7 +612,6 @@ And remember to change the *.nohatech.se in the Content-Security-Policy to your 
             proxy_set_header   X-Forwarded-Proto https;
             proxy_request_buffering off;
 
-
             access_log      /var/log/nginx/seahub.access.log;
             error_log       /var/log/nginx/seahub.error.log;
 
@@ -624,13 +619,13 @@ And remember to change the *.nohatech.se in the Content-Security-Policy to your 
 
             client_max_body_size 0;
         }
-#    }
+
         location /seafhttp {
             rewrite ^/seafhttp(.*)$ $1 break;
             proxy_pass http://127.0.0.1:8082;
             client_max_body_size 0;
-            proxy_request_buffering off;
             proxy_connect_timeout  36000s;
+            proxy_request_buffering off;
             proxy_read_timeout  36000s;
             proxy_send_timeout  36000s;
             send_timeout  36000s;
@@ -639,7 +634,6 @@ And remember to change the *.nohatech.se in the Content-Security-Policy to your 
             root /opt/nohatech/seafile-server-latest/seahub;
         }
     }
-
 ```
 Now we are almoste done, we just need to restart NGINX.
 ```
