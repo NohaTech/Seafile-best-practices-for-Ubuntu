@@ -26,6 +26,10 @@ To create a new user you should use the following commands.
  sudo adduser seafile
  sudo usermod -aG sudo seafile
 ```
+Now we just need to switch to the seafile user.
+```
+ sudo -u seafile
+```
 Now everything is fine, remember to login with the seafile user next time you reboot / login to your server or if you SSH in to it.
 
 ### Update Ubuntu
