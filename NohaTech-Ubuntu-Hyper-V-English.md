@@ -34,11 +34,11 @@ As we are running a VM we need to install some add-ons so it can communicate wit
 
 First we need to install the Virtual kernel.
 ```
- sudo apt-get install linux-virtual-lts-xenial
+ sudo apt-get install linux-virtual-lts-xenial -y
 ```
 Then we need to install the add-ons that are needed.
 ```
- sudo apt-get install linux-tools-virtual-lts-xenial linux-cloud-tools-virtual-lts-xenial
+ sudo apt-get install linux-tools-virtual-lts-xenial linux-cloud-tools-virtual-lts-xenial -y
 ```
 
 ## Backup
