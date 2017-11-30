@@ -135,15 +135,15 @@ And now we need to unpack it.
 ```
  tar -xvzf seafile-server_6.2.3_x86-64.tar.gz
 ```
-Now we need to move the seafile-server_6.2.3 folder and the seafile-server_6.2.3_x86-64.tar.gz file.
+Now we need to move the seafile-server-6.2.3 folder and the seafile-server_6.2.3_x86-64.tar.gz file.
 ```
- mv seafile-server_6.2.3 /opt/nohatech
+ mv seafile-server-6.2.3 /opt/nohatech
 ```
 
 ### Install Seafile
 Now it's time to run the setup script for Seafile.
 ```
- cd /opt/nohatech/seafile-server_6.2.3
+ cd /opt/nohatech/seafile-server-6.2.3
  
  ./setup-seafile-mysql.sh
 ```
