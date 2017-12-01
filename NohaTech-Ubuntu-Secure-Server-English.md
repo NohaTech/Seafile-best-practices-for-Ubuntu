@@ -69,6 +69,10 @@ Also scan the  QR-code with your 2FA application in your cellphone so you can ge
 ```
  sudo apt-get install libpam-google-authenticator
 ```
+Now it's time to run the installation.
+```
+google-authenticator
+```
 Now you will get a bunch of quastions during the installation.
 Just answer Y on everyone except this one, this one you should answer N on.
 ```
