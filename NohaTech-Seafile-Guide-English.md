@@ -125,6 +125,7 @@ Remember to change the username and group name to the one that your using. (seaf
 sudo mkdir /opt/nohatech
 sudo chown seafile:seafile /opt/nohatech
 mkdir /opt/nohatech/installed
+mkdir /opt/nohatech/my_scripts
 ```
 Now we need to download Seafile.
 ```
@@ -330,7 +331,7 @@ Note that Seafile GC only cleans the files that have excpired from your History 
 
 First we need to create the file.
 ```
-nano /opt/nohatech/seafile/cleanupScript.sh
+nano /opt/nohatech/my_scripts/cleanup.sh
 ```
 Then add the following to the file.
 ```
@@ -359,7 +360,7 @@ echo Seafile cleanup done!
 ```
 Make sure that the script has been given execution rights, to do that run this command
 ```
-sudo chmod +x /opt/nohatech/seafile/cleanupScript.sh
+sudo chmod +x /opt/nohatech/my_scripts/cleanup.sh
 ```
 Now we need to add the script to crontab so we can autorun it, you will be asked what editor you want to use choose number 2 (Nano) it's the one that we are using in this guide.
 ```
@@ -367,7 +368,7 @@ sudo crontab -e
 ```
 Then add the following line at the end on the crontab file.
 ```
-0 2 * * Sun /opt/nohatech/seafile/cleanupScript.sh
+0 2 * * Sun /opt/nohatech/my_scripts/cleanup.sh
 ```
 This means that every Sunday at 02:00 this script will run.
 
@@ -721,8 +722,8 @@ worker_connections 1024;
 ```
 Now we need to restart NGINX so this changes can take effect.
 ```
-sudo service nginx reload
 sudo service nginx restart
+sudo service nginx reload
 ```
 
 So now we are completly finsihed with the NGINX setup, so let's test our security. If you have done everything right you should have a B score that's normal as it's some limitations in Seafile that are limiting us for using secure cookies and using the full protection of Content-Security-Policy. But this is nothing to worry about, it's totaly secure anyway - I'll not explane it futher but just google it if you want. And I'll add a line or two when I have found out a work-a-round, so keep a watching eye on this guide for updates.
