@@ -9,9 +9,9 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTe
 
 We will use a text editor called nano in this guide, so here is some commands that you need to know.
 ```
- ctrl+k = deletes a hole row in the document
+ctrl+k = deletes a hole row in the document
  
- ctrl+x = your asked if you want to save the document or not, answer y or n then press enter and then after that you will get back to the     terminal.
+ctrl+x = your asked if you want to save the document or not, answer y or n then press enter and then after that you will get back to the     terminal.
 ```
 
 ***All the path's in this guide are starting at /opt/nohatech/ make sure that you change them to the path that your using, this is the same for any installation or configuration you need to change it to your own domain or the currenct versionnumber in the filename that your going to install!***
@@ -433,29 +433,6 @@ cd /opt/nohatech/seafile-server-latest/
 ```
 Now we are ready to go!
 
-#### Install latest stable version
-As always we are going to install the latest stabel version, and to do that we need to add some rows to the /etc/apt/sources.list.
-```
- sudo nano /etc/apt/sources.list
-```
-Then add this to the file.
-```
-deb http://nginx.org/packages/ubuntu/ xenial nginx
-# deb-src http://nginx.org/packages/ubuntu/ xenial nginx
-```
-Then we are going to install it.
-```
- sudo apt-get update
- sudo apt-get install nginx
-```
-If a W: GPG error: http://nginx.org/packages/ubuntu xenial Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY $key is encountered during the NGINX repository update, execute the following:
-```
- ## Replace $key with the corresponding $key from your GPG error.
- sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
- sudo apt-get update
- sudo apt-get install nginx
-```
-
 #### Configuration
 First we need to delete the old / default configurations.
 Just so your aware of it, NGINX are sensetiv how you are writing the configuration file with spaces etc.
@@ -728,6 +705,32 @@ sudo service nginx reload
 
 So now we are completly finsihed with the NGINX setup, so let's test our security. If you have done everything right you should have a B score that's normal as it's some limitations in Seafile that are limiting us for using secure cookies and using the full protection of Content-Security-Policy. But this is nothing to worry about, it's totaly secure anyway - I'll not explane it futher but just google it if you want. And I'll add a line or two when I have found out a work-a-round, so keep a watching eye on this guide for updates.
 Anyway you can test the security of your site here: https://observatory.mozilla.org/
+
+#### Update to latest stable version of NGINX
+As always we are going to install the latest stabel version, and to do that we need to add some rows to the /etc/apt/sources.list.
+```
+sudo nano /etc/apt/sources.list
+```
+Then add this to the file.
+```
+deb http://nginx.org/packages/ubuntu/ xenial nginx
+# deb-src http://nginx.org/packages/ubuntu/ xenial nginx
+```
+Now we need to check that everything works in the update.
+```
+sudo apt-get update
+```
+If a W: GPG error: http://nginx.org/packages/ubuntu xenial Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY $key is encountered during the NGINX repository update, execute the following:
+```
+## Replace $key with the corresponding $key from your GPG error.
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
+sudo apt-get update
+sudo apt-get install nginx
+```
+Now we can run the installation, during the installation if it asks you if you want to replace a file, choose the default answer and it should be N as in no.
+```
+sudo apt-get install nginx
+```
 
 ### Configuration for Seafile
 Now we need to make some changes in the config files for Seafile, and remember not to open the files with the sudo command or root user open the files with the user that your using to run Seafile with.
