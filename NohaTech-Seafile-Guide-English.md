@@ -1133,4 +1133,4 @@ To do that just check the box "enable two factor authentication"
 As with everything you need to Maintain it, and also you might get some issues or something.
 I have done a other document for that, NohaTech-Seafile-maintain-English.md
 
-https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Seafile-maintain-English.md
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/Maintain.md
