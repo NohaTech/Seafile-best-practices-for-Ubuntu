@@ -376,7 +376,7 @@ This means that every Sunday at 02:00 this script will run.
 It's good to have some kind of knowledge regarding the health of your data.
 So what I have done is that I have added a little script in crontab monthly folder, that means that once a month it will run.
 And if you have installed and setup ssmtp then you will get a e-mail from the server with the results, and also you will have a logfile named seaf-fsck.log under the logs folder that are located at your Seafile folder in my case it's located /opt/nohatech/logs.
-You can read in my other guide how to setup ssmtp. ( https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Ssmtp-English.md )
+You can read in my other guide how to setup ssmtp. ( https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Install-ssmtp.md )
 
 Remember to change every path to the right one for you.
 
@@ -801,8 +801,7 @@ SITE_TITLE = 'NohaTech'
 TIME_ZONE = 'Europe/Stockholm'
 ```
 Now if we want to send e-mails from Seafile, and it's recommended as links etc. can be sent trough mail we need to put this lines in seahub_settings.py this example are for gmail.
-But to make it work you need to setup ssmtp first, to do that follow my other guide NohaTech-Ubuntu-Ssmtp-English.md.
-https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Ssmtp-English.md
+But to make it work you need to setup ssmtp first, to do that follow my other guide https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Install-ssmtp.md
 ```
 # Email server/settings
 EMAIL_USE_TLS = True
