@@ -1000,7 +1000,7 @@ I'll just past the configuration here that works with the filters that we have d
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Secure-Server-English.md
 
 If you want to activate so you can send mails from Fail2Ban you need to follow this guide first NohaTech-Ubuntu-Ssmtp-English.md.
-https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Ssmtp-English.md
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Install-ssmtp.md
 
 And here is a notice regarding the Seafile filter, it's a little different then the others, maxretry set to 1 is actually 3 failed login attempts that's why I have it set to 2 in this guide.
 
