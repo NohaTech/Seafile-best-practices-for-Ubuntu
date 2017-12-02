@@ -5,7 +5,7 @@ To tighten up your security on your Ubuntu server please see the NohaTech-Ubuntu
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Secure-Server-English.md
 
 If you are going to run Seafile on a Hyper-V VM, please read NohaTech-Ubuntu-Hyper-V-English.md to optimize it and also adopte it to work with Ubuntu.
-https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/NohaTech-Ubuntu-Hyper-V-English.md
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Run-Hyper-V.md
 
 We will use a text editor called nano in this guide, so here is some commands that you need to know.
 ```
