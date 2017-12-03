@@ -434,89 +434,7 @@ cd /opt/nohatech/seafile-server-latest/
 Now we are ready to go!
 
 #### Configuration
-First we need to delete the old / default configurations.
-Just so your aware of it, NGINX are sensetiv how you are writing the configuration file with spaces etc.
-```
- sudo rm -rf /etc/nginx/sites-enabled/default
- sudo rm -rf /etc/nginx/sites-available/default
-```
-Then we need to create the file that we are going to use.
-```
- sudo nano /etc/nginx/sites-available/seafile.conf
-```
-Now we are going to start the configuration, this example file are working you just need to replace the "seafile.example.com" with your own domain also in the add_header Content-Security-Policy you need to replace *.nohatech.se with your own domain and change the folder location under "location /media" in the configuration to the right one for you. But still, read the hole thing.
-```
-server {
-    listen 80;
-    server_name seafile.example.com;
-
-    proxy_set_header X-Forwarded-For $remote_addr;
-    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-    add_header X-Content-Type-Options "nosniff" always;
-    add_header X-XSS-Protection "1; mode=block" always;
-    add_header X-Frame-Options "DENY" always;
-    add_header Referrer-Policy "strict-origin" always;
-    server_tokens off;
-
-    location / {
-         proxy_pass         http://127.0.0.1:8000;
-         proxy_set_header   Host $host;
-         proxy_set_header   X-Real-IP $remote_addr;
-         proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-         proxy_set_header   X-Forwarded-Host $server_name;
-         proxy_read_timeout  1200s;
-         proxy_request_buffering off;
-
-         # used for view/edit office file via Office Online Server
-         client_max_body_size 0;
-
-         access_log      /var/log/nginx/seahub.access.log;
-         error_log       /var/log/nginx/seahub.error.log;
-    }
-    location /seafhttp {
-        rewrite ^/seafhttp(.*)$ $1 break;
-        proxy_pass http://127.0.0.1:8082;
-        client_max_body_size 0;
-
-        proxy_connect_timeout  36000s;
-        proxy_read_timeout  36000s;
-        proxy_send_timeout  36000s;
-        proxy_request_buffering off;
-
-        send_timeout  36000s;
-    }
-    location /media {
-        root /opt/nohatech/seafile-server-latest/seahub;
-    }
-}
-```
-As we want high security for our site we need to add this lines to every server block in the configuration file, for now we only have one. I have already added these lines in the example config above, but I still want you to know that this lines are not there as default.
-```
- add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
- add_header X-Content-Type-Options "nosniff" always;
- add_header X-XSS-Protection "1; mode=block" always;
- add_header X-Frame-Options "DENY" always;
- add_header Referrer-Policy "strict-origin" always;
- server_tokens off;
-```
-Also we don't want NGINX to use a buffer in tmp files so we need to add the following line to the location blocks. I have already added this line in the example config above, but I still want you to know that this lines are not there as default.
-```
- proxy_request_buffering off;
-```
-Also we don't want to set any limitation on the upload size in NGINX as that's something we should do in the seafile.conf file so it's important that you add this line in every "location" block. I have already added this line in the example config above, but I still want you to know that this lines are not there as default.
-```
- client_max_body_size 0;
-```
-Now we are going to activate our configuration file.
-```
- sudo ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/seafile.conf
-```
-Now we just need to restart NGINX and then we will have a working NGINX revers proxy over HTTP (port 80) to Seafile. It's recommended that you are also following the Self signed cert guide or even better following the Free SSL cert from Let's Encrypt as it's recommended.
-```
- sudo service nginx reload
- sudo service nginx restart
-```
-#### Self signed cert
+#### Self signed cert (HTTPS)
 ***Self sign cert don't work with the Windows client, you need a good cert for that client to work, please se further down in the Let's Encrypt section how you can get a free cert***
 I'm recommending you to use Let's Encrypts SSL but for some reason you might want to use Self signed.
 So here's how you do that.
@@ -540,9 +458,17 @@ Then we need to create the dhparam.pem file, it's a little tricky we need to cre
  sudo openssl dhparam 2048 > dhparam.pem
  sudo mv dhparam.pem /etc/ssl/private/dhparam.pem
 ```
-Now we are done with that, so now we need to start to change the config file to work, I'll add some changes if you want to know what just compare it to the configuration file above, here is a working example of the file, as in the file above you need to replace seafile.example.com with your own domain also the path setting to the location.
-I have also added the security settings to this configuration file, if your not are going to use this configuration file, take a look above to see how to adapte the security settings.
-And remember to change the *.nohatech.se in the Content-Security-Policy to your own and the rest of the example domains and also change so the location path if right under "location /media".
+First we need to delete the old / default configurations.
+Just so your aware of it, NGINX are sensetiv how you are writing the configuration file with spaces etc.
+```
+sudo rm -rf /etc/nginx/sites-enabled/default
+sudo rm -rf /etc/nginx/sites-available/default
+```
+Then we need to create the file that we are going to use.
+```
+sudo nano /etc/nginx/sites-available/seafile.conf
+```
+And copy this in to the file, and remember to replace the seafile.example.com to your own domain and also change the path for the location folder in the bottom the yours.
 ```
     server {
         listen       80;
@@ -613,6 +539,10 @@ And remember to change the *.nohatech.se in the Content-Security-Policy to your 
             root /opt/nohatech/seafile-server-latest/seahub;
         }
     }
+```
+Now we are going to activate our configuration file.
+```
+ sudo ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/seafile.conf
 ```
 Now we are almoste done, we just need to restart NGINX.
 ```
