@@ -1,7 +1,9 @@
-#### Self signed cert (HTTPS)
-***Self sign cert don't work with the Windows client, you need a good cert for that client to work, please se further down in the Let's Encrypt section how you can get a free cert***
-I'm recommending you to use Let's Encrypts SSL but for some reason you might want to use Self signed.
-So here's how you do that.
+# NGINX Self signed cert (HTTPS)
+I have saved this document as someone maybe want to use self signed cert for some reason, but I recommend Let's Encrypts free cert instead.
+You can find out in the Seafile main guide how to get the Let's Encrypt cert to work with Seafile.
+***Self sign cert don't work with the Windows client, you need a good cert for that client to work***
+
+## Configuration
 
 First we need to create privkey.pem and cacert.pem.
 ```
