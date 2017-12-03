@@ -1058,6 +1058,12 @@ Now we are going to change some things regarding the password rules, we are stil
 This is optional, but you should activate the 2FA for the users that want to use it.
 To do that just check the box "enable two factor authentication"
 
+# Last tip
+Here is some last "guides" that you can read if you find them intressting, I have not included them in this "main guide" as it's not needed to get Seafile to work.
+
+* Video Thumbnails
+* Ignore list for Seafile client's
+
 # Maintain Seafile
 As with everything you need to Maintain it, and also you might get some issues or something.
 I have done a other document for that, NohaTech-Seafile-maintain-English.md
