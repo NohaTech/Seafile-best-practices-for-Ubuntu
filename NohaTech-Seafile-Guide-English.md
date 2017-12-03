@@ -1047,6 +1047,7 @@ Here is some last "guides" that you can read if you find them intressting, I hav
 
 * Video Thumbnails
 * Ignore list for Seafile client's
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/ignore-list-clients.md
 
 # Maintain Seafile
 As with everything you need to Maintain it, and also you might get some issues or something.
