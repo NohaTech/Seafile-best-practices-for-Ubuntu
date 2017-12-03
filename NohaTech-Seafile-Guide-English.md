@@ -1,10 +1,10 @@
 # Introduction
 I'll guide you trough how you can install Seafile on a Ubuntu 16.04 LTS machine, in this document I'll only adapt best practices.
 This guide is for the CE version of Seafile, the free version. But you can use it for the PRO version also but then it's some additional steps that I have not included in this guide.
-To tighten up your security on your Ubuntu server please see the NohaTech-Ubuntu-Secure-Server.md file.
+To tighten up your security on your Ubuntu server please see this guide. <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Secure-Server.md
 
-If you are going to run Seafile on a Hyper-V VM, please read NohaTech-Ubuntu-Hyper-V-English.md to optimize it and also adopte it to work with Ubuntu.
+If you are going to run Seafile on a Hyper-V VM, please read run-hyper-v.md to optimize it and also adopte it to work with Ubuntu. <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Run-Hyper-V.md
 
 We will use a text editor called nano in this guide, so here is some commands that you need to know.
