@@ -403,22 +403,6 @@ sudo chmod +x /etc/cron.monthly/seaf-fsck-checker.sh
 ```
 Now we are done and we will get a report to our mail and also to the seaf-fsck.log file once a month.
 
-### Ignore list for Seafile
-You can if you want ignore files and folders for sync.
-What you need to do is that you need to create a file named seafile-ignore.txt in the library where the files and folders are located that you want to ignore and then the rules for that library are sett, so you need to create this file for every library that you have.
-If you want to ignore a folder you can write it like this.
-```
-example/
-```
-If you want to ignore a file you can type it like this.
-```
-# ignore the exact file.
-example.ini
-# This will ignore every file that's ending with .ini
-*.ini
-```
-Ignore list also supports wildecards so you can modify this list in many different ways, but if you want to learn more how to modify the list with wildecards, read this link https://www.seafile.com/en/help/ignore/
-
 ### Install NGINX
 We need NGINX so we can access Seafile trough 443 port and use SSL also NGINX are going to work as a revers proxy for us.
 Since version 6.2* of Seafile FastCGI are not recommended and the support for it will end soon, so we are going to use what's recommended and whats going to be supported in the future, WSGI.
