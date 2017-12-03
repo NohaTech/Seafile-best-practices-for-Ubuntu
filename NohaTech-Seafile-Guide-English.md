@@ -1046,7 +1046,7 @@ To do that just check the box "enable two factor authentication"
 Here is some last "guides" that you can read if you find them intressting, I have not included them in this "main guide" as it's not needed to get Seafile to work.
 
 * Video Thumbnails
-* Ignore list for Seafile client's
+* Ignore list for Seafile client's <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/ignore-list-clients.md
 
 # Maintain Seafile
