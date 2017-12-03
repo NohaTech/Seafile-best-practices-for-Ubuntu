@@ -620,7 +620,7 @@ sudo service nginx reload
 So now we are completly finsihed with the NGINX setup, so let's test our security. If you have done everything right you should have a B score that's normal as it's some limitations in Seafile that are limiting us for using secure cookies and using the full protection of Content-Security-Policy. But this is nothing to worry about, it's totaly secure anyway - I'll not explane it futher but just google it if you want. And I'll add a line or two when I have found out a work-a-round, so keep a watching eye on this guide for updates.
 Anyway you can test the security of your site here: https://observatory.mozilla.org/
 
-#### Update to latest stable version of NGINX
+#### Update to latest stable version of NGINX (Recommended, Optional)
 As always we are going to install the latest stabel version, and to do that we need to add some rows to the /etc/apt/sources.list.
 ```
 sudo nano /etc/apt/sources.list
