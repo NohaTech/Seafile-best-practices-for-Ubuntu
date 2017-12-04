@@ -995,17 +995,17 @@ Here is some last "guides" that you can read if you find them intressting, I hav
 
 * Seaf-FSCK script <b>(Recommended)</b> <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/Seaf-FSCK-script.md
-* Video Thumbnails <br>
+* How to activate video Thumbnails <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/Video-thumbnails.md
-* Ignore list for Seafile client's <br>
+* How to create ignore list for Seafile client's <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/ignore-list-clients.md
 * SeafDAV (WebDAV) <br>
 Coming soon!
-* HTTP/2 <br>
-Comming soon!
-* Memcached over IP <br>
+* Activate HTTP2 <br>
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/NGINX-HTTP2.md
+* Use Memcached over IP <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/Memcached-IP.md
-* HTTP (no SSL cert) <br>
+* Setup NGINX with HTTP (no SSL cert) <br>
 Comming soon!
 * Update/upgrade Seafile <br>
 Comming soon!
