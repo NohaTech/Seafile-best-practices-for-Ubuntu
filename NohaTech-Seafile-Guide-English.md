@@ -1028,11 +1028,11 @@ Here is some last "guides" that you can read if you find them intressting, I hav
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/Video-thumbnails.md
 * Ignore list for Seafile client's <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/ignore-list-clients.md
-* SeafDAV (WebDAV)
+* SeafDAV (WebDAV) <br>
 Coming soon!
-* HTTP (no SSL cert)
+* HTTP (no SSL cert) <br>
 Comming soon!
-* HTTP/2
+* HTTP/2 <br>
 Comming soon!
 
 # Maintain Seafile
