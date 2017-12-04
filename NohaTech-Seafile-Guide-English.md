@@ -1034,6 +1034,8 @@ Coming soon!
 Comming soon!
 * HTTP/2 <br>
 Comming soon!
+* Memcached over IP <br>
+Comming soon!
 
 # Maintain Seafile
 As with everything you need to Maintain it, and also you might get some issues or something.
