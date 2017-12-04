@@ -22,8 +22,8 @@ Now we going to start the installation.
 ### Create user
 Best is to have a "clean" Ubuntu installation to install Seafile on, and during Ubuntu installation you should choose seafile as username, but if you don't have a clean one it's recommended that Seafile are running with it's own user. <br>
 
-***you should not run Seafile with root user or sudo command.*** <br>
-To create a new user you should use the following commands.
+***You should not run Seafile with root user or sudo command.***
+<br>To create a new user you should use the following commands.
 ```
 sudo adduser seafile
 sudo usermod -aG sudo seafile
