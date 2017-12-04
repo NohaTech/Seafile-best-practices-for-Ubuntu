@@ -1030,11 +1030,13 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafil
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/ignore-list-clients.md
 * SeafDAV (WebDAV) <br>
 Coming soon!
-* HTTP (no SSL cert) <br>
-Comming soon!
 * HTTP/2 <br>
 Comming soon!
 * Memcached over IP <br>
+Comming soon!
+* HTTP (no SSL cert) <br>
+Comming soon!
+* Install/update Seafile PRO <br>
 Comming soon!
 
 # Maintain Seafile
