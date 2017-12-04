@@ -13,3 +13,8 @@ And then you should just add "http2" after every "listen 443" like this.
 ```
 listen 443 http2;
 ```
+Then you need to restart and reload NGINX.
+```
+sudo service nginx reload
+sudo service nginx restart
+```
