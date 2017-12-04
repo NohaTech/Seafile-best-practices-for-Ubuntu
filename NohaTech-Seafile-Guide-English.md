@@ -1033,7 +1033,7 @@ Coming soon!
 * HTTP/2 <br>
 Comming soon!
 * Memcached over IP <br>
-Comming soon!
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/Memcached-IP.md
 * HTTP (no SSL cert) <br>
 Comming soon!
 * Update/upgrade Seafile <br>
