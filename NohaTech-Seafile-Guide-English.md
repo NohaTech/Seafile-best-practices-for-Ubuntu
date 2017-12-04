@@ -169,7 +169,7 @@ Before we continue you should makesure that you can access the server to make su
 Make sure that you have opend port 8000 in the UFW firewall if you have it activated, but UFW should be disable as default.
 
 ### Add Memcached
-***If your running 6.2.3 you need to do a fix before using memcached***
+***If your running 6.2.3 you need to do a fix before using memcached*** <br>
 Before your doing the changes you need to stop Seafile.
 ```
 cd /opt/nohatech/seafile-server-latest/
