@@ -1036,7 +1036,9 @@ Comming soon!
 Comming soon!
 * HTTP (no SSL cert) <br>
 Comming soon!
-* Install/update Seafile PRO <br>
+* Update/upgrade Seafile <br>
+Comming soon!
+* Install/update to Seafile PRO <br>
 Comming soon!
 
 # Maintain Seafile
