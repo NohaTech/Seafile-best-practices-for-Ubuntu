@@ -993,6 +993,8 @@ To do that just check the box "enable two factor authentication"
 # Last tip
 Here is some last "guides" that you can read if you find them intressting, I have not included them in this "main guide" as it's not needed to get Seafile to work. And some of them are not recommended to use and the better way is included in the "main guide" but some people maybe want to use the other less good way.
 
+* Seaf-FSCK script <b>(Recommended)</b> <br>
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/Seaf-FSCK-script.md
 * Video Thumbnails <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/Video-thumbnails.md
 * Ignore list for Seafile client's <br>
