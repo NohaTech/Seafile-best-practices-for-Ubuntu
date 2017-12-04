@@ -1022,7 +1022,7 @@ This is optional, but you should activate the 2FA for the users that want to use
 To do that just check the box "enable two factor authentication"
 
 # Last tip
-Here is some last "guides" that you can read if you find them intressting, I have not included them in this "main guide" as it's not needed to get Seafile to work.
+Here is some last "guides" that you can read if you find them intressting, I have not included them in this "main guide" as it's not needed to get Seafile to work. And some of them are not recommended to use and the better way is included in the "main guide" but some people maybe want to use the other less good way.
 
 * Video Thumbnails <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/Video-thumbnails.md
