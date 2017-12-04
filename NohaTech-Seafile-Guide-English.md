@@ -20,7 +20,9 @@ ctrl+x = your asked if you want to save the document or not, answer y or n then 
 Now we going to start the installation.
 
 ### Create user
-Best is to have a "clean" Ubuntu installation to install Seafile on, and during Ubuntu installation you should choose seafile as username, but if you don't have a clean one it's recommended that Seafile are running with it's own user - ***you should not run Seafile with root user or sudo command.***
+Best is to have a "clean" Ubuntu installation to install Seafile on, and during Ubuntu installation you should choose seafile as username, but if you don't have a clean one it's recommended that Seafile are running with it's own user. <br><br>
+
+***you should not run Seafile with root user or sudo command.*** <br>
 To create a new user you should use the following commands.
 ```
 sudo adduser seafile
@@ -150,7 +152,7 @@ cd /opt/nohatech/seafile-server-6.2.3
 ```
 During the setup you should choose
 ```
- [2] Use existing ccnet/seafile/seahub databases
+[2] Use existing ccnet/seafile/seahub databases
 ```
 And then read everything in most cases it's just run at default except when it asks you for your username and password for the databases then you should write the ones that you did choose in the MariaDB installation step above.
 The setup script will ask you the names of the databases, and it's the same as the one you did create in the MariaDB installation also, if you don't rememeber what you did choose take a look at the MariaDB installation section above.
@@ -376,7 +378,8 @@ This means that every Sunday at 02:00 this script will run.
 We need NGINX so we can access Seafile trough 443 port and use SSL also NGINX are going to work as a revers proxy for us.
 Since version 6.2* of Seafile FastCGI are not recommended and the support for it will end soon, so we are going to use what's recommended and whats going to be supported in the future, WSGI.
 Also you need to open port 80 and 443 in your firewall (UFW) if you have it activated, and if your using a router you also need to portforward this ports to the Seafile machine if you want to access Seafile outside your LAN.
-After you have done this your going to access Seafile trough the following address: http://YOURIP/ or https://YOURIP/ depends if your using HTTP (port 80) or HTTPS (SSL over port 443)
+After you have done this your going to access Seafile trough the following address: http://YOURIP/ or https://YOURIP/ depends if your using HTTP (port 80) or HTTPS (SSL over port 443).
+<br> If you still want to use HTTP without SSL you can read how to do that in a seperated guide, just click on the link in the bottom of this guide.
 
 Before we start we need to stop Seafile.
 ```
@@ -394,22 +397,22 @@ So here's how you do that.
 
 First we need to create privkey.pem and cacert.pem.
 ```
- sudo openssl genrsa -out /etc/ssl/private/privkey.pem 2048
- sudo openssl req -new -x509 -key /etc/ssl/private/privkey.pem -out /etc/ssl/private/cacert.pem -days 1095
+sudo openssl genrsa -out /etc/ssl/private/privkey.pem 2048
+sudo openssl req -new -x509 -key /etc/ssl/private/privkey.pem -out /etc/ssl/private/cacert.pem -days 1095
 ```
 If you get any issues when your trying to create the cert's do it this way insted. Replace xxx with your user name. (optional)
 ```
- cd ~
- sudo openssl genrsa -out /home/xxx/privkey.pem 2048
- sudo openssl req -new -x509 -key /home/xxx/privkey.pem -out /home/xxx/cacert.pem -days 1095
- sudo mv privkey.pem /etc/ssl/private/
- sudo mv cacert.pem /etc/ssl/private/
+cd ~
+sudo openssl genrsa -out /home/xxx/privkey.pem 2048
+sudo openssl req -new -x509 -key /home/xxx/privkey.pem -out /home/xxx/cacert.pem -days 1095
+sudo mv privkey.pem /etc/ssl/private/
+sudo mv cacert.pem /etc/ssl/private/
 ```
 Then we need to create the dhparam.pem file, it's a little tricky we need to create it in our home folder then move it to the /etc/ssl/private/ folder.
 ```
- cd ~
- sudo openssl dhparam 2048 > dhparam.pem
- sudo mv dhparam.pem /etc/ssl/private/dhparam.pem
+cd ~
+sudo openssl dhparam 2048 > dhparam.pem
+sudo mv dhparam.pem /etc/ssl/private/dhparam.pem
 ```
 First we need to delete the old / default configurations.
 Just so your aware of it, NGINX are sensetiv how you are writing the configuration file with spaces etc.
@@ -495,12 +498,12 @@ And copy this in to the file, and remember to replace the seafile.example.com to
 ```
 Now we are going to activate our configuration file.
 ```
- sudo ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/seafile.conf
+sudo ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/seafile.conf
 ```
 Now we are almoste done, we just need to restart NGINX.
 ```
- sudo service nginx reload
- sudo service nginx restart
+sudo service nginx reload
+sudo service nginx restart
 ```
 #### Free SSL cert from Let's Encrypt (recommended)
 This is the recommended way to do it, here we will get a free SSL cert that expires after 3 months but we will make a cronjob so we will renew it before it expires.
@@ -510,15 +513,15 @@ Above I have been written how to setup NGINX with Self signed cert you can read 
 
 Then we need to install certbot so we can get the cert's.
 ```
- sudo apt-get install software-properties-common -y
- sudo add-apt-repository ppa:certbot/certbot
- sudo apt-get update
- sudo apt-get install python-certbot-nginx -y
+sudo apt-get install software-properties-common -y
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install python-certbot-nginx -y
 ```
 Now we need to prepar some things.
 First off we need to create a folder.
 ```
- sudo mkdir /mnt/certbot-webroot
+sudo mkdir /mnt/certbot-webroot
 ```
 Then you should add this to the config and insert it before the line "location /seafhttp" in the config.
 ```
@@ -529,32 +532,32 @@ location '/.well-known/acme-challenge' {
 ```
 Now we are all set and can create the certification, change example.se to your domain name, you should not have http or https before it but you can use subdomain.example.se if you want that or example.se.
 ```
- sudo certbot certonly --webroot -w /mnt/certbot-webroot -d example.se
+sudo certbot certonly --webroot -w /mnt/certbot-webroot -d example.se
 ```
 When you did create the cert troug the command above you did get the correct path to your new cert's prompted for you.
 Change the following rows so the path is the correct one for you, It should bee something like the path that I have wroten below.
 ```
- ssl_certificate /etc/letsencrypt/live/example.se/fullchain.pem;  # path to your cacert.pem
- ssl_certificate_key /etc/letsencrypt/live/example.se/privkey.pem;    # path to your privkey.pem
+ssl_certificate /etc/letsencrypt/live/example.se/fullchain.pem;  # path to your cacert.pem
+ssl_certificate_key /etc/letsencrypt/live/example.se/privkey.pem;    # path to your privkey.pem
 ```
 Now we are actually done, not so hard right? Well we did do the most of the work before.
 So now we just need to restart NGINX.
 ```
- sudo service nginx reload
- sudo service nginx restart
+sudo service nginx reload
+sudo service nginx restart
 ```
 So now we just need to add this to crontab so the cert will get renewed before it expires.
 First we need to look where certbot is located at your server.
 ```
- whereis certbot
+whereis certbot
 ```
 Then we need to create the crontab.
 ```
- sudo crontab -e
+sudo crontab -e
 ```
 At the bottom of crontab add this, change the /path/to/certbot so it's matches your path.
 ```
- 47 */12 * * * sleep 16; /path/to/certbot renew --quiet --post-hook "/usr/sbin/service nginx reload"
+47 */12 * * * sleep 16; /path/to/certbot renew --quiet --post-hook "/usr/sbin/service nginx reload"
 ```
 Now we are finished with the setup, so let's test your SSL rating, you should have A+ in score.
 You can test it here: https://www.ssllabs.com/ssltest
