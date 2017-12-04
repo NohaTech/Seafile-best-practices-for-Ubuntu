@@ -379,7 +379,8 @@ We need NGINX so we can access Seafile trough 443 port and use SSL also NGINX ar
 Since version 6.2* of Seafile FastCGI are not recommended and the support for it will end soon, so we are going to use what's recommended and whats going to be supported in the future, WSGI.
 Also you need to open port 80 and 443 in your firewall (UFW) if you have it activated, and if your using a router you also need to portforward this ports to the Seafile machine if you want to access Seafile outside your LAN.
 After you have done this your going to access Seafile trough the following address: http://YOURIP/ or https://YOURIP/ depends if your using HTTP (port 80) or HTTPS (SSL over port 443).
-<br> If you still want to use HTTP without SSL you can read how to do that in a seperated guide, just click on the link in the bottom of this guide.
+<br> If you still want to use HTTP without SSL you can read how to do that in a seperated guide here:<br>
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/NGINX-HTTP.md
 
 Before we start we need to stop Seafile.
 ```
@@ -1009,7 +1010,7 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafil
 * Use Memcached over IP <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/Memcached-IP.md
 * Setup NGINX with HTTP (no SSL cert) <br>
-Comming soon!
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/NGINX-HTTP.md
 * Update/upgrade Seafile <br>
 Comming soon!
 * Install/update to Seafile PRO <br>
