@@ -2,7 +2,8 @@
 This is not best practices but if you for some reason want to use this you should know that Memcached over socket is 30% faster then over IP. <br>
 You can find how to setup memcached with socket in the "main guide", if you have been following the "main guide" you have also already installed the necessary package for Memecahced, but if you have not done that take a look in the "main guide" and install all of the package listed there.
 
-***If your running 6.2.3 you need to do a fix before using memcached*** <br>
+## Setup
+***If your running 6.2.3 you need to do a fix before using memcached*** <br> <br>
 Before your doing the changes you need to stop Seafile.
 ```
 cd /opt/nohatech/seafile-server-latest/
@@ -18,7 +19,6 @@ threads = 5
 ```
 ***End of the bugfix***
 
-## Setup
 First we need to stop Seafile and memcached service.
 ```
 cd /opt/nohatech/seafile-server-latest/
