@@ -650,9 +650,12 @@ nano seafile.conf
 The we need to add the following row, remember to not delete any rows in the config file just put this rows under the already existing rows in the right [SECTION]
 ```
 [fileserver]
+# bind address for fileserver
+# default to 0.0.0.0, if deployed without proxy: no access restriction
+# set to 127.0.0.1, if used with local proxy: only access by local
+host = 127.0.0.1
 # How long time a session can bee open before it times out.
 web_token_expire_time=7200
-
 # Max upload size, it's in MB
 max_upload_size=10000
 
