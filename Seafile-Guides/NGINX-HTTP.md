@@ -13,13 +13,20 @@ Then we need to create the file that we are going to use.
 ```
 sudo nano /etc/nginx/sites-available/seafile.conf
 ```
-And copy this in to the file, and remember to replace the seafile.example.com to your own domain and also change the path for the location folder in the bottom the yours.
+And copy this in to the file, and remember to replace the seafile.example.com to your own domain and also change the path for the location folder in the bottom the yours. Remember to change the root path to yours and also change the seafile.example.com to your own domain.
 ```
 server {
     listen 80;
     server_name seafile.example.com;
 
     proxy_set_header X-Forwarded-For $remote_addr;
+    
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header X-Frame-Options "DENY" always;
+    add_header Referrer-Policy "strict-origin" always;
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+    server_tokens off;
 
     location / {
          proxy_pass         http://127.0.0.1:8000;
@@ -29,13 +36,6 @@ server {
          proxy_set_header   X-Forwarded-Host $server_name;
          proxy_read_timeout  1200s;
          proxy_request_buffering off;
-         
-         add_header X-Content-Type-Options "nosniff" always;
-         add_header X-XSS-Protection "1; mode=block" always;
-         add_header X-Frame-Options "DENY" always;
-         add_header Referrer-Policy "strict-origin" always;
-         add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
-         server_tokens off;
 
          # used for view/edit office file via Office Online Server
          client_max_body_size 0;
