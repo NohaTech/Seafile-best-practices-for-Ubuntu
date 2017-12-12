@@ -114,9 +114,43 @@ sudo service nginx reload
 #### Optimize NGINX
 Please see this link for instructions how to optimize NGINX.<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/NGINX-Optimize.md <br>
-<br>
 #### Secure NGINX with Fail2Ban
 This configuration are adapted to work with NGINX, please follow this link.<br>
+#### Configure NGINX
+Now we are going to configure NGINX to work with Baikal.
+So we need to create this file.
+```
+sudo nano /etc/nginx/sites-available/dav.conf
+```
+And then add this, make sure to change dav.example.org to your own domain.
+```
+server {
+  listen       80;
+  server_name  dav.example.org;
+
+  root  /var/www/baikal/html;
+  index index.php;
+
+  rewrite ^/.well-known/caldav /dav.php redirect;
+  rewrite ^/.well-known/carddav /dav.php redirect;
+
+  charset utf-8;
+
+  location ~ /(\.ht|Core|Specific) {
+    deny all;
+    return 404;
+  }
+
+  location ~ ^(.+\.php)(.*)$ {
+    try_files $fastcgi_script_name =404;
+    include        /etc/nginx/fastcgi_params;
+    fastcgi_split_path_info  ^(.+\.php)(.*)$;
+    fastcgi_pass   unix:/var/run/php-fpm/php-fpm.sock;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    fastcgi_param  PATH_INFO        $fastcgi_path_info;
+  }
+}
+```
 
 
 make sure that you have the latest release, take a look.
