@@ -115,6 +115,8 @@ sudo service nginx reload
 Please see this link for instructions how to optimize NGINX.<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/NGINX-Optimize.md <br>
 <br>
+#### Secure NGINX with Fail2Ban
+This configuration are adapted to work with NGINX, please follow this link.<br>
 
 
 make sure that you have the latest release, take a look.
