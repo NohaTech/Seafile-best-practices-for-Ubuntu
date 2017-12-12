@@ -69,6 +69,53 @@ quit;
 ```
 
 ### Install NGINX
+Now we are going to update and setup NGINX. <br>
+We need to add some rows to the /etc/apt/sources.list.
+```
+sudo nano /etc/apt/sources.list
+```
+Then add this to the file.
+```
+deb http://nginx.org/packages/ubuntu/ xenial nginx
+# deb-src http://nginx.org/packages/ubuntu/ xenial nginx
+```
+Now we need to check that everything works in the update.
+```
+sudo apt-get update
+```
+If a W: GPG error: http://nginx.org/packages/ubuntu xenial Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY $key is encountered during the NGINX repository update, execute the following:
+```
+## Replace $key with the corresponding $key from your GPG error.
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
+sudo apt-get update
+sudo apt-get install nginx
+```
+Now we can run the installation, during the installation if it asks you if you want to replace a file, choose the default answer and it should be N as in no.
+```
+sudo apt-get install nginx
+```
+We need to change one thing in the configuration file after we have installed NGINX.
+```
+sudo nano /etc/nginx/nginx.conf
+```
+Now we need to create some folders.
+```
+sudo mkdir /etc/nginx/sites-enabled
+sudo mkdir /etc/nginx/sites-available
+```
+Then we need to replace this line:
+```
+include /etc/nginx/conf.d/*.conf
+```
+With this line:
+```
+include /etc/nginx/sites-enabled/*.conf;
+```
+Then just restart and reload NGINX, then we are done with the update.
+```
+sudo service nginx restart
+sudo service nginx reload
+```
 
 
 make sure that you have the latest release, take a look.
