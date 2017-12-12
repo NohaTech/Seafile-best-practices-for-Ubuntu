@@ -162,7 +162,7 @@ server {
     try_files $fastcgi_script_name =404;
     include        /etc/nginx/fastcgi_params;
     fastcgi_split_path_info  ^(.+\.php)(.*)$;
-    fastcgi_pass   unix:/var/run/php/php7.0-fpm.sock;
+    fastcgi_pass   unix:/run/php/php7.0-fpm.sock;
     fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
     fastcgi_param  PATH_INFO        $fastcgi_path_info;
   }
@@ -176,23 +176,6 @@ Now we are almoste done, we just need to restart NGINX.
 ```
 sudo service nginx reload
 sudo service nginx restart
-```
-### PHP configuration
-Now we need to change a line in a configuration file to make everything work
-```
-sudo nano /etc/php/7.0/fpm/pool.d/www.conf
-```
-And then you can search for this line.
-```
-listen = /run/php/php7.0-fpm.sock
-```
-And then replace that line with.
-```
-listen = /var/run/php/php7.0-fpm.sock
-```
-Now we need to reboot the server.
-```
-sudo reboot
 ```
 ### Download and install Baikal
 Now we are on the last step! We just need to download and install Baikal.<br>
