@@ -120,6 +120,7 @@ This configuration are adapted to work with NGINX, please follow this link.<br>
 First we need to delete the old / default configurations.
 Just so your aware of it, NGINX are sensetiv how you are writing the configuration file with spaces etc.
 ```
+sudo rm -rf /etc/nginx/conf.d/default.conf
 sudo rm -rf /etc/nginx/sites-enabled/default
 sudo rm -rf /etc/nginx/sites-available/default
 ```
