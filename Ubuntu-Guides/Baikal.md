@@ -97,15 +97,19 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
 sudo apt-get update
 sudo apt-get install nginx
 ```
-Now we can run the installation, during the installation if it asks you if you want to replace a file, choose the default answer and it should be N as in no.
-```
-sudo apt-get install nginx
-```
-We need to change one thing in the configuration file after we have installed NGINX.
+We need to change two thing in the configuration file after we have installed NGINX.
 ```
 sudo nano /etc/nginx/nginx.conf
 ```
 Then we need to replace this line:
+```
+user  nginx;
+```
+With this line:
+```
+user  www-data;
+```
+And also we need to replace this line:
 ```
 include /etc/nginx/conf.d/*.conf;
 ```
