@@ -111,6 +111,9 @@ Then just restart and reload NGINX, then we are done with the update.
 sudo service nginx restart
 sudo service nginx reload
 ```
+#### Optimize NGINX
+Please see this link for instructions how to optimize NGINX.
+
 
 
 make sure that you have the latest release, take a look.
