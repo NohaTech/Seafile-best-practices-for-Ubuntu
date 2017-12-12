@@ -606,31 +606,9 @@ Now we are finished with the setup, so let's test your SSL rating, you should ha
 You can test it here: https://www.ssllabs.com/ssltest
 
 #### Optimize NGINX
-So now we want to optimize NGINX for best performence.
-First we are going to look how many working processors we have.
-```
-grep processor /proc/cpuinfo | wc -l
-```
-In my case I did get 8.
-And now we need to see how many worker connections we can have simultaneously.
-```
-ulimit -n
-```
-In my case I did get 1024.
-Now we need to add this new numbers to our NGINX configuration file.
-```
-sudo nano /etc/nginx/nginx.conf
-```
-Then we need to change this two rows, and add your number in the end of the lines.
-```
-worker_processes 8;
-worker_connections 1024;
-```
-Now we need to restart NGINX so this changes can take effect.
-```
-sudo service nginx restart
-sudo service nginx reload
-```
+To optimize NGINX please read this link. <br>
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/NGINX-Optimize.md
+<br>
 So now we are completly finsihed with the NGINX setup, so let's test our security. If you have done everything right you should have a B score that's normal as it's some limitations in Seafile that are limiting us for using secure cookies and using the full protection of Content-Security-Policy. But this is nothing to worry about, it's totaly secure anyway - I'll not explane it futher but just google it if you want. And I'll add a line or two when I have found out a work-a-round, so keep a watching eye on this guide for updates.
 Anyway you can test the security of your site here: https://observatory.mozilla.org/
 
