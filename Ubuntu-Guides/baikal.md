@@ -7,6 +7,9 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu
 <br>
 And if your thinking of running it on a Hyper-V VM, please follow this guide before your installing Baikal.<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Run-Hyper-V.md
+<br>
+I also recommend you to install and setup SSMTP before you install Baikal.<br>
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Install-ssmtp.md
 
 ## Installation
 First we need to install some things.
