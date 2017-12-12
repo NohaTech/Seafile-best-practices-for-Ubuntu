@@ -95,7 +95,7 @@ Now it's time to do the installation of the rest of the needed things, as you ca
 ```
 sudo apt-get install python -y
  
-sudo apt-get install python2.7 libpython2.7 python-setuptools python-imaging python-ldap python-urllib3 ffmpeg python-pip python-mysqldb python-memcache memcached libmemcached-dev zlib1g-dev -y
+sudo apt-get install python2.7 libpython2.7 python-setuptools python-imaging python-ldap python-urllib3 ffmpeg python-pip python-mysqldb python-memcache memcached libmemcached-dev zlib1g-dev nginx -y
  
 sudo -H pip install pillow moviepy pylibmc django-pylibmc
 ```
@@ -419,14 +419,9 @@ We need to change one thing in the configuration file after we have installed NG
 ```
 sudo nano /etc/nginx/nginx.conf
 ```
-Now we need to create some folders.
-```
-sudo mkdir /etc/nginx/sites-enabled
-sudo mkdir /etc/nginx/sites-available
-```
 Then we need to replace this line:
 ```
-include /etc/nginx/conf.d/*.conf
+include /etc/nginx/conf.d/*.conf;
 ```
 With this line:
 ```
