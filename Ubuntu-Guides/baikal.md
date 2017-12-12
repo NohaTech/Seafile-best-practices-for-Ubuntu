@@ -8,7 +8,7 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu
 And if your thinking of running it on a Hyper-V VM, please follow this guide before your installing Baikal.<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Run-Hyper-V.md
 
-## Setup
+## Installation
 First we need to install some things.
 ```
 sudo apt-get install php php-mysql -y
