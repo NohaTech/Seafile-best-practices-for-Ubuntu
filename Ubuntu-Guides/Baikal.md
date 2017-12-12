@@ -179,6 +179,14 @@ And then replace that line with.
 ```
 listen = /var/run/php/php7.0-fpm.sock
 ```
+Now we need to change premission on the php7.0-fpm.sock file.
+```
+sudo chown -R nginx:nginx /var/run/php/php7.0-fpm.sock
+```
+Now we need to reboot the server.
+```
+sudo reboot
+```
 
 
 make sure that you have the latest release, take a look.
