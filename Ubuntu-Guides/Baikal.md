@@ -157,6 +157,15 @@ server {
   }
 }
 ```
+Now we are going to activate our configuration file.
+```
+sudo ln -s /etc/nginx/sites-available/dav.conf /etc/nginx/sites-enabled/dav.conf
+```
+Now we are almoste done, we just need to restart NGINX.
+```
+sudo service nginx reload
+sudo service nginx restart
+```
 
 
 make sure that you have the latest release, take a look.
