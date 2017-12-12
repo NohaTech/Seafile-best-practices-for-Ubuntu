@@ -187,18 +187,13 @@ Now we need to reboot the server.
 ```
 sudo reboot
 ```
-
-
-make sure that you have the latest release, take a look.
-https://github.com/sabre-io/Baikal/releases
-then go to
+### Download and install Baikal
+Now we are on the last step! We just need to download and install Baikal.<br>
+Make sure that you have the latest release of Baikal when I'm writting this guide it's v0.4.6.<br>
+Take a look here so it's the latest: https://github.com/sabre-io/Baikal/releases
+```
 cd /var/www
-download the rls
-wget https://github.com/sabre-io/Baikal/releases/download/0.4.6/baikal-0.4.6.zip
+sudo wget https://github.com/sabre-io/Baikal/releases/download/0.4.6/baikal-0.4.6.zip
+```
 
 sudo chown -R www-data:www-data /var/www/baikal
-
-
-change premission on /var/run/php/php7.0-fpm.sock should be user nginx
-
-listen = /var/run/php/php7.0-fpm.sock
