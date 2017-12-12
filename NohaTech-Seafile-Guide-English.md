@@ -390,6 +390,46 @@ cd /opt/nohatech/seafile-server-latest/
 ```
 Now we are ready to go!
 
+#### Update to latest stable version of NGINX (Recommended, Optional)
+As always we are going to install the latest stabel version, and to do that we need to add some rows to the /etc/apt/sources.list.
+```
+sudo nano /etc/apt/sources.list
+```
+Then add this to the file.
+```
+deb http://nginx.org/packages/ubuntu/ xenial nginx
+# deb-src http://nginx.org/packages/ubuntu/ xenial nginx
+```
+Now we need to check that everything works in the update.
+```
+sudo apt-get update
+```
+If a W: GPG error: http://nginx.org/packages/ubuntu xenial Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY $key is encountered during the NGINX repository update, execute the following:
+```
+## Replace $key with the corresponding $key from your GPG error.
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
+sudo apt-get update
+sudo apt-get install nginx
+```
+Now we can run the installation, during the installation if it asks you if you want to replace a file, choose the default answer and it should be N as in no.
+```
+sudo apt-get install nginx
+```
+We need to change one thing in the configuration file after we have installed NGINX.
+```
+sudo nano /etc/nginx/nginx.conf
+```
+Then we need to replace this line:
+```
+```
+With this line:
+```
+```
+Then just restart and reload NGINX, then we are done with the update.
+```
+sudo service nginx restart
+sudo service nginx reload
+```
 #### Configuration
 #### Self signed cert (HTTPS)
 ***Self sign cert don't work with the Windows client, you need a good cert for that client to work, please se further down in the Let's Encrypt section how you can get a free cert***
@@ -589,35 +629,8 @@ Now we need to restart NGINX so this changes can take effect.
 sudo service nginx restart
 sudo service nginx reload
 ```
-
 So now we are completly finsihed with the NGINX setup, so let's test our security. If you have done everything right you should have a B score that's normal as it's some limitations in Seafile that are limiting us for using secure cookies and using the full protection of Content-Security-Policy. But this is nothing to worry about, it's totaly secure anyway - I'll not explane it futher but just google it if you want. And I'll add a line or two when I have found out a work-a-round, so keep a watching eye on this guide for updates.
 Anyway you can test the security of your site here: https://observatory.mozilla.org/
-
-#### Update to latest stable version of NGINX (Recommended, Optional)
-As always we are going to install the latest stabel version, and to do that we need to add some rows to the /etc/apt/sources.list.
-```
-sudo nano /etc/apt/sources.list
-```
-Then add this to the file.
-```
-deb http://nginx.org/packages/ubuntu/ xenial nginx
-# deb-src http://nginx.org/packages/ubuntu/ xenial nginx
-```
-Now we need to check that everything works in the update.
-```
-sudo apt-get update
-```
-If a W: GPG error: http://nginx.org/packages/ubuntu xenial Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY $key is encountered during the NGINX repository update, execute the following:
-```
-## Replace $key with the corresponding $key from your GPG error.
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
-sudo apt-get update
-sudo apt-get install nginx
-```
-Now we can run the installation, during the installation if it asks you if you want to replace a file, choose the default answer and it should be N as in no.
-```
-sudo apt-get install nginx
-```
 
 ### Configuration for Seafile
 Now we need to make some changes in the config files for Seafile, and remember not to open the files with the sudo command or root user open the files with the user that your using to run Seafile with.
