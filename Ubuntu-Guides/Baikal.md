@@ -205,4 +205,4 @@ sudo chown -R www-data:www-data /var/www/baikal
 ```
 Now we are done!
 #### Installation
-To install Baikal just visit the ip that your server has in the webbrowser.
+To install Baikal just visit the follwoing link in your webbrowser, replace YOURSERVERIP with your IP to the server: http://YOURSERVERIP/admin/install/
