@@ -203,3 +203,6 @@ Now we need to change the premission on the baikal folder.
 ```
 sudo chown -R www-data:www-data /var/www/baikal
 ```
+Now we are done!
+#### Installation
+To install Baikal just visit the ip that your server has in the webbrowser.
