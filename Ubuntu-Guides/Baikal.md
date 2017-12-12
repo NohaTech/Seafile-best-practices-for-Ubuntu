@@ -3,9 +3,8 @@ We are going to install Baikal that's a light and good DAV server, it's greate t
 If you want to read more please read, http://sabre.io/baikal/ <br>
 <br>
 Before you start to install Baikal I do recommend that you are following the guides that are listed below:
-* How to secure your Ubuntu server<br>
+* How to secure your Ubuntu server <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Secure-Server.md
-<br>
 * How to setup Hyper-V right<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Run-Hyper-V.md
 <br>
