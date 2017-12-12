@@ -145,7 +145,7 @@ server {
     try_files $fastcgi_script_name =404;
     include        /etc/nginx/fastcgi_params;
     fastcgi_split_path_info  ^(.+\.php)(.*)$;
-    fastcgi_pass   unix:/var/run/php-fpm/php-fpm.sock;
+    fastcgi_pass   unix:/var/run/php/php7.0-fpm.sock;
     fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
     fastcgi_param  PATH_INFO        $fastcgi_path_info;
   }
@@ -166,3 +166,5 @@ sudo chown -R www-data:www-data /var/www/baikal
 sudo nano /etc/php/7.0/fpm/pool.d/www.conf
 
 change premission on /var/run/php/php7.0-fpm.sock should be user nginx
+
+listen = /var/run/php/php7.0-fpm.sock
