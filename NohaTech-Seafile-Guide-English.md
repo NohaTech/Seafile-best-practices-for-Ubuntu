@@ -1012,6 +1012,8 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafil
 Comming soon!
 * Install/update to Seafile PRO <br>
 Comming soon!
+* Do you want a good CalDav and CardDav server? Here's a guide.<br>
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Baikal.md
 
 # Maintain Seafile
 As with everything you need to Maintain it, and also you might get some issues or something.
