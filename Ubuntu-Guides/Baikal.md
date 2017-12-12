@@ -12,14 +12,12 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Run-Hyper-V.md
 * How to install and setup SSMTP<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Install-ssmtp.md
-<br>
 We will use a text editor called nano in this guide, so here is some commands that you need to know.
 ```
 ctrl+k = deletes a hole row in the document
  
 ctrl+x = your asked if you want to save the document or not, answer y or n then press enter and then after that you will get back to the     terminal.
 ```
-
 ## Installation
 First we need to make sure that Ubuntu are up to date.
 ```
