@@ -61,6 +61,8 @@ flush privileges;
 quit;
 ```
 
+### Install NGINX
+
 
 make sure that you have the latest release, take a look.
 https://github.com/sabre-io/Baikal/releases
