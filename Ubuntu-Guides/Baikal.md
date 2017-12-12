@@ -127,6 +127,7 @@ Please see this link for instructions how to optimize NGINX.<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/NGINX-Optimize.md <br>
 #### Secure NGINX with Fail2Ban
 This configuration are adapted to work with NGINX, please follow this link.<br>
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/NGINX-fail2ban.md
 #### Configure NGINX
 First we need to delete the old / default configurations.
 Just so your aware of it, NGINX are sensetiv how you are writing the configuration file with spaces etc.
