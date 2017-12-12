@@ -2,6 +2,9 @@
 We are going to install Baikal that's a light and good DAV server, it's greate to use with Seafile.<br>
 If you want to read more please read, http://sabre.io/baikal/ <br>
 <br>
+If you want to run Baikal inside the same WAN IP as your other servers, take Seafile for a example then you need to setup a NGINX Reverse proxy server in a VM.
+A guide how to do that are coming soon.
+<br>
 Before you start to install Baikal I do recommend that you are following the guides that are listed below:
 * How to secure your Ubuntu server <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Secure-Server.md
