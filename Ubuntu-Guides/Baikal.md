@@ -206,3 +206,11 @@ sudo chown -R www-data:www-data /var/www/baikal
 Now we are done!
 #### Installation
 To install Baikal just visit the follwoing link in your webbrowser, replace YOURSERVERIP with your IP to the server: http://YOURSERVERIP/admin/install/
+
+During the installation you will first get prompted to write a administration password do that.<br>
+When your on the database section of the installation you should have the following settings.<br>
+* Check the "Use mysql" box
+* MySQL host: localhost
+* MySQL database name: baikal-db
+* MySQL username: baikal
+* MySQL password: (Write the password that you did choose when you did create the user baikal in MariaDB)
