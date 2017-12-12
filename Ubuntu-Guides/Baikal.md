@@ -19,6 +19,7 @@ ctrl+k = deletes a hole row in the document
  
 ctrl+x = your asked if you want to save the document or not, answer y or n then press enter and then after that you will get back to the     terminal.
 ```
+<br>
 ## Installation
 First we need to make sure that Ubuntu are up to date.
 ```
