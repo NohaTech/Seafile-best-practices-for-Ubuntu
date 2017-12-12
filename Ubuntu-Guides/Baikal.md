@@ -1,4 +1,4 @@
-## Introduction
+# Introduction
 We are going to install Baikal that's a light and good DAV server, it's greate to use with Seafile.<br>
 If you want to read more please read, http://sabre.io/baikal/ <br>
 <br>
