@@ -95,7 +95,7 @@ Now it's time to do the installation of the rest of the needed things, as you ca
 ```
 sudo apt-get install python -y
  
-sudo apt-get install python2.7 libpython2.7 python-setuptools python-imaging python-ldap python-urllib3 ffmpeg python-pip python-mysqldb python-memcache memcached libmemcached-dev zlib1g-dev nginx -y
+sudo apt-get install python2.7 libpython2.7 python-setuptools python-imaging python-ldap python-urllib3 ffmpeg python-pip python-mysqldb python-memcache memcached libmemcached-dev zlib1g-dev -y
  
 sudo -H pip install pillow moviepy pylibmc django-pylibmc
 ```
