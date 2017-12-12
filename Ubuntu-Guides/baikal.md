@@ -36,6 +36,29 @@ sudo mysql_secure_installation
 (If you using auth_socket in MariaDB you just press enter when it's asking for the password, if your not using it then type your root password for MariaDB.)
 This setup are really easy to do, now you will be asked if you want to change your administration password for MairaDB here you can choose whatever you want. But for the other questions you should answer Y on everyone of them.
 
+#### Create the databases
+Now we need to add some databases to MariaDB.
+```
+sudo mysql -u root -p
+```
+(If you using auth_socket in MariaDB you just press enter when it's asking for the password, if your not using it then type your root password for MariaDB.)
+Now we are in MariaDB and we need to create the databases for Baikal.
+```
+create database `baikal-db`;
+```
+Now we need to create the Baikal user for MariaDB and give it access to the databases that we have been creating.
+Change the "identified by 'baikal';" to a password of your choosing rather then baikal use a strong and long password, you should write your password inside the '' signs and make sure not to delete them or the ; sign.
+```
+create user 'baikal'@'localhost' identified by 'baikal';
+ 
+GRANT ALL PRIVILEGES ON `baikal-db`.* to `baikal`@localhost;
+```
+Now we are all done, so just do the following.
+```
+flush privileges;
+quit;
+```
+
 
 make sure that you have the latest release, take a look.
 https://github.com/sabre-io/Baikal/releases
