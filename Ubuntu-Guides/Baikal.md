@@ -98,14 +98,9 @@ We need to change one thing in the configuration file after we have installed NG
 ```
 sudo nano /etc/nginx/nginx.conf
 ```
-Now we need to create some folders.
-```
-sudo mkdir /etc/nginx/sites-enabled
-sudo mkdir /etc/nginx/sites-available
-```
 Then we need to replace this line:
 ```
-include /etc/nginx/conf.d/*.conf
+include /etc/nginx/conf.d/*.conf;
 ```
 With this line:
 ```
