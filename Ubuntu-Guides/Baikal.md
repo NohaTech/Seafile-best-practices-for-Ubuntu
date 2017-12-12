@@ -112,8 +112,9 @@ sudo service nginx restart
 sudo service nginx reload
 ```
 #### Optimize NGINX
-Please see this link for instructions how to optimize NGINX.
-
+Please see this link for instructions how to optimize NGINX.<br>
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/NGINX-Optimize.md <br>
+<br>
 
 
 make sure that you have the latest release, take a look.
