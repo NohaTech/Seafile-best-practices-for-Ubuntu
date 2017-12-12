@@ -117,12 +117,17 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu
 #### Secure NGINX with Fail2Ban
 This configuration are adapted to work with NGINX, please follow this link.<br>
 #### Configure NGINX
-Now we are going to configure NGINX to work with Baikal.
-So we need to create this file.
+First we need to delete the old / default configurations.
+Just so your aware of it, NGINX are sensetiv how you are writing the configuration file with spaces etc.
+```
+sudo rm -rf /etc/nginx/sites-enabled/default
+sudo rm -rf /etc/nginx/sites-available/default
+```
+Then we need to create the file that we are going to use.
 ```
 sudo nano /etc/nginx/sites-available/dav.conf
 ```
-And then add this, make sure to change dav.example.org to your own domain.
+And copy this in to the file, and remember to replace the dav.example.org to your own domain and also change the path for the location folder in the bottom the yours.
 ```
 server {
   listen       80;
