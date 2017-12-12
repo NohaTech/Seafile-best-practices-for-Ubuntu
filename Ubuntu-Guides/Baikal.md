@@ -166,6 +166,19 @@ Now we are almoste done, we just need to restart NGINX.
 sudo service nginx reload
 sudo service nginx restart
 ```
+### PHP configuration
+Now we need to change a line in a configuration file to make everything work
+```
+sudo nano /etc/php/7.0/fpm/pool.d/www.conf
+```
+And then you can search for this line.
+```
+listen = /run/php/php7.0-fpm.sock
+```
+And then replace that line with.
+```
+listen = /var/run/php/php7.0-fpm.sock
+```
 
 
 make sure that you have the latest release, take a look.
@@ -177,8 +190,6 @@ wget https://github.com/sabre-io/Baikal/releases/download/0.4.6/baikal-0.4.6.zip
 
 sudo chown -R www-data:www-data /var/www/baikal
 
-
-sudo nano /etc/php/7.0/fpm/pool.d/www.conf
 
 change premission on /var/run/php/php7.0-fpm.sock should be user nginx
 
