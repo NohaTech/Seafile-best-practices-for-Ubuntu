@@ -30,6 +30,9 @@ Then we need to install some things.
 sudo apt-get install php php-mysql unzip nginx -y
 ```
 
+### Firewall
+Make sure that you have opened port 80/tcp and 443/tcp as Baikal are using thoes ports.
+
 ### Install MariaDB
 We are going to use MariaDB and what we want to do is that we want to run the latest stable version to do that we need to change some files and do some installation.
 Run the following commands.
