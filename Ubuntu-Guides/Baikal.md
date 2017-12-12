@@ -195,5 +195,11 @@ Take a look here so it's the latest: https://github.com/sabre-io/Baikal/releases
 cd /var/www
 sudo wget https://github.com/sabre-io/Baikal/releases/download/0.4.6/baikal-0.4.6.zip
 ```
-
+Then we need to unzip all the files.
+```
+sudo unzip baikal-0.4.6.zip
+```
+Now we need to change the premission on the baikal folder.
+```
 sudo chown -R www-data:www-data /var/www/baikal
+```
