@@ -251,7 +251,7 @@ If you want Fail2Ban to send you mails then read NohaTech-Ubuntu-Ssmtp-English.m
 
 ```
 ### End Notes about Fail2Ban
-Fail2Ban have so much different filters, you can also add your own filters, to se the settings for Fail2Ban on NGINX, please read this file NGINX-fail2ban.md I have written about that in there and I'll not write it again in this file.
+Fail2Ban have so much different filters, you can also add your own filters, to se the settings for Fail2Ban on NGINX, please read this file NGINX-fail2ban.md I have written about that in there and I'll not write it again in this file.<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/NGINX-fail2ban.md
 # UFW
 A Firewall is something that everyone wants and needs these days, so I'm going to guide you trough it. As default Ubuntu should have UFW installed but if not, then installed it trough this command.
