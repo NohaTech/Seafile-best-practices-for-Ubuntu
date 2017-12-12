@@ -14,9 +14,13 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Install-ssmtp.md
 
 ## Installation
-First we need to install some things.
+First we need to make sure that Ubuntu are up to date.
 ```
-sudo apt-get install php php-mysql -y
+sudo apt-get update && sudo apt-get upgrade -y
+```
+Then we need to install some things.
+```
+sudo apt-get install php php-mysql nginx -y
 ```
 
 ### Install MariaDB
