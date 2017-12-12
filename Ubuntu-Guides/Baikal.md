@@ -20,7 +20,7 @@ sudo apt-get update && sudo apt-get upgrade -y
 ```
 Then we need to install some things.
 ```
-sudo apt-get install php php-mysql nginx -y
+sudo apt-get install php php-mysql unzip nginx -y
 ```
 
 ### Install MariaDB
