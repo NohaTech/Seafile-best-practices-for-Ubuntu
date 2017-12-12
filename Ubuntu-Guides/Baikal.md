@@ -8,7 +8,7 @@ Guide for that are comming soon.<br>
 Before you start to install Baikal I do recommend that you are following the guides that are listed below:
 * How to secure your Ubuntu server <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Secure-Server.md
-* How to setup Hyper-V right way<br>
+* How to setup Hyper-V in the right way<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Run-Hyper-V.md
 * How to install and setup SSMTP<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Install-ssmtp.md
