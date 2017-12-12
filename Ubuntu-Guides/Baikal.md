@@ -2,13 +2,14 @@
 We are going to install Baikal that's a light and good DAV server, it's greate to use with Seafile.<br>
 If you want to read more please read, http://sabre.io/baikal/ <br>
 <br>
-Before we start I recommending you to follow this guide to make sure that your server are secure: <br>
+Before you start to install Baikal I do recommend that you are following the guides that are listed below:
+* How to secure your Ubuntu server<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Secure-Server.md
 <br>
-And if your thinking of running it on a Hyper-V VM, please follow this guide before your installing Baikal.<br>
+* How to setup Hyper-V right<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Run-Hyper-V.md
 <br>
-I also recommend you to install and setup SSMTP before you install Baikal.<br>
+* How to install and setup SSMTP<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Install-ssmtp.md
 
 ## Installation
