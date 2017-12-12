@@ -1,7 +1,7 @@
 # Introduction
 As I have done many guides, I need to spare some time. So I have made this document seperated so I can just link to it from the guides to save time.
 
-# Configuration
+## Configuration
 So now we want to optimize NGINX for best performence.
 First we are going to look how many working processors we have.
 ```
