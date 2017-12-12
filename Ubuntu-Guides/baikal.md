@@ -1,20 +1,41 @@
 ## Introduction
 We are going to install Baikal that's a light and good DAV server, it's greate to use with Seafile.
 If you want to read more please read, http://sabre.io/baikal/ <br>
+<br>
 Before we start I recommending you to follow this guide to make sure that your server are secure: <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Secure-Server.md
 <br>
 And if your thinking of running it on a Hyper-V VM, please follow this guide before your installing Baikal.<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Run-Hyper-V.md
 
-
+## Setup
 First we need to install some things.
 ```
 sudo apt-get install php php-mysql -y
 ```
-Then we need to install and setup MariaDB.
 
-mariadb
+### Install MariaDB
+We are going to use MariaDB and what we want to do is that we want to run the latest stable version to do that we need to change some files and do some installation.
+Run the following commands.
+```
+sudo apt-get install software-properties-common
+sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+sudo add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://ftp.ddg.lth.se/mariadb/repo/10.2/ubuntu xenial main'
+```
+As you can se when I write this document the latest stable version of MariaDB is 10.2, to make sure that it's still the latest version please visit http://downloads.mariadb.org/mariadb/repositories/ 
+
+Now it's time to install MariaDB.
+```
+sudo apt-get update
+sudo apt-get install mariadb-server -y
+```
+And now to finish the MariaDB setup we need to run some security, this is something that many people are missing and it's really important to do this beacuse otherwise it's easy to get hacked.
+```
+sudo mysql_secure_installation
+```
+(If you using auth_socket in MariaDB you just press enter when it's asking for the password, if your not using it then type your root password for MariaDB.)
+This setup are really easy to do, now you will be asked if you want to change your administration password for MairaDB here you can choose whatever you want. But for the other questions you should answer Y on everyone of them.
+
 
 make sure that you have the latest release, take a look.
 https://github.com/sabre-io/Baikal/releases
