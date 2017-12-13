@@ -56,6 +56,12 @@ With this line:
 ```
 include /etc/nginx/sites-enabled/*.conf;
 ```
+And now we are going to delete some configuration files that we don't need anymore.
+```
+sudo rm -rf /etc/nginx/conf.d/default.conf
+sudo rm -rf /etc/nginx/sites-enabled/default
+sudo rm -rf /etc/nginx/sites-available/default
+```
 Then just restart and reload NGINX, then we are done with the update.
 ```
 sudo service nginx restart
