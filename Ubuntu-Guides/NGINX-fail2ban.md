@@ -103,8 +103,6 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu
 If you want to activate so you can send mails from Fail2Ban you need to follow this guide first Install-ssmtp.md. <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Install-ssmtp.md
 
-And here is a notice regarding the Seafile filter, it's a little different then the others, maxretry set to 1 is actually 3 failed login attempts that's why I have it set to 2 in this guide.
-
 Now we are going to create the configuration file.
 ```
 sudo nano /etc/fail2ban/jail.local
