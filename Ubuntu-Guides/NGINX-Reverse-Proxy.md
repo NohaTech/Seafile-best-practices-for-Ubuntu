@@ -18,7 +18,10 @@ ctrl+w = you can search in the document.
  
 ctrl+x = your asked if you want to save the document or not, answer y or n then press enter and then after that you will get back to the     terminal.
 ```
-# Install NGINX
+## Firewall
+You need to open port 80/tcp and port 443/tcp in UFW if you have that activated, and also you need to portforward port 80/tcp and 443/tcp from your gateway (router) to the machine or VM that are going to be the Reverse proxy.
+
+## Install NGINX
 First we need to install NGINX, this is important as we need some of this files before we update NGINX.
 ```
 sudo apt-get install nginx -y
@@ -73,3 +76,6 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu
 #### Secure NGINX with Fail2Ban
 This configuration are adapted to work with NGINX, please follow this link.<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/NGINX-fail2ban.md
+
+#### First configuration file.
+For every site we want to route we need to create a configuration file, so if you have three sites you need to do this step three times.
