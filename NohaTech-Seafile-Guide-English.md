@@ -584,7 +584,16 @@ Now we are all set and can create the certification, change example.se to your d
 sudo certbot certonly --webroot -w /mnt/certbot-webroot -d example.se
 ```
 When you did create the cert troug the command above you did get the correct path to your new cert's prompted for you.
-Change the following rows so the path is the correct one for you, It should bee something like the path that I have wroten below.
+Change the following rows so the path is the correct one for you, It should be something like the path that I have wroten below.
+```
+sudo nano /etc/nginx/sites-available/seafile.conf
+```
+Then replace this lines:
+```
+ssl_certificate /etc/ssl/private/cacert.pem;        # path to your cacert.pem
+ssl_certificate_key /etc/ssl/private/privkey.pem;    # path to your privkey.pem
+```
+With this one, it's the same lines that was prompted for you when you did run Let's Encrypt.
 ```
 ssl_certificate /etc/letsencrypt/live/example.se/fullchain.pem;  # path to your cacert.pem
 ssl_certificate_key /etc/letsencrypt/live/example.se/privkey.pem;    # path to your privkey.pem
