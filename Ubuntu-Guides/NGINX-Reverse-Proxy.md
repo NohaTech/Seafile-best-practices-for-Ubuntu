@@ -18,3 +18,52 @@ ctrl+w = you can search in the document.
  
 ctrl+x = your asked if you want to save the document or not, answer y or n then press enter and then after that you will get back to the     terminal.
 ```
+# Install NGINX
+First we need to install NGINX, this is important as we need some of this files before we update NGINX.
+```
+sudo apt-get install nginx -y
+```
+Now we are going to update and setup NGINX. <br>
+We need to add some rows to the /etc/apt/sources.list.
+```
+sudo nano /etc/apt/sources.list
+```
+Then add this to the file.
+```
+deb http://nginx.org/packages/ubuntu/ xenial nginx
+# deb-src http://nginx.org/packages/ubuntu/ xenial nginx
+```
+Now we need to check that everything works in the update.
+```
+sudo apt-get update
+```
+If a W: GPG error: http://nginx.org/packages/ubuntu xenial Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY $key is encountered during the NGINX repository update, execute the following:
+```
+## Replace $key with the corresponding $key from your GPG error.
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
+sudo apt-get update
+sudo apt-get install nginx
+```
+We need to change two thing in the configuration file after we have installed NGINX.
+```
+sudo nano /etc/nginx/nginx.conf
+```
+Then we need to replace this line:
+```
+include /etc/nginx/conf.d/*.conf;
+```
+With this line:
+```
+include /etc/nginx/sites-enabled/*.conf;
+```
+Then just restart and reload NGINX, then we are done with the update.
+```
+sudo service nginx restart
+sudo service nginx reload
+```
+#### Optimize NGINX
+Please see this link for instructions how to optimize NGINX.<br>
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/NGINX-Optimize.md <br>
+#### Secure NGINX with Fail2Ban
+This configuration are adapted to work with NGINX, please follow this link.<br>
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/NGINX-fail2ban.md
