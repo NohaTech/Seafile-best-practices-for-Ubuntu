@@ -5,9 +5,11 @@ So if you are going to do everything that this document says just reboot the ser
 
 We will use a texteditor called nano in this guide, so here is some commands that you need to know.
 ```
- ctrl+k = deletes a hole row in the document
+ctrl+k = deletes a hole row in the document
+
+ctrl+w = you can search in the document.
  
- ctrl+x = your asked if you want to save the document or not, answer y or n then press enter and then after that you will get back to the     terminal.
+ctrl+x = your asked if you want to save the document or not, answer y or n then press enter and then after that you will get back to the     terminal.
 ```
 # Basic recommendation
 I'll give you some advace here, don't use the same password at your server as your using on other logins, also make sure it's a strong password that your using.
