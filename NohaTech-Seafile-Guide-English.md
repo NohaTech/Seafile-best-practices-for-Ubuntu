@@ -1001,26 +1001,28 @@ To do that just check the box "enable two factor authentication"
 # Last tip
 Here is some last "guides" that you can read if you find them intressting, I have not included them in this "main guide" as it's not needed to get Seafile to work. And some of them are not recommended to use and the better way is included in the "main guide" but some people maybe want to use the other less good way.
 
+* Setup reverse proxy. <br>
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/NGINX-Reverse-Proxy.md
 * Seaf-FSCK script <b>(Recommended)</b> <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/Seaf-FSCK-script.md
 * How to activate video Thumbnails <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/Video-thumbnails.md
 * How to create ignore list for Seafile client's <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/ignore-list-clients.md
-* SeafDAV (WebDAV) <br>
-Coming soon!
 * Activate HTTP2 <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/NGINX-HTTP2.md
 * Use Memcached over IP <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/Memcached-IP.md
 * Setup NGINX with HTTP (no SSL cert) <br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Seafile-Guides/NGINX-HTTP.md
+* Do you want a good CalDav and CardDav server? Here's a guide.<br>
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Baikal.md
 * Update/upgrade Seafile <br>
 Comming soon!
 * Install/update to Seafile PRO <br>
 Comming soon!
-* Do you want a good CalDav and CardDav server? Here's a guide.<br>
-https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Baikal.md
+* SeafDAV (WebDAV) <br>
+Coming soon!
 
 # Maintain Seafile
 As with everything you need to Maintain it, and also you might get some issues or something.
