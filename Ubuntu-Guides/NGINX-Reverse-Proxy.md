@@ -76,7 +76,31 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu
 #### Secure NGINX with Fail2Ban
 This configuration are adapted to work with NGINX, please follow this link.<br>
 https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/NGINX-fail2ban.md
-
+#### Create SSL self signed.
+You are only going to need to do this one time, this is because we need this for the Let's Encrypt later.
+First we need to create privkey.pem and cacert.pem.
+```
+sudo openssl genrsa -out /etc/ssl/private/privkey.pem 2048
+sudo openssl req -new -x509 -key /etc/ssl/private/privkey.pem -out /etc/ssl/private/cacert.pem -days 1095
+```
+If you get any issues when your trying to create the cert's do it this way insted. Replace xxx with your user name. (optional)
+```
+cd ~
+sudo openssl genrsa -out /home/xxx/privkey.pem 2048
+sudo openssl req -new -x509 -key /home/xxx/privkey.pem -out /home/xxx/cacert.pem -days 1095
+sudo mv privkey.pem /etc/ssl/private/
+sudo mv cacert.pem /etc/ssl/private/
+```
+#### Create dhparam file.
+You need to do this for every site that your going to have this reverse proxy for.
+Now we need to create the dhparam.pem file, it's a little tricky we need to create it in our home folder then move it to the /etc/ssl/private/ folder.
+I recommend that your naming it like this dhparam_test.pem but replace "test" with the name of the site that you want to route.
+Make sure that you also change the "test" in the commands later on.
+```
+cd ~
+sudo openssl dhparam 2048 > dhparam_test.pem
+sudo mv dhparam_test.pem /etc/ssl/private/dhparam_test.pem
+```
 #### First configuration file.
 For every site we want to route we need to create a configuration file, so if you have three sites you need to do this step three times.
 So now we need to create the configuration file, it's a good ide to name it to the same name as the server that you want to route to.
