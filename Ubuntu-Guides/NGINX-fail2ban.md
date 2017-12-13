@@ -9,6 +9,25 @@ ctrl+k = deletes a hole row in the document
  
 ctrl+x = your asked if you want to save the document or not, answer y or n then press enter and then after that you will get back to the     terminal.
 ```
+# Installation
+
+Fail2Ban are searching trough your logfiles and are blocking IP's that are trying to hack your server in different ways.
+So now we are going to install Fail2Ban
+```
+sudo apt-get install fail2ban -y
+```
+### Latest version
+As always we are using the latest stable version of the software and Fail2Ban is no different, but as version 10 have some different rules etc. we will still be at version 9 as that's the most stable one.
+So now, let us download and install the newest version.
+```
+wget http://se.archive.ubuntu.com/ubuntu/pool/universe/f/fail2ban/fail2ban_0.9.7-2_all.deb
+```
+then we need to install it.
+```
+sudo dpkg -i fail2ban_0.9.7-2_all.deb
+```
+Now we have the latest version installed and we can continue with the configuration of Fail2Ban.
+
 ### Add filters
 What we need to do first here is to create the filters that we need, some of them are already created as default in Fail2Ban but some we need to create by our self.
 
