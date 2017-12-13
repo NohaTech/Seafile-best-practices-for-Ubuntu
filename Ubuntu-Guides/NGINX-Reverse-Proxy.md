@@ -91,6 +91,10 @@ sudo openssl req -new -x509 -key /home/xxx/privkey.pem -out /home/xxx/cacert.pem
 sudo mv privkey.pem /etc/ssl/private/
 sudo mv cacert.pem /etc/ssl/private/
 ```
+And the final thing to do, create this folder.
+```
+sudo mkdir /mnt/certbot-webroot
+```
 #### Create dhparam file.
 You need to do this for every site that your going to have this reverse proxy for.
 Now we need to create the dhparam.pem file, it's a little tricky we need to create it in our home folder then move it to the /etc/ssl/private/ folder.
@@ -179,3 +183,59 @@ sudo service nginx restart
 sudo service nginx reload
 ```
 Now if you visiting your domain it will be re-routed to the right server.
+
+#### Let's Encrypt (SSL)
+Here we will get a free SSL cert that expires after 3 months but we will make a cronjob so we will renew it before it expires.
+If you uses this it's going to make your site more secure and also it will show as "trusted" in every webbrowser and every webbrowser can access your site without any issues or warnings.
+
+Then we need to install certbot so we can get the cert's.
+```
+sudo apt-get install software-properties-common -y
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install python-certbot-nginx -y
+```
+Now we are all set and can create the certification, change example.se to your domain name, you should NOT have http or https before it but you can use subdomain.example.se if you want that or example.se.
+You need to run this for every domain that you want to route trough your reverse proxy.
+```
+sudo certbot certonly --webroot -w /mnt/certbot-webroot -d test.example.se
+```
+When you did create the cert troug the command above you did get the correct path to your new cert's prompted for you.
+Change the following rows so the path is the correct one for you, It should bee something like the path that I have wroten below.
+Make sure that you change the "test.conf" to the name that you have choosed before.
+```
+sudo nano /etc/nginx/sites-available/test.conf
+```
+then replace this lines:
+```
+ssl_certificate /etc/ssl/private/cacert.pem;        # KEEP THIS, we will replace this later efter we have done Let's Encrypt
+ssl_certificate_key /etc/ssl/private/privkey.pem;   # KEEP THIS, we will replace this later efter we have done Let's Encrypt
+```
+White this lines, make sure to replace them with the correct ones that Let's Encrypt did prompt for you during the creation of the cert's.
+```
+ssl_certificate /etc/letsencrypt/live/example.se/fullchain.pem;  # path to your cacert.pem
+ssl_certificate_key /etc/letsencrypt/live/example.se/privkey.pem;    # path to your privkey.pem
+```
+Now we are actually done, not so hard right? Well we did do the most of the work before.
+So now we just need to restart NGINX.
+```
+sudo service nginx reload
+sudo service nginx restart
+```
+#### Setup auto-renew Let's Encrypt.
+So now we just need to add this to crontab so the cert will get renewed before it expires.
+You only need to do this one time.
+First we need to look where certbot is located at your server.
+```
+whereis certbot
+```
+Then we need to create the crontab.
+```
+sudo crontab -e
+```
+At the bottom of crontab add this, change the /path/to/certbot so it's matches your path.
+```
+47 */12 * * * sleep 16; /path/to/certbot renew --quiet --post-hook "/usr/sbin/service nginx reload"
+```
+Now we are finished with the setup, so let's test your SSL rating, you should have A+ in score.
+You can test it here: https://www.ssllabs.com/ssltest
