@@ -123,14 +123,14 @@ This is one example for the configuration, make sure that you have changed the t
     server {
         listen 443;
         ssl on;
-        ssl_certificate /etc/letsencrypt/live/test.example.se/fullchain.pem;        # path to your Let's encrypt files
-        ssl_certificate_key /etc/letsencrypt/live/test.example.se/privkey.pem;    # path to your Let's encrypt files
+        ssl_certificate /etc/ssl/private/cacert.pem;        # KEEP THIS, we will replace this later efter we have done Let's Encrypt
+        ssl_certificate_key /etc/ssl/private/privkey.pem;   # KEEP THIS, we will replace this later efter we have done Let's Encrypt
         server_name test.example.se;
         ssl_session_timeout 5m;
         ssl_session_cache shared:SSL:5m;
 
         # Diffie-Hellman parameter for DHE ciphersuites, recommended 2048 bits
-        ssl_dhparam /etc/ssl/private/dhparam.pem; # make sure that you have changed the dhparam.pem to what you have named it for this site.
+        ssl_dhparam /etc/ssl/private/dhparam_test.pem; # make sure that you have changed the dhparam_test.pem to your own name.
 
         # secure settings (A+ at SSL Labs ssltest at time of writing)
         # see https://wiki.mozilla.org/Security/Server_Side_TLS#Nginx
