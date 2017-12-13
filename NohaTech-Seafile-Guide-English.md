@@ -967,8 +967,10 @@ enabled  = true
 port     = http,https
 filter   = nginx-botsearch
 logpath  = /var/log/nginx/*error.log
-
-
+```
+Now we need to restart Fail2Ban and then everything is up and running.
+```
+sudo service fail2ban restart
 ```
 
 # Setup security in Seafile Web.
