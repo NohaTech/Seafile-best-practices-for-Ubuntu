@@ -96,3 +96,105 @@ failregex = ^<HOST> -.*GET.*(\.php|\.asp|\.exe|\.pl|\.cgi|\.scgi)
 
 ignoreregex =
 ```
+### Configuration
+I'll just past the configuration here that works with the filters that we have done and the best settings for the filter, if you want to se more information regarding the configuration file you can read Secure-server.md. <br>
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Secure-Server.md
+
+If you want to activate so you can send mails from Fail2Ban you need to follow this guide first Install-ssmtp.md. <br>
+https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu-Guides/Install-ssmtp.md
+
+And here is a notice regarding the Seafile filter, it's a little different then the others, maxretry set to 1 is actually 3 failed login attempts that's why I have it set to 2 in this guide.
+
+Now we are going to create the configuration file.
+```
+sudo nano /etc/fail2ban/jail.local
+```
+Then add this to the file.
+```
+[DEFAULT]
+
+# Also add your gateways IP numbere here.
+ignoreip = 127.0.0.1/8
+bantime = 259200
+findtime = 3600
+maxretry = 0
+# Change this to your mail.
+destemail = YOUREMAIL
+sendername = Fail2Ban
+action = %(action_mwl)s
+
+[sshd]
+
+enabled  = true
+port     = 2324,22
+filter   = sshd
+logpath  = /var/log/auth.log
+maxretry = 3
+
+[sshd-ddos]
+
+enabled  = true
+port     = 2324,22
+filter   = sshd-ddos
+logpath  = /var/log/auth.log
+
+[nginx-http-auth]
+
+enabled  = true
+port     = https,http
+filter   = nginx-http-auth
+logpath  = /var/log/nginx/*error.log
+
+[nginx-badbots]
+
+enabled  = true
+port     = https,http
+filter   = nginx-badbots
+logpath  = /var/log/nginx/*access.log
+
+[nginx-nohome]
+
+enabled  = true
+port     = https,http
+filter   = nginx-nohome
+logpath  = /var/log/nginx/*access.log
+
+[nginx-noproxy]
+
+enabled  = true
+port     = https,http
+filter   = nginx-noproxy
+logpath  = /var/log/nginx/*access.log
+
+[nginx-noscript]
+
+enabled  = true
+port     = https,http
+filter   = nginx-noscript
+logpath  = /var/log/nginx/*access.log
+
+[nginx-req-limit]
+
+enabled  = true
+port     = https,http
+filter   = nginx-limit-req
+logpath  = /var/log/nginx/*error.log
+
+[nginx-forbidden]
+
+enabled  = true
+port     = https,http
+filter   = nginx-forbidden
+logpath  = /var/log/nginx/*error.log
+
+[nginx-botsearch]
+
+enabled  = true
+port     = http,https
+filter   = nginx-botsearch
+logpath  = /var/log/nginx/*error.log
+```
+Now we are all done, we just need to restart Fail2Ban.
+```
+sudo service fail2ban restart
+```
