@@ -79,3 +79,79 @@ https://github.com/NohaTech/Seafile-best-practices-for-Ubuntu/blob/master/Ubuntu
 
 #### First configuration file.
 For every site we want to route we need to create a configuration file, so if you have three sites you need to do this step three times.
+So now we need to create the configuration file, it's a good ide to name it to the same name as the server that you want to route to.
+```
+sudo nano /etc/nginx/sites-available/test.conf
+```
+This is one example for the configuration, make sure that you have changed the text that has a # sign after to your own text in this file.
+```
+    server {
+        listen       80;
+        server_name  test.example.se; # Write your own domain name here.
+        rewrite ^ https://$http_host$request_uri? permanent;   
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-XSS-Protection "1; mode=block" always;
+        add_header X-Frame-Options "DENY" always;
+        add_header Referrer-Policy "strict-origin" always;
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+        server_tokens off;
+    }
+    server {
+        listen 443;
+        ssl on;
+        ssl_certificate /etc/letsencrypt/live/test.example.se/fullchain.pem;        # path to your Let's encrypt files
+        ssl_certificate_key /etc/letsencrypt/live/test.example.se/privkey.pem;    # path to your Let's encrypt files
+        server_name test.example.se;
+        ssl_session_timeout 5m;
+        ssl_session_cache shared:SSL:5m;
+
+        # Diffie-Hellman parameter for DHE ciphersuites, recommended 2048 bits
+        ssl_dhparam /etc/ssl/private/dhparam.pem; # make sure that you have changed the dhparam.pem to what you have named it for this site.
+
+        # secure settings (A+ at SSL Labs ssltest at time of writing)
+        # see https://wiki.mozilla.org/Security/Server_Side_TLS#Nginx
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256$
+        ssl_prefer_server_ciphers on;
+
+        proxy_set_header X-Forwarded-For $remote_addr;
+
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-XSS-Protection "1; mode=block" always;
+        add_header X-Frame-Options "DENY" always;
+        add_header Referrer-Policy "strict-origin" always;
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+        server_tokens off;
+
+        location / {
+            proxy_pass         http://192.168.0.23; # Change this to the right IP to the server you want to route to.
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+            proxy_set_header   X-Forwarded-Proto https;
+            proxy_request_buffering off;
+
+            access_log      /var/log/nginx/test.access.log; # Re-name "test" to the name for the server that your routing to.
+            error_log       /var/log/nginx/test.error.log;  # Re-name "test" to the name for the server that your routing to.
+
+            proxy_read_timeout  1200s;
+
+            client_max_body_size 0;
+        }
+        location '/.well-known/acme-challenge' {
+          default_type "text/plain";
+          root /mnt/certbot-webroot;
+        }
+    }
+```
+Now we need to activate the configuration file, remember to replace test.conf with your own text.
+```
+sudo ln -s /etc/nginx/sites-available/test.conf /etc/nginx/sites-enabled/test.conf
+```
+And now we just need to restart NGINX and after that we are done.
+```
+sudo service nginx restart
+sudo service nginx reload
+```
+Now if you visiting your domain it will be re-routed to the right server.
