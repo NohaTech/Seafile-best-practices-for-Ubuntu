@@ -1,6 +1,7 @@
 
 # Introduction
 If you want multiple servers over the HTTP and HTTPS port and you only have one (WAN)(INTERNET) IP you need a reverse proxy that can route the traffic to the correct server. The good thing here is that you can have everything on the reverse proxy, the protection and also the SSL certs etc. You can host this server on it's own machine or simpley on a VM.
+On the server that you want to route the traffic to you can have HTTP or HTTPS configurade that don't matter as the NGINX reverse proxy are going to handle the HTTPS traffic SSL, but to save power from the "route server" just have HTTP in the NGINX configuration on that machine and let the NGINX reverse proxy do all of the work.
 
 Before you start to setup the reverse proxy I do recommend that you are following the guides that are listed below:
 * How to secure your Ubuntu server <br>
