@@ -21,6 +21,7 @@ ctrl+x = your asked if you want to save the document or not, answer y or n then 
 ```
 ## Firewall
 You need to open port 80/tcp and port 443/tcp in UFW if you have that activated, and also you need to portforward port 80/tcp and 443/tcp from your gateway (router) to the machine or VM that are going to be the Reverse proxy.
+I do recommend that you close port 80/tcp on the back end machine and only have 443/tcp open and only use SSL from the NGINX reverse proxy front to the back end machine.
 
 ## Install NGINX
 First we need to install NGINX, this is important as we need some of this files before we update NGINX.
@@ -153,7 +154,7 @@ This is one example for the configuration, make sure that you have changed the t
         server_tokens off;
 
         location / {
-            proxy_pass         http://192.168.0.23; # Change this to the right IP to the server you want to route to.
+            proxy_pass         https://192.168.0.23; # Change this to the right IP to the server you want to route to.
             proxy_set_header   Host $host;
             proxy_set_header   X-Real-IP $remote_addr;
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
