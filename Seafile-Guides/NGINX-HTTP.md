@@ -1,2 +1,2 @@
 I have moved this guide to the following link:
-https://nohatech.se/2017/12/15/setup-seafile-with-http/
+https://nohatech.se/setup-seafile-with-http/
